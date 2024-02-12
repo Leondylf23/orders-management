@@ -1,0 +1,3 @@
+export const GET_TICKETS_DATA = 'Home/GET_TICKETS_DATA';
+export const GET_MY_TICKETS_DATA = 'Home/GET_MY_TICKETS_DATA';
+export const SET_TICKETS_DATA = 'Home/SET_TICKETS_DATA';

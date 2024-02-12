@@ -1,0 +1,14 @@
+{
+  "title": "bikin baru edit 7",
+  "location": "aaaaaa",
+  "price": "10000000.00",
+  "variants": "[{\"variantName\":\"varian 1\",\"price\":\"10000000\"},{\"variantName\":\"varian 2\",\"price\":\"120000000\"},{\"variantName\":\"varian 3\",\"price\":\"600000000\"}]",
+  "description": "ini test aja aaaa\r\naaa\r\na\r\naaaawdaw\r\nadwdwadwadwa\r\ndwa\r\ndwadawdaw\r\nadwdad",
+  "imageUrl": "http://res.cloudinary.com/dwyzuwtel/image/upload/v1707507234/image/coigg6daa57si1smqema.jpg",
+  "createdBy": 1,
+  "user": {
+    "dataValues": {
+      "organization": "test edit name"
+    }
+  }
+}

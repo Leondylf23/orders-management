@@ -1,0 +1,49 @@
+{
+  "dataValues": {
+    "bookingCode": "TRX/2024-02-09/s3fXd",
+    "status": "WAITING",
+    "variant": {
+      "price": "10000000",
+      "variantName": "varian 1"
+    },
+    "paymentMethod": "METHOD_ONSITE_PAY",
+    "businessUserId": 1
+  },
+  "ticket": {
+    "dataValues": {
+      "title": "bikin baru edit 7",
+      "imageUrl": "http://res.cloudinary.com/dwyzuwtel/image/upload/v1707507234/image/coigg6daa57si1smqema.jpg",
+      "location": "test",
+      "description": "test desc"
+    },
+    "user": {
+      "dataValues": {
+        "fullname": "user business"
+      }
+    }
+  },
+  "couponConnectors": [
+    {
+      "dataValues": {
+        "id": 1
+      },
+      "coupon": {
+        "dataValues": {
+          "couponName": "diskon 100k",
+          "couponCut": "100000"
+        }
+      }
+    },
+    {
+        "dataValues": {
+          "id": 2
+        },
+        "coupon": {
+          "dataValues": {
+            "couponName": "diskon 50k",
+            "couponCut": "50000"
+          }
+        }
+      }
+  ]
+}
