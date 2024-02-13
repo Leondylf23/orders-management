@@ -2,27 +2,46 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('bookings', {
+    await queryInterface.createTable('orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ticketId: {
+      productId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'tickets',
+          model: 'products',
           key: 'id',
-          as: 'ticketId',
+          as: 'productId',
         }
+      },
+      transactionCode: {
+        type: Sequelize.STRING,
       },
       status: {
         allowNull: false,
         type: Sequelize.STRING(10),
         defaultValue: 'WAITING'
+      },
+      paymentMethod: {
+        type: Sequelize.STRING(10),
+      },
+      totalPayment: {
+        type: Sequelize.DECIMAL(10, 2),
+      },
+      businessUserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id',
+          as: 'createdBy',
+        }
       },
       isActive: {
         type: Sequelize.BOOLEAN,
@@ -49,6 +68,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('bookings');
+    await queryInterface.dropTable('orders');
   }
 };

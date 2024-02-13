@@ -2,18 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('coupons', {
+    await queryInterface.createTable('products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      couponName: {
+      title: {
         type: Sequelize.STRING
       },
-      couponPrcCut: {
+      price: {
         type: Sequelize.DECIMAL(10, 2)
+      },
+      description: {
+        type: Sequelize.TEXT
+      },
+      imageUrl: {
+        type: Sequelize.TEXT
       },
       isActive: {
         type: Sequelize.BOOLEAN,
@@ -40,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('coupons');
+    await queryInterface.dropTable('products');
   }
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const Boom = require('boom');
 const cors = require('cors');
+dotenv.config();
 
 const app = express();
 const Port = process.env.NODEJS_PORT || 8080;
@@ -10,7 +11,6 @@ const Port = process.env.NODEJS_PORT || 8080;
 const Ticket = require('./server/api/ticket');
 const AuthUser = require('./server/api/authUser');
 
-dotenv.config();
 
 // Middleware
 app.use(cors());
