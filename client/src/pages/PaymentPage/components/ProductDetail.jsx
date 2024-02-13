@@ -36,7 +36,6 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
     dispatch(
       setUserInputs({
         ...inputtedData,
-        variant: selectedVariant,
         index: selectedIndex,
         totalPayment: selectedVariant?.price,
       })

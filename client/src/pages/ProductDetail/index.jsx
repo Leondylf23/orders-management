@@ -41,16 +41,8 @@ const ProductDetail = ({ productDetail }) => {
 
     resData = {
       ...resData,
-      variants: JSON.parse(resData?.variants),
     };
 
-    if (resData?.variants.length > 0) {
-      const productVariants = resData.variants;
-      const defaultDataIndex = 0;
-
-      setSelectedVariantIndex(defaultDataIndex);
-      setSelectedVariant(productVariants[defaultDataIndex]);
-    }
     setDetailData(resData);
   }, [productDetail]);
   useEffect(() => {
