@@ -169,29 +169,17 @@
     font-weight: 600;
     margin-bottom: 0.2rem;
   }
-  .variantContainer {
-    @include directionX;
-    @include paddingX(1rem);
-    @include paddingY(0.5rem);
+  .formInputs {
+    @include directionY;
+    @include padding(1rem);
 
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+    .input {
+      @include input;
 
-    .variant {
-      @include paddingY(0.2rem);
-      @include paddingX(0.4rem);
-
-      border: 1px solid var(--color-border);
-      border-radius: 9999px;
-      width: max-content;
-      flex-shrink: 0;
-      cursor: pointer;
-
-      &[data-active='true'] {
-        background-color: var(--color-button);
-      }
+      margin-bottom: 1rem
+    }
+    .label {
+      margin-bottom: 0.5rem;
     }
   }
   .couponsContainer {

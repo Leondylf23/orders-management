@@ -7,11 +7,11 @@ import { selectUserData } from '@containers/Client/selectors';
 import { getUserDataDecrypt } from '@utils/allUtils';
 
 import { selectOrderingData } from './selectors';
-
 import OrderingDetail from './components/OrderingDetail';
 import OrderingCard from './components/OrderingCard';
-import classes from './style.module.scss';
 import { getOrderingsData, setOrderingsData } from './actions';
+
+import classes from './style.module.scss';
 
 const Orderings = ({ orderingData, userData }) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Orderings = ({ orderingData, userData }) => {
     }
     dispatch(setOrderingsData([]));
     dispatch(getOrderingsData(isBusinessTemp));
-  }, [userData]);
+  }, [dispatch, userData]);
 
   return (
     <div className={classes.mainContainer}>

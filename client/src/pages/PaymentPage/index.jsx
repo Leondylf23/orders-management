@@ -8,14 +8,13 @@ import PropTypes from 'prop-types';
 import { encryptDataAES } from '@utils/allUtils';
 import { selectProductDetail } from '@pages/ProductDetail/selectors';
 import { showPopup } from '@containers/App/actions';
-import ProductDetail from './components/ProductDetail';
-import AddCoupons from './components/AddCoupons';
+import OrderForms from './components/OrderForms';
 import PaymentSelection from './components/PaymentSelection';
 import PaymentSumary from './components/PaymentSumary';
+import { selectProductId, selectUserInputData } from './selectors';
+import { sendOrderingData, setUserInputs } from './actions';
 
 import classes from './style.module.scss';
-import { selectProductId, selectUserInputData } from './selectors';
-import { sendOrderingData, setProductId, setUserInputs } from './actions';
 
 const PaymentPage = ({ inputtedData, productId, productDetail }) => {
   const dispatch = useDispatch();
@@ -26,20 +25,15 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
     {
       id: 1,
       name: intl.formatMessage({ id: 'payment_step_1_name' }),
-      page: <ProductDetail />,
+      page: <OrderForms />,
     },
     {
       id: 2,
-      name: intl.formatMessage({ id: 'payment_step_2_name' }),
-      page: <AddCoupons />,
-    },
-    {
-      id: 3,
       name: intl.formatMessage({ id: 'payment_step_3_name' }),
       page: <PaymentSelection />,
     },
     {
-      id: 4,
+      id: 3,
       name: intl.formatMessage({ id: 'payment_step_4_name' }),
       page: <PaymentSumary />,
     },
@@ -50,7 +44,13 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
   const [userInputProgress, setUserInputProgress] = useState(null);
 
   const setStepPageTab = (data) => {
-    if (data?.id > 1 && !(userInputProgress && userInputProgress?.variant)) {
+    if (
+      data?.id > 1 &&
+      !(
+        userInputProgress &&
+        !(userInputProgress?.orderForm?.phone === '' || userInputProgress?.orderForm?.address === '')
+      )
+    ) {
       dispatch(
         showPopup(
           intl.formatMessage({ id: 'payment_title' }),
@@ -59,7 +59,7 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
       );
       return;
     }
-    if (data?.id > 3 && !(userInputProgress && userInputProgress?.paymentMethod)) {
+    if (data?.id > 2 && !(userInputProgress && userInputProgress?.paymentMethod)) {
       dispatch(
         showPopup(
           intl.formatMessage({ id: 'payment_title' }),
@@ -103,12 +103,13 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
       navigate(`/product/${id}`);
     }
     if (inputtedData) {
-      if (productId !== id) {
-        dispatch(setUserInputs(null));
-        dispatch(setProductId(id));
+      if (inputtedData?.productId !== id) {
+        dispatch(setUserInputs({ productId: id, totalPayment: productDetail?.price }));
         return;
       }
       setUserInputProgress(inputtedData);
+    } else {
+      dispatch(setUserInputs((prevVal) => ({ ...prevVal, productId: id, totalPayment: productDetail?.price })));
     }
   }, [inputtedData, productId, productDetail, navigate, id, dispatch]);
 
@@ -141,9 +142,9 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
             <button
               type="button"
               className={classes.nextBtn}
-              onClick={() => (step === 4 ? finish() : setStepPageTab(stepPages[step]))}
+              onClick={() => (step === 3 ? finish() : setStepPageTab(stepPages[step]))}
             >
-              {step === 4
+              {step === 3
                 ? intl.formatMessage({ id: 'payment_finish_btn' })
                 : intl.formatMessage({ id: 'payment_next_btn' })}
             </button>

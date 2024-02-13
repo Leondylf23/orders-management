@@ -13,8 +13,6 @@ import classes from './style.module.scss';
 const ProductCard = ({ data, isBusiness }) => {
   const navigate = useNavigate();
 
-  console.log(data);
-
   return (
     <div
       className={classes.cardContainer}
