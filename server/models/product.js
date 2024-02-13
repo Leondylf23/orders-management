@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class products extends Model {
+  class product extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE"
       });
 
-      this.hasMany(models.orders, {
+      this.hasMany(models.order, {
         foreignKey: 'productId',
       });
     }
   }
-  products.init({
+  product.init({
     title: DataTypes.STRING,
     price: DataTypes.DECIMAL,
     variants: DataTypes.JSON,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     isActive: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'products',
+    modelName: 'product',
   });
-  return products;
+  return product;
 };
