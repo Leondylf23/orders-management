@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class booking extends Model {
+  class order extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,29 +12,23 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.ticket, {
-        foreignKey: 'ticketId',
+        foreignKey: 'productId',
         onDelete: "CASCADE"
       });
-
-      this.hasMany(models.couponConnector, {
-        foreignKey: "bookingId",
-      });
-
     }
   }
-  booking.init({
-    ticketId: DataTypes.INTEGER,
-    bookingCode: DataTypes.STRING,
+  order.init({
+    productId: DataTypes.INTEGER,
+    transactionCode: DataTypes.STRING,
     status: DataTypes.STRING(10),
-    createdBy: DataTypes.INTEGER,
-    variant: DataTypes.JSON,
     paymentMethod: DataTypes.STRING(20),
     totalPayment: DataTypes.DECIMAL(10, 2),
     businessUserId: DataTypes.INTEGER,
-    isActive: DataTypes.BOOLEAN
+    isActive: DataTypes.BOOLEAN,
+    createdBy: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'booking',
+    modelName: 'order',
   });
-  return booking;
+  return order;
 };
