@@ -7,9 +7,9 @@ const urls = {
   ping: 'ping.json',
   login: 'auth/login',
   register: 'auth/register',
-  product: 'product/product',
-  coupons: 'product/coupon',
-  ordering: 'product/ordering',
+  product: 'orderin-aja/product',
+  coupons: 'orderin-aja/coupon',
+  ordering: 'orderin-aja/ordering',
   profile: 'auth/profile',
   resetpassword: 'auth/reset-password',
   changepassword: 'auth/change-password',
@@ -44,8 +44,8 @@ export const register = (formData) => callAPI(urls.register, 'post', {}, {}, for
 // Products
 export const getAllProducts = (formData) => callAPI(urls.product, 'get', {}, formData);
 export const getProductDetailApi = (formData) => callAPI(`${urls.product}/detail`, 'get', {}, formData);
-export const getMyAllProducts = (formData) => callAPI(`${urls.product}/myproducts`, 'get', {}, formData);
-export const getMyProductDetailApi = (formData) => callAPI(`${urls.product}/myproducts/detail`, 'get', {}, formData);
+export const getMyAllProducts = (formData) => callAPI(`${urls.product}/my-products`, 'get', {}, formData);
+export const getMyProductDetailApi = (formData) => callAPI(`${urls.product}/my-products/detail`, 'get', {}, formData);
 export const createNewProduct = (formData) =>
   callAPI(
     `${urls.product}/create`,
