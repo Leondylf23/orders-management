@@ -5,7 +5,6 @@ import { useIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
-import { numberWithPeriods } from '@utils/allUtils';
 import { showPopup } from '@containers/App/actions';
 import { createNewProduct, deleteProduct, getMyProductDetail, updateProduct } from './actions';
 
@@ -17,11 +16,9 @@ const ProductCreation = ({ productDetail }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const defaultVariant = { variantName: '', price: 1 };
   const { id } = useParams();
 
   const [formData, setFormData] = useState({});
-  const [variantInput, setVariantInput] = useState(defaultVariant);
   const [imageData, setImageData] = useState(null);
 
   const setNewImage = (e) => {
@@ -32,40 +29,6 @@ const ProductCreation = ({ productDetail }) => {
 
   const removeImage = () => {
     setImageData(null);
-  };
-
-  const addNewVariant = () => {
-    if (variantInput?.variantName === '' || variantInput?.price === 0) {
-      dispatch(
-        showPopup(
-          intl.formatMessage({ id: 'product_creation_title' }),
-          intl.formatMessage({ id: 'product_creation_variant_empty_validation' })
-        )
-      );
-      return;
-    }
-    if (variantInput?.price < 5000 || variantInput?.price > 5000000) {
-      dispatch(
-        showPopup(
-          intl.formatMessage({ id: 'product_creation_title' }),
-          intl.formatMessage({ id: 'product_creation_variant_price_validation' })
-        )
-      );
-      return;
-    }
-
-    const variants = formData?.variants ?? [];
-    variants.push(variantInput);
-
-    setFormData((prevVal) => ({ ...prevVal, variants }));
-    setVariantInput(defaultVariant);
-  };
-
-  const removeVariant = (index) => {
-    setFormData((prevVal) => ({
-      ...prevVal,
-      variants: prevVal.variants.filter((_, i) => i !== index),
-    }));
   };
 
   const saveBtn = () => {
@@ -96,15 +59,7 @@ const ProductCreation = ({ productDetail }) => {
       );
       return;
     }
-    if (!(formData?.variants?.length > 0)) {
-      dispatch(
-        showPopup(
-          intl.formatMessage({ id: 'product_creation_title' }),
-          intl.formatMessage({ id: 'product_creation_variant_validation' })
-        )
-      );
-      return;
-    }
+
     if (!(imageData || formData?.imageUrl)) {
       dispatch(
         showPopup(
@@ -120,7 +75,7 @@ const ProductCreation = ({ productDetail }) => {
     form.append('title', formData?.title);
     form.append('location', formData?.location);
     form.append('description', formData?.description);
-    form.append('variants', JSON.stringify(formData?.variants));
+
     if (imageData) form.append('imageData', imageData);
 
     if (id) {
@@ -137,7 +92,7 @@ const ProductCreation = ({ productDetail }) => {
       );
     } else {
       dispatch(
-        createNewProduct(form, (id) => {
+        createNewProduct(form, () => {
           navigate(`/product-creation/${id}`);
           dispatch(
             showPopup(
@@ -171,7 +126,6 @@ const ProductCreation = ({ productDetail }) => {
     if (productDetail && id) {
       const convertObj = {
         ...productDetail,
-        variants: JSON.parse(productDetail?.variants),
       };
       setFormData(convertObj);
     }
@@ -223,60 +177,6 @@ const ProductCreation = ({ productDetail }) => {
             value={formData?.location}
             onChange={(e) => setFormData((prevVal) => ({ ...prevVal, location: e.target.value }))}
           />
-          <label className={classes.label} htmlFor="variants">
-            <FormattedMessage id="product_creation_variant_label" />
-          </label>
-          <div className={classes.variantInputs}>
-            <div className={classes.variantDatas}>
-              {formData?.variants?.length > 0 ? (
-                formData?.variants?.map((variant, index) => (
-                  <div className={classes.data} key={index}>
-                    <p className={classes.name}>{variant?.variantName}</p>
-                    <p className={classes.price}>Rp. {numberWithPeriods(variant?.price)}</p>
-                    <div className={classes.delBtn} data-type="red" onClick={() => removeVariant(index)}>
-                      <p>X</p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className={classes.emptyContainer}>
-                  <p>
-                    <FormattedMessage id="empty_data" />
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className={classes.inputs}>
-              <div className={classes.inputData}>
-                <label className={classes.label} htmlFor="variantName">
-                  <FormattedMessage id="product_creation_name_label" />
-                </label>
-                <input
-                  className={classes.input}
-                  type="text"
-                  id="variantName"
-                  value={variantInput?.variantName}
-                  onChange={(e) => setVariantInput((prevVal) => ({ ...prevVal, variantName: e.target.value }))}
-                />
-              </div>
-              <div className={classes.inputData}>
-                <label className={classes.label} htmlFor="variantPrice">
-                  <FormattedMessage id="product_creation_price_label" />
-                </label>
-                <input
-                  className={classes.input}
-                  type="number"
-                  min={1}
-                  id="variantPrice"
-                  value={variantInput?.price}
-                  onChange={(e) => setVariantInput((prevVal) => ({ ...prevVal, price: e.target.value }))}
-                />
-              </div>
-            </div>
-            <button type="button" className={classes.addBtn} onClick={addNewVariant}>
-              <FormattedMessage id="product_creation_add_btn" />
-            </button>
-          </div>
           <label className={classes.label} htmlFor="desc">
             <FormattedMessage id="product_creation_desc_label" />
           </label>

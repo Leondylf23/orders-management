@@ -56,6 +56,8 @@ const Home = ({ products, userData }) => {
     );
   }, [search]);
 
+  console.log(data);
+
   return (
     <div className={clasess.mainContainer}>
       <h1 className={clasess.title}>
