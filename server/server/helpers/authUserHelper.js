@@ -13,13 +13,9 @@ const signatureSecretKey = process.env.SIGN_SECRET_KEY || 'pgJApn9pJ8';
 const sessionAge = process.env.SESSION_AGE || '365d';
 
 // PRIVATE FUNCTIONS
-const __generateHashPassword = (password) => {
-    return bcrypt.hashSync(password, passwordSaltRound);
-};
+const __generateHashPassword = (password) => bcrypt.hashSync(password, passwordSaltRound);
 
-const __compareHashPassword = (inputedPassword, hashedPassword) => {
-    return bcrypt.compareSync(inputedPassword, hashedPassword)
-};
+const __compareHashPassword = (inputedPassword, hashedPassword) => bcrypt.compareSync(inputedPassword, hashedPassword);
 
 // AUTH USER HELPERS FUNCTIONS
 const loginAuthentication = async (dataObject) => {

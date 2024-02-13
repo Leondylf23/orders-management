@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const AES = require('crypto-js/aes');
 const encodeUtf8 = require('crypto-js/enc-utf8');
 

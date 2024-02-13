@@ -131,14 +131,14 @@ const updateProfile = async (request, reply) => {
 // Public Routes
 Router.post('/login', login);
 Router.post('/register', register);
-Router.post('/resetpassword', resetPassword);
+Router.post('/reset-password', resetPassword);
 
 
 // Authenticated Only Routes
 Router.get('/profile', AuthMiddleware.validateToken, getUserProfileData);
 
 Router.patch('/profile/update', MulterMiddleware.fields([{ name: 'imageData', maxCount: 1 }]), AuthMiddleware.validateToken, updateProfile);
-Router.patch('/changepassword', AuthMiddleware.validateToken, changePassword);
+Router.patch('/change-password', AuthMiddleware.validateToken, changePassword);
 
 
 
