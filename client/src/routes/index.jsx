@@ -6,9 +6,9 @@ import Login from '@pages/Login';
 import NotFound from '@pages/NotFound';
 import PaymentPage from '@pages/PaymentPage';
 import Register from '@pages/Register';
-import TicketDetail from '@pages/TicketDetail';
-import Bookings from '@pages/Bookings';
-import TicketCreation from '@pages/TicketCreation';
+import ProductDetail from '@pages/ProductDetail';
+import Orderings from '@pages/Orderings';
+import ProductCreation from '@pages/ProductCreation';
 import Coupons from '@pages/Coupons';
 import Profile from '@pages/Profile';
 
@@ -19,7 +19,7 @@ const routes = [
     protected: false,
     component: Home,
     layout: MainLayout,
-    role: '*'
+    role: '*',
   },
   {
     path: '/login',
@@ -27,7 +27,7 @@ const routes = [
     protected: false,
     component: Login,
     layout: BlankLayout,
-    role: '*'
+    role: '*',
   },
   {
     path: '/profile',
@@ -35,7 +35,7 @@ const routes = [
     protected: true,
     component: Profile,
     layout: MainLayout,
-    role: '*'
+    role: '*',
   },
   {
     path: '/register',
@@ -43,47 +43,47 @@ const routes = [
     protected: false,
     component: Register,
     layout: BlankLayout,
-    role: '*'
+    role: '*',
   },
   {
-    path: '/ticket/:id',
-    name: 'Ticket Detail',
+    path: '/product/:id',
+    name: 'Product Detail',
     protected: false,
-    component: TicketDetail,
+    component: ProductDetail,
     layout: MainLayout,
-    role: 'customer'
+    role: 'customer',
   },
   {
-    path: '/ticket/:id/pay',
-    name: 'Ticket Payment',
+    path: '/product/:id/pay',
+    name: 'Product Payment',
     protected: true,
     component: PaymentPage,
     layout: MainLayout,
-    role: 'customer'
+    role: 'customer',
   },
   {
-    path: '/bookings',
-    name: 'Bookings',
+    path: '/orderings',
+    name: 'Orderings',
     protected: true,
-    component: Bookings,
+    component: Orderings,
     layout: MainLayout,
-    role: '*'
+    role: '*',
   },
   {
-    path: '/ticketcreation',
-    name: 'Ticket Creation',
+    path: '/product-creation',
+    name: 'Product Creation',
     protected: true,
-    component: TicketCreation,
+    component: ProductCreation,
     layout: MainLayout,
-    role: 'business'
+    role: 'business',
   },
   {
-    path: '/ticketcreation/:id',
-    name: 'Ticket Creation Edit',
+    path: '/product-creation/:id',
+    name: 'Product Creation Edit',
     protected: true,
-    component: TicketCreation,
+    component: ProductCreation,
     layout: MainLayout,
-    role: 'business'
+    role: 'business',
   },
   {
     path: '/coupons',
@@ -91,7 +91,7 @@ const routes = [
     protected: true,
     component: Coupons,
     layout: MainLayout,
-    role: 'business'
+    role: 'business',
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false, role: '*' },
 ];

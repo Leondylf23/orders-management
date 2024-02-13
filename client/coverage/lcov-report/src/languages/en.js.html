@@ -1,68 +1,61 @@
-
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Code coverage report for src/languages/en.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type='text/css'>
-        .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
-        }
+    <style type="text/css">
+      .coverage-summary .sorter {
+        background-image: url(../../sort-arrow-sprite.png);
+      }
     </style>
-</head>
-    
-<body>
-<div class='wrapper'>
-    <div class='pad1'>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="pad1">
         <h1><a href="../../index.html">All files</a> / <a href="index.html">src/languages</a> en.js</h1>
-        <div class='clearfix'>
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
+        <div class="clearfix">
+          <div class="fl pad1y space-right2">
+            <span class="strong">0% </span>
+            <span class="quiet">Statements</span>
+            <span class="fraction">0/0</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">0% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">0/0</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">0% </span>
+            <span class="quiet">Functions</span>
+            <span class="fraction">0/0</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">0% </span>
+            <span class="quiet">Lines</span>
+            <span class="fraction">0/0</span>
+          </div>
         </div>
         <p class="quiet">
-            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+          Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the
+          previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
-                Filter:
-                <input oninput="onInput()" type="search" id="fileSearch">
-            </div>
+          <div class="quiet">
+            Filter:
+            <input oninput="onInput()" type="search" id="fileSearch" />
+          </div>
         </template>
-    </div>
-    <div class='status-line low'></div>
-    <pre><table class="coverage">
+      </div>
+      <div class="status-line low"></div>
+      <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -371,7 +364,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default {
   app_greeting: 'Hi from Web!',
-  app_title_header: 'Ticket Aja',
+  app_title_header: 'Product Aja',
   app_not_found: 'Page not found',
   app_lang_id: 'Indonesian',
   app_lang_en: 'English',
@@ -382,14 +375,14 @@
   nav_login: 'Login',
   nav_register: 'Register',
   nav_profile: 'Profile',
-  nav_bookings: 'Bookings',
+  nav_orderings: 'Orderings',
   nav_coupons: 'Coupons',
   nav_logout: 'Logout',
 &nbsp;
   empty_data: 'Empty',
   status_waiting: 'Waiting',
   status_failed: 'Failed',
-  status_success: 'Booked',
+  status_success: 'Ordered',
   back: 'Back',
   
   login_title: 'Login',
@@ -432,38 +425,38 @@
   register_role_valiation: 'Role must be filled!',
   register_email_has_taken: 'This email has already been taken!',
 &nbsp;
-  ticket_card_price: 'person',
+  product_card_price: 'person',
 &nbsp;
-  home_title: 'Browse Tickets',
+  home_title: 'Browse Products',
   home_create_new: 'Create New',
-  home_search_placeholder: 'Search for tickets...',
+  home_search_placeholder: 'Search for products...',
 &nbsp;
-  ticket_detail_title: 'Ticket Detail',
-  ticket_detail_buy_btn: 'Buy Now',
-  ticket_detail_desc: 'Description',
-  ticket_detail_not_found: 'Tiket tidak ditemukan!',
-  ticket_detail_used_coupons: 'Used Coupon',
+  product_detail_title: 'Product Detail',
+  product_detail_buy_btn: 'Buy Now',
+  product_detail_desc: 'Description',
+  product_detail_not_found: 'Product tidak ditemukan!',
+  product_detail_used_coupons: 'Used Coupon',
 &nbsp;
-  ticket_creation_title: 'Ticket Creation',
-  ticket_creation_chg_img_btn: 'Change Image',
-  ticket_creation_rmv_img_btn: 'Delete Image',
-  ticket_creation_title_label: 'Title',
-  ticket_creation_location_label: 'Location',
-  ticket_creation_variant_label: 'Variant',
-  ticket_creation_name_label: 'Name',
-  ticket_creation_price_label: 'Price (Rp.)',
-  ticket_creation_add_btn: 'Add',
-  ticket_creation_desc_label: 'Description',
-  ticket_creation_save_btn: 'Save',
-  ticket_creation_delete_btn: 'Delete',
-  ticket_creation_title_validation: 'Title must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_location_validation: 'Location must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_description_validation: 'Description must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_variant_validation: 'At least have 1 variant!',
-  ticket_creation_variant_empty_validation: 'Must fill all!',
-  ticket_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
-  ticket_creation_image_validation: 'At least have an image!',
-  ticket_creation_save_success: 'Saved!',
+  product_creation_title: 'Product Creation',
+  product_creation_chg_img_btn: 'Change Image',
+  product_creation_rmv_img_btn: 'Delete Image',
+  product_creation_title_label: 'Title',
+  product_creation_location_label: 'Location',
+  product_creation_variant_label: 'Variant',
+  product_creation_name_label: 'Name',
+  product_creation_price_label: 'Price (Rp.)',
+  product_creation_add_btn: 'Add',
+  product_creation_desc_label: 'Description',
+  product_creation_save_btn: 'Save',
+  product_creation_delete_btn: 'Delete',
+  product_creation_title_validation: 'Title must be more than 5 characters and less equal than 255 characters!',
+  product_creation_location_validation: 'Location must be more than 5 characters and less equal than 255 characters!',
+  product_creation_description_validation: 'Description must be more than 5 characters and less equal than 255 characters!',
+  product_creation_variant_validation: 'At least have 1 variant!',
+  product_creation_variant_empty_validation: 'Must fill all!',
+  product_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
+  product_creation_image_validation: 'At least have an image!',
+  product_creation_save_success: 'Saved!',
 &nbsp;
   payment_title: 'Payment',
   payment_previous_btn: 'Previous',
@@ -474,7 +467,7 @@
   payment_step_3_name: 'Payment',
   payment_step_4_name: 'Summary',
   payment_total: 'Total',
-  payment_prct_detail_page_title: 'Select ticket variant',
+  payment_prct_detail_page_title: 'Select product variant',
   payment_add_cpn_page_title: 'Select your preferred coupon',
   payment_add_cpn_page_prc_cut_none: 'Total Price',
   payment_add_cpn_page_prc_cut: 'Price Cut to',
@@ -487,12 +480,12 @@
   payment_summary_payment_method: 'Payment Method',
   payment_step_1_not_complete: 'Please select variant first!',
   payment_step_3_not_complete: 'Please select payment method!',
-  payment_step_complete: 'Booking has been created!',
+  payment_step_complete: 'Ordering has been created!',
 &nbsp;
-  bookings_title: 'Bookings',
-  bookings_variant: 'Variant',
-  bookings_update_status_complete: 'Booking Success',
-  bookings_update_status_failed: 'Booking Failed',
+  orderings_title: 'Orderings',
+  orderings_variant: 'Variant',
+  orderings_update_status_complete: 'Ordering Success',
+  orderings_update_status_failed: 'Ordering Failed',
 &nbsp;
   coupons_title: 'Coupons',
   coupons_create_new: 'Create New',
@@ -524,21 +517,22 @@
 };
 &nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-12T07:29:08.625Z
-            </div>
-        <script src="../../prettify.js"></script>
-        <script>
-            window.onload = function () {
-                prettyPrint();
-            };
-        </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
-    </body>
+      <div class="push"></div>
+      <!-- for sticky footer -->
+    </div>
+    <!-- /wrapper -->
+    <div class="footer quiet pad2 space-top1 center small">
+      Code coverage generated by
+      <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+      at 2024-02-12T07:29:08.625Z
+    </div>
+    <script src="../../prettify.js"></script>
+    <script>
+      window.onload = function () {
+        prettyPrint();
+      };
+    </script>
+    <script src="../../sorter.js"></script>
+    <script src="../../block-navigation.js"></script>
+  </body>
 </html>
-    

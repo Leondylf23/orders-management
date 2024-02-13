@@ -7,12 +7,12 @@ const urls = {
   ping: 'ping.json',
   login: 'auth/login',
   register: 'auth/register',
-  ticket: 'ticket/ticket',
-  coupons: 'ticket/coupon',
-  booking: 'ticket/booking',
+  product: 'product/product',
+  coupons: 'product/coupon',
+  ordering: 'product/ordering',
   profile: 'auth/profile',
-  resetpassword: 'auth/resetpassword',
-  changepassword: 'auth/changepassword',
+  resetpassword: 'auth/reset-password',
+  changepassword: 'auth/change-password',
 };
 
 export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
@@ -41,31 +41,54 @@ export const ping = () => callAPI(urls.ping, 'get');
 export const login = (formData) => callAPI(urls.login, 'post', {}, {}, formData);
 export const register = (formData) => callAPI(urls.register, 'post', {}, {}, formData);
 
-// Tickets
-export const getAllTickets = (formData) => callAPI(urls.ticket, 'get', {}, formData);
-export const getTicketDetailApi = (formData) => callAPI(`${urls.ticket}/detail`, 'get', {}, formData);
-export const getMyAllTickets = (formData) => callAPI(`${urls.ticket}/mytickets`, 'get', {}, formData);
-export const getMyTicketDetailApi = (formData) => callAPI(`${urls.ticket}/mytickets/detail`, 'get', {}, formData);
-export const createNewTicket = (formData) => callAPI(`${urls.ticket}/create`, 'put', { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } , {}, formData);
-export const updateTicketApi = (formData) => callAPI(`${urls.ticket}/edit`, 'patch', { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } , {}, formData)
-export const deleteTicketApi = (formData) => callAPI(`${urls.ticket}/delete`, 'delete', {} , {}, formData);
+// Products
+export const getAllProducts = (formData) => callAPI(urls.product, 'get', {}, formData);
+export const getProductDetailApi = (formData) => callAPI(`${urls.product}/detail`, 'get', {}, formData);
+export const getMyAllProducts = (formData) => callAPI(`${urls.product}/myproducts`, 'get', {}, formData);
+export const getMyProductDetailApi = (formData) => callAPI(`${urls.product}/myproducts/detail`, 'get', {}, formData);
+export const createNewProduct = (formData) =>
+  callAPI(
+    `${urls.product}/create`,
+    'put',
+    { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+    {},
+    formData
+  );
+export const updateProductApi = (formData) =>
+  callAPI(
+    `${urls.product}/edit`,
+    'patch',
+    { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+    {},
+    formData
+  );
+export const deleteProductApi = (formData) => callAPI(`${urls.product}/delete`, 'delete', {}, {}, formData);
 
 // Coupons
 export const getAllCoupons = () => callAPI(urls.coupons, 'get');
-export const getAllCouponsByTicketId = (formData) => callAPI(`${urls.coupons}/byticket`, 'get', {}, formData);
+export const getAllCouponsByProductId = (formData) => callAPI(`${urls.coupons}/by-product`, 'get', {}, formData);
 export const createNewCoupon = (formData) => callAPI(`${urls.coupons}/create`, 'post', {}, {}, formData);
 export const deleteCoupon = (formData) => callAPI(`${urls.coupons}/delete`, 'delete', {}, {}, formData);
 
-// Bookings
-export const getAllBookingsApi = () => callAPI(urls.booking, 'get');
-export const getBookingDetailApi = (formData) => callAPI(`${urls.booking}/detail`, 'get', {}, formData);
-export const getAllBusinessBookingsApi = () => callAPI(`${urls.booking}/business`, 'get');
-export const getBusinessBookingDetailApi = (formData) => callAPI(`${urls.booking}/business/detail`, 'get', {}, formData);
-export const createBookingApi = (formData) => callAPI(`${urls.booking}/create`, 'post', {}, {}, formData);
-export const updateBookingStatusApi = (formData) => callAPI(`${urls.booking}/status/update`, 'patch', {}, {}, formData);
+// Orderings
+export const getAllOrderingsApi = () => callAPI(urls.ordering, 'get');
+export const getOrderingDetailApi = (formData) => callAPI(`${urls.ordering}/detail`, 'get', {}, formData);
+export const getAllBusinessOrderingsApi = () => callAPI(`${urls.ordering}/business`, 'get');
+export const getBusinessOrderingDetailApi = (formData) =>
+  callAPI(`${urls.ordering}/business/detail`, 'get', {}, formData);
+export const createOrderingApi = (formData) => callAPI(`${urls.ordering}/create`, 'post', {}, {}, formData);
+export const updateOrderingStatusApi = (formData) =>
+  callAPI(`${urls.ordering}/status/update`, 'patch', {}, {}, formData);
 
 // User
 export const getUserProfileData = () => callAPI(urls.profile, 'get');
-export const saveProfileDataApi = (formData) => callAPI(`${urls.profile}/update`, 'patch', { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } , {}, formData);
-export const changePasswordApi = (formData) => callAPI(`${urls.changepassword}`, 'patch', {} , {}, formData);
-export const resetPasswordApi = (formData) => callAPI(`${urls.resetpassword}`, 'post', {} , {}, formData);
+export const saveProfileDataApi = (formData) =>
+  callAPI(
+    `${urls.profile}/update`,
+    'patch',
+    { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+    {},
+    formData
+  );
+export const changePasswordApi = (formData) => callAPI(`${urls.changepassword}`, 'patch', {}, {}, formData);
+export const resetPasswordApi = (formData) => callAPI(`${urls.resetpassword}`, 'post', {}, {}, formData);
