@@ -1,16 +1,16 @@
-import { GET_MY_TICKETS_DATA, GET_TICKETS_DATA, SET_TICKETS_DATA } from "./constants";
+import { GET_MY_PRODUCTS_DATA, GET_PRODUCTS_DATA, SET_PRODUCTS_DATA } from './constants';
 
-export const getTicketsData = (formData) => ({
-    type: GET_TICKETS_DATA,
-    formData
+export const getProductsData = (formData) => ({
+  type: GET_PRODUCTS_DATA,
+  formData,
 });
 
-export const getMyTicketsData = (formData) => ({
-    type: GET_MY_TICKETS_DATA,
-    formData
+export const getMyProductsData = (formData) => ({
+  type: GET_MY_PRODUCTS_DATA,
+  formData,
 });
 
-export const setTicketsData = (data) => ({
-    type: SET_TICKETS_DATA,
-    data
+export const setProductsData = (data) => ({
+  type: SET_PRODUCTS_DATA,
+  data,
 });

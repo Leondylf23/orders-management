@@ -357,9 +357,9 @@
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
-    <package name="src.pages.Bookings">
+    <package name="src.pages.Orderings">
       <metrics statements="40" coveredstatements="18" conditionals="7" coveredconditionals="1" methods="11" coveredmethods="3"/>
-      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\Bookings\actions.js">
+      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\Orderings\actions.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="3" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
@@ -367,7 +367,7 @@
         <line num="19" count="3" type="stmt"/>
         <line num="24" count="3" type="stmt"/>
       </file>
-      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\Bookings\constants.js">
+      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\Orderings\constants.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -375,7 +375,7 @@
         <line num="4" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
       </file>
-      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\Bookings\reducer.js">
+      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\Orderings\reducer.js">
         <metrics statements="9" coveredstatements="5" conditionals="3" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="4" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -387,7 +387,7 @@
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
       </file>
-      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\Bookings\saga.js">
+      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\Orderings\saga.js">
         <metrics statements="21" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="1"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -609,9 +609,9 @@
         <line num="57" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="src.pages.TicketCreation">
+    <package name="src.pages.ProductCreation">
       <metrics statements="47" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="12" coveredmethods="3"/>
-      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\TicketCreation\actions.js">
+      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\ProductCreation\actions.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="3" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -619,7 +619,7 @@
         <line num="20" count="3" type="stmt"/>
         <line num="26" count="3" type="stmt"/>
       </file>
-      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\TicketCreation\constants.js">
+      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\ProductCreation\constants.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
@@ -627,7 +627,7 @@
         <line num="4" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
       </file>
-      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\TicketCreation\reducer.js">
+      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\ProductCreation\reducer.js">
         <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="4" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
@@ -637,7 +637,7 @@
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\TicketCreation\saga.js">
+      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\ProductCreation\saga.js">
         <metrics statements="30" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
@@ -671,19 +671,19 @@
         <line num="70" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="src.pages.TicketDetail">
+    <package name="src.pages.ProductDetail">
       <metrics statements="21" coveredstatements="10" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="3"/>
-      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\TicketDetail\actions.js">
+      <file name="actions.js" path="D:\Projects\travel-dulu\client\src\pages\ProductDetail\actions.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="3" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
       </file>
-      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\TicketDetail\constants.js">
+      <file name="constants.js" path="D:\Projects\travel-dulu\client\src\pages\ProductDetail\constants.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
       </file>
-      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\TicketDetail\reducer.js">
+      <file name="reducer.js" path="D:\Projects\travel-dulu\client\src\pages\ProductDetail\reducer.js">
         <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="4" count="3" type="stmt"/>
         <line num="35" count="3" type="stmt"/>
@@ -693,7 +693,7 @@
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
       </file>
-      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\TicketDetail\saga.js">
+      <file name="saga.js" path="D:\Projects\travel-dulu\client\src\pages\ProductDetail\saga.js">
         <metrics statements="10" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
