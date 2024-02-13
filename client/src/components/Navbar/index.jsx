@@ -10,15 +10,15 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
 import { createStructuredSelector } from 'reselect';
+import { getUserDataDecrypt } from '@utils/allUtils';
 
 import { setLocale, setTheme } from '@containers/App/actions';
 import { selectLogin, selectUserData } from '@containers/Client/selectors';
 import DropDownMenu from './components/DropdownMenu';
-import { getUserDataDecrypt } from '@utils/allUtils';
 
 import classes from './style.module.scss';
 
-const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTest}) => {
+const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTest }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTe
     } else {
       setAnchorEl(e.currentTarget);
     }
-  }
+  };
 
   const handleClick = (event) => {
     setMenuPosition(event.currentTarget);
@@ -76,21 +76,29 @@ const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTe
           <div className={classes.title}>{title}</div>
         </div>
         <div className={classes.toolbar}>
-          {isUserLogined | isUserLoginedTest ?
-            <div className={classes.profile}  data-testid='nav-profile-btn'>
-              <div onClick={openCloseProfileMenu} >
+          {isUserLogined || isUserLoginedTest ? (
+            <div className={classes.profile} data-testid="nav-profile-btn">
+              <div onClick={openCloseProfileMenu}>
                 <Avatar className={classes.avatar} src={profileImg} />
               </div>
-              <DropDownMenu isOpen={isOpenMenu} anchorEl={anchorEl} onClose={openCloseProfileMenu} labeledMenu={""} isBusiness={isBusiness} />
-            </div> : <div className={classes.userButtons}>
-              <button className={classes.login} onClick={() => navigate('/login')}>
+              <DropDownMenu
+                isOpen={isOpenMenu}
+                anchorEl={anchorEl}
+                onClose={openCloseProfileMenu}
+                labeledMenu=""
+                isBusiness={isBusiness}
+              />
+            </div>
+          ) : (
+            <div className={classes.userButtons}>
+              <button type="submit" className={classes.login} onClick={() => navigate('/login')}>
                 <FormattedMessage id="nav_login" />
               </button>
-              <button className={classes.register} onClick={() => navigate('/register')}>
+              <button type="submit" className={classes.register} onClick={() => navigate('/register')}>
                 <FormattedMessage id="nav_register" />
               </button>
             </div>
-          }
+          )}
           <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
             {theme === 'light' ? <NightsStayIcon /> : <LightModeIcon />}
           </div>
@@ -128,12 +136,13 @@ Navbar.propTypes = {
   locale: PropTypes.string.isRequired,
   theme: PropTypes.string,
   isUserLogined: PropTypes.bool,
-  userData: PropTypes.string
+  userData: PropTypes.string,
+  isUserLoginedTest: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   isUserLogined: selectLogin,
-  userData: selectUserData
+  userData: selectUserData,
 });
 
 export default connect(mapStateToProps)(Navbar);

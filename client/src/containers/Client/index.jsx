@@ -16,11 +16,11 @@ const Client = ({ login, children, role, userData }) => {
     if (login && role && role !== '*') {
       const user = JSON.parse(decryptDataAES(userData));
 
-      if(!(user?.role === role)) {
+      if (!(user?.role === role)) {
         navigate('/');
       }
     }
-  }, [login, navigate, role]);
+  }, [login, navigate, role, userData]);
 
   return children;
 };
@@ -29,12 +29,12 @@ Client.propTypes = {
   login: PropTypes.bool,
   children: PropTypes.element,
   role: PropTypes.string,
-  userData: PropTypes.string
+  userData: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   login: selectLogin,
-  userData: selectUserData
+  userData: selectUserData,
 });
 
 export default connect(mapStateToProps)(Client);

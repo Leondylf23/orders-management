@@ -1,68 +1,61 @@
-
 <!doctype html>
 <html lang="en">
-
-<head>
-    <title>Code coverage report for src/pages/Bookings/saga.js</title>
+  <head>
+    <title>Code coverage report for src/pages/Orderings/saga.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type='text/css'>
-        .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
-        }
+    <style type="text/css">
+      .coverage-summary .sorter {
+        background-image: url(../../../sort-arrow-sprite.png);
+      }
     </style>
-</head>
-    
-<body>
-<div class='wrapper'>
-    <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/pages/Bookings</a> saga.js</h1>
-        <div class='clearfix'>
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>3/21</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>3/21</span>
-            </div>
-        
-            
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="pad1">
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/pages/Orderings</a> saga.js</h1>
+        <div class="clearfix">
+          <div class="fl pad1y space-right2">
+            <span class="strong">14.28% </span>
+            <span class="quiet">Statements</span>
+            <span class="fraction">3/21</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">0% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">0/4</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">25% </span>
+            <span class="quiet">Functions</span>
+            <span class="fraction">1/4</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">14.28% </span>
+            <span class="quiet">Lines</span>
+            <span class="fraction">3/21</span>
+          </div>
         </div>
         <p class="quiet">
-            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+          Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the
+          previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
-                Filter:
-                <input oninput="onInput()" type="search" id="fileSearch">
-            </div>
+          <div class="quiet">
+            Filter:
+            <input oninput="onInput()" type="search" id="fileSearch" />
+          </div>
         </template>
-    </div>
-    <div class='status-line low'></div>
-    <pre><table class="coverage">
+      </div>
+      <div class="status-line low"></div>
+      <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -174,17 +167,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { takeLatest, call, put } from 'redux-saga/effects';
 &nbsp;
 import { showPopup, setLoading } from '@containers/App/actions';
-import { GET_BOOKING_DATA, GET_BOOKING_DETAIL_DATA, UPDATE_BOOKING_STATUS } from './constants';
-import { getBookingDetailApi, getAllBookingsApi, getAllBusinessBookingsApi, getBusinessBookingDetailApi, updateBookingStatusApi } from '@domain/api';
-import { setBookingDetailData, setBookingsData } from './actions';
+import { GET_ORDERING_DATA, GET_ORDERING_DETAIL_DATA, UPDATE_ORDERING_STATUS } from './constants';
+import { getOrderingDetailApi, getAllOrderingsApi, getAllBusinessOrderingsApi, getBusinessOrderingDetailApi, updateOrderingStatusApi } from '@domain/api';
+import { setOrderingDetailData, setOrderingsData } from './actions';
 &nbsp;
-function* <span class="fstat-no" title="function not covered" >doGetBookingData(</span>{ isBusiness }) {
+function* <span class="fstat-no" title="function not covered" >doGetOrderingData(</span>{ isBusiness }) {
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(true));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    try {</span>
-        const res = <span class="cstat-no" title="statement not covered" >yield call(isBusiness ? getAllBusinessBookingsApi : getAllBookingsApi);</span>
+        const res = <span class="cstat-no" title="statement not covered" >yield call(isBusiness ? getAllBusinessOrderingsApi : getAllOrderingsApi);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        yield put(setBookingsData(res?.data));</span>
+<span class="cstat-no" title="statement not covered" >        yield put(setOrderingsData(res?.data));</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        yield put(showPopup());</span>
     }
@@ -192,13 +185,13 @@ function* <span class="fstat-no" title="function not covered" >doGetBookingData(
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(false));</span>
 }
 &nbsp;
-function* <span class="fstat-no" title="function not covered" >doGetBookingDetailData(</span>{ formData, isBusiness }) {
+function* <span class="fstat-no" title="function not covered" >doGetOrderingDetailData(</span>{ formData, isBusiness }) {
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(true));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    try {</span>
-        const res = <span class="cstat-no" title="statement not covered" >yield call(isBusiness ? getBusinessBookingDetailApi : getBookingDetailApi, formData);</span>
+        const res = <span class="cstat-no" title="statement not covered" >yield call(isBusiness ? getBusinessOrderingDetailApi : getOrderingDetailApi, formData);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        yield put(setBookingDetailData(res?.data));</span>
+<span class="cstat-no" title="statement not covered" >        yield put(setOrderingDetailData(res?.data));</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        yield put(showPopup());</span>
     }
@@ -206,11 +199,11 @@ function* <span class="fstat-no" title="function not covered" >doGetBookingDetai
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(false));</span>
 }
 &nbsp;
-function* <span class="fstat-no" title="function not covered" >doUpdateBookingStatus(</span>{ formData, cb }) {
+function* <span class="fstat-no" title="function not covered" >doUpdateOrderingStatus(</span>{ formData, cb }) {
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(true));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        yield call(updateBookingStatusApi, formData);</span>
+<span class="cstat-no" title="statement not covered" >        yield call(updateOrderingStatusApi, formData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        cb();</span>
     } catch (error) {
@@ -220,28 +213,29 @@ function* <span class="fstat-no" title="function not covered" >doUpdateBookingSt
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(false));</span>
 }
 &nbsp;
-export default function* bookingsSaga() {
-    yield takeLatest(GET_BOOKING_DATA, doGetBookingData);
-    yield takeLatest(GET_BOOKING_DETAIL_DATA, doGetBookingDetailData);
-    yield takeLatest(UPDATE_BOOKING_STATUS, doUpdateBookingStatus);
+export default function* orderingsSaga() {
+    yield takeLatest(GET_ORDERING_DATA, doGetOrderingData);
+    yield takeLatest(GET_ORDERING_DETAIL_DATA, doGetOrderingDetailData);
+    yield takeLatest(UPDATE_ORDERING_STATUS, doUpdateOrderingStatus);
 }
 &nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-12T07:29:08.625Z
-            </div>
-        <script src="../../../prettify.js"></script>
-        <script>
-            window.onload = function () {
-                prettyPrint();
-            };
-        </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
-    </body>
+      <div class="push"></div>
+      <!-- for sticky footer -->
+    </div>
+    <!-- /wrapper -->
+    <div class="footer quiet pad2 space-top1 center small">
+      Code coverage generated by
+      <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+      at 2024-02-12T07:29:08.625Z
+    </div>
+    <script src="../../../prettify.js"></script>
+    <script>
+      window.onload = function () {
+        prettyPrint();
+      };
+    </script>
+    <script src="../../../sorter.js"></script>
+    <script src="../../../block-navigation.js"></script>
+  </body>
 </html>
-    
