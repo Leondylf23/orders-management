@@ -22,10 +22,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `SequelizeMeta`;
 CREATE TABLE `SequelizeMeta`  (
-  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`name`) USING BTREE,
   UNIQUE INDEX `name`(`name` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of SequelizeMeta
@@ -41,9 +41,9 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `productId` int NOT NULL,
-  `transactionCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'WAITING',
-  `paymentMethod` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `transactionCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'WAITING',
+  `paymentMethod` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `totalPayment` decimal(10, 2) NULL DEFAULT NULL,
   `businessUserId` int NOT NULL,
   `isActive` tinyint(1) NULL DEFAULT 1,
@@ -57,7 +57,7 @@ CREATE TABLE `orders`  (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`businessUserId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`createdBy`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -69,10 +69,10 @@ CREATE TABLE `orders`  (
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `price` decimal(10, 2) NULL DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `imageUrl` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `imageUrl` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `isActive` tinyint(1) NULL DEFAULT 1,
   `createdBy` int NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `products`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createdBy`(`createdBy` ASC) USING BTREE,
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`createdBy`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products
@@ -120,7 +120,7 @@ INSERT INTO `products` VALUES (131, 'Apple', 17713.10, 'The Synchronize to Datab
 INSERT INTO `products` VALUES (132, 'Strawbeury pro', 74035.84, 'Navicat Monitor requires a repository to store alerts and metrics for historical analysis. HTTP Tunneling is a method for connecting to a server that uses the same protocol (http://) and the same port (port 80) as a web server does.', 'https://d2kwwar9pcd0an.cloudfront.net/eeeb752fdc1a9ba1a94068571257fd7d.jpeg', 1, 2, '2009-10-29 03:23:16', '2003-08-15 09:56:54');
 INSERT INTO `products` VALUES (133, 'Apple', 11300.86, 'Secure SHell (SSH) is a program to log in into another computer over a network, execute commands on a remote server, and move files from one machine to another. After comparing data, the window shows the number of records that will be inserted, updated or', 'https://d2kwwar9pcd0an.cloudfront.net/eeeb752fdc1a9ba1a94068571257fd7d.jpeg', 1, 2, '2012-10-23 10:14:49', '2008-03-31 23:46:39');
 INSERT INTO `products` VALUES (134, 'Rambutan pi', 91059.42, 'Import Wizard allows you to import data to tables/collections from CSV, TXT, XML, DBF and more. Sometimes you win, sometimes you learn.', 'https://d2kwwar9pcd0an.cloudfront.net/d0e8054699c6c44b0e3467b2259ae012.jpeg', 1, 2, '2012-03-12 04:41:00', '2006-03-12 05:09:26');
-INSERT INTO `products` VALUES (135, 'Kiji', 23621.62, 'Remember that failure is an event, not a person. A query is used to extract data from the database in a readable format according to the user\'s request. Such sessions are also susceptible to session hijacking, where a malicious user takes over your sessio', 'http://res.cloudinary.com/dwyzuwtel/image/upload/v1707712244/image/fkr8uy3qvfyxuep37wqz.png', 1, 2, '2009-05-01 02:00:09', '2007-01-15 18:17:39');
+INSERT INTO `products` VALUES (135, 'Kiji', 23621.62, 'Remember that failure is an event, not a person. A query is used to extract data from the database in a readable format according to the user/s request. Such sessions are also susceptible to session hijacking, where a malicious user takes over your sessio', 'http://res.cloudinary.com/dwyzuwtel/image/upload/v1707712244/image/fkr8uy3qvfyxuep37wqz.png', 1, 2, '2009-05-01 02:00:09', '2007-01-15 18:17:39');
 INSERT INTO `products` VALUES (136, 'Orange air', 75910.61, 'You will succeed because most people are lazy. If you wait, all that happens is you get older. Always keep your eyes open. Keep watching. Because whatever you see can inspire you.', 'https://d2kwwar9pcd0an.cloudfront.net/d0e8054699c6c44b0e3467b2259ae012.jpeg', 1, 2, '2008-07-08 00:46:03', '2003-04-18 14:10:08');
 INSERT INTO `products` VALUES (137, 'Strawberry plus', 92336.53, 'After comparing data, the window shows the number of records that will be inserted, updated or deleted in the target. All journeys have secret destinations of which the traveler is unaware.', 'http://res.cloudinary.com/dwyzuwtel/image/upload/v1707712244/image/fkr8uy3qvfyxuep37wqz.png', 1, 2, '2017-10-14 09:35:31', '2001-05-01 08:01:33');
 INSERT INTO `products` VALUES (138, 'Rambutan', 71009.66, 'Import Wizard allows you to import data to tables/collections from CSV, TXT, XML, DBF and more. To clear or reload various internal caches, flush tables, or acquire locks, control-click your connection in the Navigation pane and select Flush and choose th', 'https://d2kwwar9pcd0an.cloudfront.net/8823600fdfa118bad6245f3f56852341.jpeg', 1, 2, '2015-09-03 13:36:51', '2023-06-19 16:15:12');
@@ -132,17 +132,17 @@ INSERT INTO `products` VALUES (139, 'Apale plus', 64153.33, 'Navicat Monitor can
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `profileImage` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `profileImage` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `dob` datetime NULL DEFAULT NULL,
-  `role` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `role` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `isActive` tinyint(1) NULL DEFAULT 1,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
