@@ -27,13 +27,12 @@ const getAllOrder = async (userId, isBusiness) => {
         isActive: true,
         ...(isBusiness ? { businessUserId: userId } : { createdBy: userId }),
       },
-      attributes: ["id", "transactionCode", "status", "variant"],
+      attributes: ["id", "transactionCode", "status"],
     });
 
     const remapData = data?.map((order) => ({
       ...order?.dataValues,
       ...order?.product?.dataValues,
-      variant: order?.dataValues?.variant?.variantName,
       product: undefined,
     }));
 
@@ -51,7 +50,7 @@ const getOrderDetailWithId = async (dataObject) => {
         {
           association: "product",
           required: true,
-          attributes: ["title", "imageUrl", "location", "description"],
+          attributes: ["title", "imageUrl", "description"],
           include: [
             {
               association: "user",
@@ -61,7 +60,7 @@ const getOrderDetailWithId = async (dataObject) => {
           ],
         },
       ],
-      attributes: ["transactionCode", "status", "variant", "paymentMethod"],
+      attributes: ["transactionCode", "status", "paymentMethod"],
       where: { id, isActive: true },
     });
 
@@ -161,25 +160,14 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
 
 const addProduct = async (dataObject, userId) => {
   try {
-    const { title, location, variants, description, imageData } = dataObject;
+    const { title, price, description, imageData } = dataObject;
 
     const imageResult = await cloudinary.uploadToCloudinary(imageData, "image");
     if (!imageResult) throw Boom.internal("Cloudinary failed to upload image!");
 
-    console.log(imageResult);
-
-    let firstVariantPrice = 0;
-    try {
-      firstVariantPrice = JSON.parse(variants)[0]?.price;
-    } catch (error) {
-      throw Boom.badRequest("Invalid JSON in variant!");
-    }
-
     const data = await db.product.create({
       title,
-      price: firstVariantPrice,
-      location,
-      variants,
+      price,
       description,
       imageUrl: imageResult.url,
       createdBy: userId,
@@ -206,7 +194,7 @@ const addProduct = async (dataObject, userId) => {
 
 const addOrder = async (dataObject, userId) => {
   try {
-    const { productId, variant, paymentMethod, totalPayment } = dataObject;
+    const { productId, paymentMethod, totalPayment } = dataObject;
 
     const checkProductId = await db.product.findOne({
       where: { id: productId, isActive: true },
@@ -220,7 +208,6 @@ const addOrder = async (dataObject, userId) => {
     const result = await db.sequelize.transaction(async () => {
       const createdOrder = await db.order.create({
         productId,
-        variant,
         paymentMethod,
         totalPayment,
         createdBy: userId,
@@ -245,7 +232,7 @@ const addOrder = async (dataObject, userId) => {
 
 const editProductData = async (dataObject, userId) => {
   try {
-    const { id, title, location, variants, description, imageData } =
+    const { id, title, description, imageData, price } =
       dataObject;
 
     const data = await db.product.findOne({
@@ -266,18 +253,9 @@ const editProductData = async (dataObject, userId) => {
         throw Boom.internal("Cloudinary optional upload failed!");
     }
 
-    let firstVariantPrice = 0;
-    try {
-      firstVariantPrice = JSON.parse(variants)[0]?.price;
-    } catch (error) {
-      throw Boom.badRequest("Invalid JSON in variant!");
-    }
-
     await data.update({
       title,
-      price: firstVariantPrice,
-      location,
-      variants,
+      price,
       description,
       ...(imageResult && { imageUrl: imageResult?.url }),
     });
