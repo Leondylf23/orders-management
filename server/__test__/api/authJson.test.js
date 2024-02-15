@@ -2,7 +2,7 @@ const Request = require('supertest');
 const _ = require('lodash');
 
 const db = require('../../models');
-const cloudinary = require('../../server/services/cloudinary.js');
+const cloudinary = require('../../server/services/cloudinary');
 const GeneralHelper = require('../../server/helpers/generalHelper');
 const AuthPlugin = require('../../server/api/authUser');
 const MockUser = require('../fixtures/database/userData.json');

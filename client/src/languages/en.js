@@ -126,6 +126,7 @@ export default {
   payment_step_complete: 'Ordering has been created!',
 
   orderings_title: 'Orderings',
+  orderings_customer_name: 'Customer Name',
   orderings_customer_info: 'Customer Information',
   orderings_update_status_complete: 'Ordering Success',
   orderings_update_status_failed: 'Ordering Failed',

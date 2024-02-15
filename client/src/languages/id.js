@@ -127,6 +127,7 @@ export default {
   payment_step_complete: 'Pesanan telah dibuat!',
 
   orderings_title: 'Pemesanan',
+  orderings_customer_name: 'Nama Pelanggan',
   orderings_customer_info: 'Informasi Pelanggan',
   orderings_update_status_complete: 'Pesanan Selesai',
   orderings_update_status_failed: 'Pesanan Gagal',

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classes from '../style.module.scss';
 
-const OrderingCard = ({ data, onClickDetail }) => {
+const OrderingCard = ({ data, onClickDetail, isBusiness }) => {
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const OrderingCard = ({ data, onClickDetail }) => {
             color: 'red',
           });
           break;
-        case 'ORDERED':
+        case 'SUCCESS':
           setStatus({
             text: <FormattedMessage id="status_success" />,
             color: 'green',
@@ -38,6 +38,7 @@ const OrderingCard = ({ data, onClickDetail }) => {
       <div className={classes.cardContent}>
         <h4 className={classes.orderCode}>{data?.transactionCode}</h4>
         <h4 className={classes.title}>{data?.title}</h4>
+        {isBusiness && <p className={classes.customerName}>{data?.customer}</p>}
         <div className={classes.statusContainer} data-item={status?.color}>
           <h5 className="">{status?.text}</h5>
         </div>
@@ -49,6 +50,7 @@ const OrderingCard = ({ data, onClickDetail }) => {
 OrderingCard.propTypes = {
   data: PropTypes.object.isRequired,
   onClickDetail: PropTypes.func.isRequired,
+  isBusiness: PropTypes.bool,
 };
 
 export default OrderingCard;

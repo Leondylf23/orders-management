@@ -46,7 +46,12 @@ const Orderings = ({ orderingData, userData }) => {
             <div className={classes.dataGrid}>
               <div className={classes.innerDataGrid}>
                 {orderingData.map((ordering) => (
-                  <OrderingCard data={ordering} onClickDetail={(id) => setDetailId(id)} key={ordering?.id} />
+                  <OrderingCard
+                    data={ordering}
+                    onClickDetail={(id) => setDetailId(id)}
+                    isBusiness={isBusiness}
+                    key={ordering?.id}
+                  />
                 ))}
               </div>
             </div>

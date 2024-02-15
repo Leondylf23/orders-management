@@ -9,7 +9,6 @@ import Register from '@pages/Register';
 import ProductDetail from '@pages/ProductDetail';
 import Orderings from '@pages/Orderings';
 import ProductCreation from '@pages/ProductCreation';
-import Coupons from '@pages/Coupons';
 import Profile from '@pages/Profile';
 import ChangePassword from '@pages/ChangePassword';
 
@@ -91,14 +90,6 @@ const routes = [
     name: 'Product Creation Edit',
     protected: true,
     component: ProductCreation,
-    layout: MainLayout,
-    role: 'business',
-  },
-  {
-    path: '/coupons',
-    name: 'Coupons',
-    protected: true,
-    component: Coupons,
     layout: MainLayout,
     role: 'business',
   },

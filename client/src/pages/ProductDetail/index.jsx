@@ -7,21 +7,23 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useEffect, useState } from 'react';
+
 import { showPopup } from '@containers/App/actions';
-
-import { numberWithPeriods } from '@utils/allUtils';
+import { decryptDataAES, numberWithPeriods } from '@utils/allUtils';
+import { selectUserData } from '@containers/Client/selectors';
 import { selectProductDetail } from './selectors';
-
-import classes from './style.module.scss';
 import { getProductData } from './actions';
 
-const ProductDetail = ({ productDetail }) => {
+import classes from './style.module.scss';
+
+const ProductDetail = ({ productDetail, userData }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const [detailData, setDetailData] = useState(null);
+  const [isCustomer, setIsCustomer] = useState(false);
 
   const payBtn = () => {
     navigate('./pay');
@@ -55,6 +57,16 @@ const ProductDetail = ({ productDetail }) => {
       navigate('/');
     }
   }, [id]);
+  useEffect(() => {
+    try {
+      const user = JSON.parse(decryptDataAES(userData));
+      if (user) {
+        setIsCustomer(user?.role === 'customer');
+      }
+    } catch (error) {
+      console.warn('Error decoding user data.');
+    }
+  }, [userData]);
 
   return (
     <div className={classes.mainContainer}>
@@ -78,9 +90,11 @@ const ProductDetail = ({ productDetail }) => {
             <LocalOfferIcon className={classes.icon} />
             <p className={classes.price}>Rp. {numberWithPeriods(detailData?.price)}</p>
           </div>
-          <button type="button" className={classes.buyButton} onClick={payBtn}>
-            <FormattedMessage id="product_detail_buy_btn" />
-          </button>
+          {isCustomer && (
+            <button type="button" className={classes.buyButton} onClick={payBtn}>
+              <FormattedMessage id="product_detail_buy_btn" />
+            </button>
+          )}
           <h3 className={classes.descriptionTitle}>
             <FormattedMessage id="product_detail_desc" />
           </h3>
@@ -93,10 +107,12 @@ const ProductDetail = ({ productDetail }) => {
 
 ProductDetail.propTypes = {
   productDetail: PropTypes.object,
+  userData: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   productDetail: selectProductDetail,
+  userData: selectUserData,
 });
 
 export default connect(mapStateToProps)(ProductDetail);
