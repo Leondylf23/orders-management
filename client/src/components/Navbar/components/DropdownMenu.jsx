@@ -3,7 +3,6 @@ import MenuItem from '@mui/material/MenuItem';
 import PropType from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
-import DiscountIcon from '@mui/icons-material/Discount';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -15,7 +14,7 @@ import { setLogin, setToken, setUserData } from '@containers/Client/actions';
 import classes from './style.module.scss';
 
 // eslint-disable-next-line react/prop-types
-const DropDownMenu = ({ isOpen, anchorEl, onClose, labeledMenu, isBusiness }) => {
+const DropDownMenu = ({ isOpen, anchorEl, onClose, labeledMenu }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function menuItemAction(id) {
@@ -65,14 +64,6 @@ const DropDownMenu = ({ isOpen, anchorEl, onClose, labeledMenu, isBusiness }) =>
             <FormattedMessage id="nav_orderings" />
           </Typography>
         </MenuItem>
-        {isBusiness && (
-          <MenuItem onClick={() => menuItemAction(2)}>
-            <DiscountIcon className={classes.iconDiscount} />
-            <Typography variant="body2">
-              <FormattedMessage id="nav_coupons" />
-            </Typography>
-          </MenuItem>
-        )}
         <div className={classes.divider} />
         <MenuItem onClick={() => menuItemAction(3)}>
           <LogoutIcon className={classes.iconLogout} />
@@ -90,7 +81,6 @@ DropDownMenu.propType = {
   onClose: PropType.func.isRequired,
   labeledMenu: PropType.string.isRequired,
   anchorEl: PropType.element.isRequired,
-  isBusiness: PropType.bool,
 };
 
 export default DropDownMenu;

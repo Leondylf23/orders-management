@@ -103,6 +103,8 @@ export default {
   payment_title: 'Pembayaran',
   payment_previous_btn: 'Sebelumnya',
   payment_next_btn: 'Selanjutnya',
+  payment_phone: 'Nomor Telepon',
+  payment_address: 'Alamat Pengiriman',
   payment_finish_btn: 'Selesai',
   payment_step_1_name: 'Detil Produk',
   payment_step_2_name: 'Tambah Kupon',
@@ -120,12 +122,12 @@ export default {
   payment_summary_variant: 'Varian',
   payment_summary_total_payment: 'Total Pembayaran',
   payment_summary_payment_method: 'Methode Pembayaran',
-  payment_step_1_not_complete: 'Silahkan pilih varian terlebih dahulu!',
+  payment_step_1_not_complete: 'Silahkan isi form terlebih dahulu!',
   payment_step_3_not_complete: 'Silahkan pilih metode pembayaran!',
   payment_step_complete: 'Pesanan telah dibuat!',
 
   orderings_title: 'Pemesanan',
-  orderings_variant: 'Varian',
+  orderings_customer_info: 'Informasi Pelanggan',
   orderings_update_status_complete: 'Pesanan Selesai',
   orderings_update_status_failed: 'Pesanan Gagal',
 

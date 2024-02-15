@@ -9,7 +9,7 @@ const urls = {
   register: 'auth/register',
   product: 'orderin-aja/product',
   coupons: 'orderin-aja/coupon',
-  ordering: 'orderin-aja/ordering',
+  ordering: 'orderin-aja/order',
   profile: 'auth/profile',
   resetpassword: 'auth/reset-password',
   changepassword: 'auth/change-password',

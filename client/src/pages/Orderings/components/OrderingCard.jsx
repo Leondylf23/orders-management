@@ -33,14 +33,11 @@ const OrderingCard = ({ data, onClickDetail }) => {
   }, [data]);
 
   return (
-    <div className={classes.bookingCard} onClick={() => onClickDetail(data?.id)}>
+    <div className={classes.orderingCard} onClick={() => onClickDetail(data?.id)}>
       <img className={classes.cardImage} src={data?.imageUrl} alt="Img Failed" />
       <div className={classes.cardContent}>
-        <h4 className={classes.bookCode}>{data?.bookingCode}</h4>
+        <h4 className={classes.orderCode}>{data?.transactionCode}</h4>
         <h4 className={classes.title}>{data?.title}</h4>
-        <h5 className={classes.variant}>
-          <FormattedMessage id="bookings_variant" />: {data?.variant}
-        </h5>
         <div className={classes.statusContainer} data-item={status?.color}>
           <h5 className="">{status?.text}</h5>
         </div>
