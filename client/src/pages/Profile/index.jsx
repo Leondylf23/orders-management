@@ -58,9 +58,12 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
     }
 
     const form = new FormData();
+    console.log(userData);
 
     form.append('fullname', userData?.fullname);
     form.append('dob', userData?.dob);
+    form.append('location', userData?.location);
+
     if (profileImg) form.append('imageData', profileImg);
 
     dispatch(
@@ -141,7 +144,7 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             id="fullname"
             className={classes.input}
             value={userData?.fullname}
-            onChange={(e) => setUserData((prevVal) => ({ ...prevVal, fullname: e.target.value }))}
+            onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, fullname: e.target.value }))}
           />
           <label htmlFor="dob" className={classes.label}>
             <FormattedMessage id="profile_dob" />
@@ -151,17 +154,17 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             id="dob"
             className={classes.input}
             value={userData?.dob}
-            onChange={(e) => setUserData((prevVal) => ({ ...prevVal, dob: e.target.value }))}
+            onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, dob: e.target.value }))}
           />
           <label htmlFor="dob" className={classes.label}>
             <FormattedMessage id="profile_location" />
           </label>
           <input
             type="text"
-            id="fullname"
+            id="location"
             className={classes.input}
-            value={userData?.fullname}
-            onChange={(e) => setUserData((prevVal) => ({ ...prevVal, location: e.target.value }))}
+            value={userData?.location}
+            onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, location: e.target.value }))}
           />
           <label htmlFor="dob" className={classes.label}>
             <FormattedMessage id="profile_passwords" />
@@ -172,7 +175,7 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
               id="dob"
               className={classes.input}
               value="*******"
-              onChange={(e) => setUserData((prevVal) => ({ ...prevVal, dob: e.target.value }))}
+              onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, dob: e.target.value }))}
               disabled
             />
             <Link to="change-password">
