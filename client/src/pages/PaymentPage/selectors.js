@@ -5,4 +5,3 @@ const selectPaymentPageState = (state) => state.paymentPage || initialState;
 
 export const selectUserInputData = createSelector(selectPaymentPageState, (state) => state.userInputData);
 export const selectCouponsData = createSelector(selectPaymentPageState, (state) => state.couponsData);
-export const selectProductId = createSelector(selectPaymentPageState, (state) => state.productId);

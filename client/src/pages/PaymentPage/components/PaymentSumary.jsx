@@ -1,4 +1,4 @@
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
 import { useEffect } from 'react';
@@ -8,25 +8,11 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { numberWithPeriods } from '@utils/allUtils';
 import { selectProductDetail } from '@pages/ProductDetail/selectors';
 import { selectUserInputData } from '../selectors';
-import { setUserInputs } from '../actions';
 
 import classes from '../style.module.scss';
 
 const PaymentSumaryComponent = ({ productData, inputtedData }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    let totalPayment = inputtedData?.variant?.price;
-    const coupons = inputtedData?.coupons;
-
-    if (coupons?.length > 0) {
-      coupons.forEach((coupon) => {
-        // eslint-disable-next-line no-unsafe-optional-chaining
-        totalPayment -= coupon?.priceCut;
-      });
-    }
-    dispatch(setUserInputs({ ...inputtedData, totalPayment }));
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className={classes.componentContainer}>
       <h2 className={classes.title}>
@@ -36,17 +22,24 @@ const PaymentSumaryComponent = ({ productData, inputtedData }) => {
       <div className={classes.sumaryContainer}>
         <div className={classes.data}>
           <p className={classes.name}>
-            <FormattedMessage id="payment_summary_variant" />: {inputtedData?.variant?.variantName}
+            <FormattedMessage id="payment_phone" />
           </p>
-          <p className={classes.price}>Rp. {numberWithPeriods(inputtedData?.variant?.price)}</p>
+          <p className={classes.value}>{inputtedData?.orderForm?.phone}</p>
         </div>
-        {inputtedData?.coupons?.length > 0 &&
-          inputtedData?.coupons?.map((coupon, i) => (
-            <div className={classes.data} key={i}>
-              <p className={classes.name}>{coupon?.name}</p>
-              <p className={classes.price}>- Rp. {numberWithPeriods(coupon?.priceCut)}</p>
-            </div>
-          ))}
+        <div className={classes.data} data-type="dirY">
+          <p className={classes.name}>
+            <FormattedMessage id="payment_address" />
+          </p>
+          <p className={classes.value}>{inputtedData?.orderForm?.address}</p>
+        </div>
+        <div className={classes.data}>
+          <p className={classes.name}>
+            <FormattedMessage id="payment_summary_payment_method" />
+          </p>
+          <p className={classes.value}>
+            <FormattedMessage id={inputtedData?.paymentMethod?.nameIntlId} />
+          </p>
+        </div>
       </div>
       <div className={classes.footer}>
         <h4 className={classes.footerTitle}>
@@ -58,12 +51,6 @@ const PaymentSumaryComponent = ({ productData, inputtedData }) => {
             Rp. {numberWithPeriods(inputtedData?.totalPayment)}
           </p>
         </div>
-        <p className={classes.method}>
-          <FormattedMessage id="payment_summary_payment_method" />:{' '}
-          <p className={classes.name}>
-            <FormattedMessage id={inputtedData?.paymentMethod?.nameIntlId} />
-          </p>
-        </p>
       </div>
     </div>
   );

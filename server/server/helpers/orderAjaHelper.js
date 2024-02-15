@@ -29,6 +29,7 @@ const getAllOrder = async (userId, isBusiness) => {
         ...(isBusiness ? { businessUserId: userId } : { createdBy: userId }),
       },
       attributes: ["id", "transactionCode", "status"],
+      order: [["createdAt", "DESC"]],
     });
 
     const remapData = data?.map((order) => ({
@@ -62,7 +63,7 @@ const getOrderDetailWithId = async (dataObject) => {
           ],
         },
       ],
-      attributes: ["transactionCode", "status", "paymentMethod"],
+      attributes: ["transactionCode", "status", "paymentMethod", "address", "phone", "totalPayment"],
       where: { id, isActive: true },
     });
 
@@ -74,6 +75,7 @@ const getOrderDetailWithId = async (dataObject) => {
       organization: data?.product?.user?.dataValues?.fullname,
       location: data?.product?.user?.dataValues?.location,
       product: undefined,
+      user: undefined
     };
 
     return Promise.resolve(remapData);
@@ -151,6 +153,7 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
       location: data?.product?.user?.dataValues?.location,
       ...(!isBusiness && {
         organization: data?.user?.dataValues?.organization,
+        location: data?.user?.dataValues?.location,
       }),
     };
 
@@ -199,7 +202,7 @@ const addProduct = async (dataObject, userId) => {
 
 const addOrder = async (dataObject, userId) => {
   try {
-    const { productId, paymentMethod, totalPayment } = dataObject;
+    const { productId, paymentMethod, totalPayment, orderForm } = dataObject;
 
     const checkProductId = await db.product.findOne({
       where: { id: productId, isActive: true },
@@ -216,6 +219,8 @@ const addOrder = async (dataObject, userId) => {
         paymentMethod,
         totalPayment,
         createdBy: userId,
+        phone: orderForm?.phone,
+        address: orderForm?.address,
         businessUserId: checkProductId?.dataValues?.createdBy,
         transactionCode: transactionId,
       });

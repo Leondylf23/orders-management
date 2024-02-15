@@ -29,11 +29,13 @@ exports[`Navbar Component Should match with snapshot 1`] = `
             >
               <button
                 class="login"
+                type="submit"
               >
                 Masuk
               </button>
               <button
                 class="register"
+                type="submit"
               >
                 Daftar
               </button>
@@ -110,11 +112,13 @@ exports[`Navbar Component Should match with snapshot 1`] = `
           >
             <button
               class="login"
+              type="submit"
             >
               Masuk
             </button>
             <button
               class="register"
+              type="submit"
             >
               Daftar
             </button>

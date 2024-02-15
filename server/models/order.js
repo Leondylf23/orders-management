@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.ENUM("WAITING", "FAILED", "SUCCESS"),
       paymentMethod: DataTypes.ENUM("CASH", "TRANSFER"),
       totalPayment: DataTypes.DECIMAL(10, 2),
+      phone: DataTypes.STRING(20),
+      address: DataTypes.TEXT,
       businessUserId: DataTypes.INTEGER,
       isActive: DataTypes.BOOLEAN,
       createdBy: DataTypes.INTEGER,
