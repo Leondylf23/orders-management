@@ -9,19 +9,21 @@ import { showPopup } from '@containers/App/actions';
 import { selectUserData } from '@containers/Client/selectors';
 import { decryptDataAES, encryptDataAES } from '@utils/allUtils';
 import { setUserData } from '@containers/Client/actions';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import { Link } from 'react-router-dom';
 
 import { selectProfileData } from './selectors';
-import { getProfileData, saveNewPassword, saveProfileData } from './actions';
+import { getProfileData, saveProfileData } from './actions';
 
 import classes from './style.module.scss';
 
 const ProfilePage = ({ profileData, userDataSelect }) => {
+  console.log(profileData);
   const dispatch = useDispatch();
 
   const intl = useIntl();
 
   const [userData, setUserDataInternal] = useState();
-  const [userPassword, setUserPassword] = useState({ oldPass: '', newPass: '', confirmPass: '' });
   const [profileImg, setProfileImg] = useState(null);
 
   const setNewProfileImage = (e) => {
@@ -80,58 +82,6 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
         );
         dispatch(getProfileData());
       })
-    );
-  };
-
-  const saveNewPasswordData = () => {
-    if (userPassword?.oldPass === '' || userPassword?.newPass === '' || userPassword?.confirmPass === '') {
-      dispatch(
-        showPopup(intl.formatMessage({ id: 'profile_title' }), intl.formatMessage({ id: 'profile_password_fill_all' }))
-      );
-      return;
-    }
-    if (userPassword?.newPass?.length < 6 || userPassword?.newPass?.length > 20) {
-      dispatch(
-        showPopup(
-          intl.formatMessage({ id: 'profile_title' }),
-          intl.formatMessage({ id: 'register_password_validation' })
-        )
-      );
-      return;
-    }
-    if (userPassword?.newPass !== userPassword?.confirmPass) {
-      dispatch(
-        showPopup(intl.formatMessage({ id: 'profile_title' }), intl.formatMessage({ id: 'profile_password_same_pass' }))
-      );
-      return;
-    }
-
-    const encryptedData = {
-      oldPassword: encryptDataAES(userPassword?.oldPass),
-      newPassword: encryptDataAES(userPassword?.newPass),
-    };
-
-    dispatch(
-      saveNewPassword(
-        encryptedData,
-        () => {
-          setUserPassword({ oldPass: '', newPass: '', confirmPass: '' });
-          dispatch(
-            showPopup(
-              intl.formatMessage({ id: 'profile_title' }),
-              intl.formatMessage({ id: 'profile_password_success' })
-            )
-          );
-        },
-        () => {
-          dispatch(
-            showPopup(
-              intl.formatMessage({ id: 'profile_title' }),
-              intl.formatMessage({ id: 'profile_password_old_pass_not_match' })
-            )
-          );
-        }
-      )
     );
   };
 
@@ -203,46 +153,34 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             value={userData?.dob}
             onChange={(e) => setUserData((prevVal) => ({ ...prevVal, dob: e.target.value }))}
           />
+          <label htmlFor="dob" className={classes.label}>
+            <FormattedMessage id="profile_location" />
+          </label>
+          <input
+            type="text"
+            id="fullname"
+            className={classes.input}
+            value={userData?.fullname}
+            onChange={(e) => setUserData((prevVal) => ({ ...prevVal, location: e.target.value }))}
+          />
+          <label htmlFor="dob" className={classes.label}>
+            <FormattedMessage id="profile_passwords" />
+          </label>
+          <div className={classes.password}>
+            <input
+              type="password"
+              id="dob"
+              className={classes.input}
+              value="*******"
+              onChange={(e) => setUserData((prevVal) => ({ ...prevVal, dob: e.target.value }))}
+              disabled
+            />
+            <Link to="change-password">
+              <ModeEditOutlineIcon />
+            </Link>
+          </div>
           <div className={classes.buttonConatainer}>
             <button type="button" className={classes.button} onClick={saveGeneralData}>
-              <FormattedMessage id="profile_save" />
-            </button>
-          </div>
-          <h3 className={classes.containerTitle}>
-            <FormattedMessage id="profile_passwords" />
-          </h3>
-          <label htmlFor="oldPassword" className={classes.label}>
-            <FormattedMessage id="profile_password_old" />
-          </label>
-          <input
-            type="password"
-            id="oldPassword"
-            className={classes.input}
-            value={userPassword?.oldPass}
-            onChange={(e) => setUserPassword((prevVal) => ({ ...prevVal, oldPass: e.target.value }))}
-          />
-          <label htmlFor="newPassword" className={classes.label}>
-            <FormattedMessage id="profile_password_new" />
-          </label>
-          <input
-            type="password"
-            id="newPassword"
-            className={classes.input}
-            value={userPassword?.newPass}
-            onChange={(e) => setUserPassword((prevVal) => ({ ...prevVal, newPass: e.target.value }))}
-          />
-          <label htmlFor="confirmNewPass" className={classes.label}>
-            <FormattedMessage id="profile_password_confirm" />
-          </label>
-          <input
-            type="password"
-            id="confirmNewPass"
-            className={classes.input}
-            value={userPassword?.confirmPass}
-            onChange={(e) => setUserPassword((prevVal) => ({ ...prevVal, confirmPass: e.target.value }))}
-          />
-          <div className={classes.buttonConatainer}>
-            <button type="button" className={classes.button} onClick={saveNewPasswordData}>
               <FormattedMessage id="profile_save" />
             </button>
           </div>

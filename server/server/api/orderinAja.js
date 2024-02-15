@@ -320,9 +320,26 @@ const deleteProduct = async (request, reply) => {
   }
 };
 
+const bestSeller = async (request, reply) => {
+  try {
+    const response = await OrderinAjaHelper.getBestSeller();
+
+    return reply.send({
+      message: "success",
+      data: response,
+    });
+  } catch (err) {
+    console.log([fileName, "Best seller Product Data API", "ERROR"], {
+      info: `${err}`,
+    });
+    return reply.send(GeneralHelper.errorResponse(err));
+  }
+};
+
 // Public Routes
 Router.get("/product", allProducts);
 Router.get("/product/detail", productDetail);
+Router.get("/product/best-seller", bestSeller);
 
 // Customer Role Only Routes
 Router.get("/order", AuthMiddleware.validateToken, allOrders);

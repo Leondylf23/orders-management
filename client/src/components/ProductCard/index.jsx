@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import { FormattedMessage } from 'react-intl';
-import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 
 import { numberWithPeriods } from '@utils/allUtils';
 
@@ -30,17 +28,11 @@ const ProductCard = ({ data, isBusiness }) => {
             <AssignmentIndIcon className={classes.icon} />
             <p className={classes.text}>{data?.organization}</p>
           </div>
-          <div className={classes.infoIconContainer}>
-            <ViewWeekIcon className={classes.icon} />
-            <p className={classes.text}>{data?.variants?.join(', ')}</p>
-          </div>
+
           <div className={classes.priceContainer}>
             <LocalOfferIcon className={classes.icon} />
             <p className={classes.text}>Rp. {numberWithPeriods(data?.price)}</p>
           </div>
-          <p className={classes.footer}>
-            /<FormattedMessage id="product_card_price" />
-          </p>
         </div>
       </div>
     </div>

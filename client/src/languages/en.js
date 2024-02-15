@@ -64,6 +64,7 @@ export default {
   product_card_price: 'person',
 
   home_title: 'Browse Products',
+  home_best: 'Best Seller',
   home_create_new: 'Create New',
   home_search_placeholder: 'Search for products...',
 
@@ -94,6 +95,9 @@ export default {
   product_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
   product_creation_image_validation: 'At least have an image!',
   product_creation_save_success: 'Saved!',
+  product_bought_by: 'Product has been bought',
+
+  times: 'kali',
 
   payment_title: 'Payment',
   payment_previous_btn: 'Previous',
@@ -153,4 +157,5 @@ export default {
   profile_password_same_pass: 'New password and confirmation password must be same!',
   profile_password_old_pass_not_match: 'Wrong old password!',
   profile_password_success: 'Password changed successfully!',
+  profile_location: 'Store Location',
 };

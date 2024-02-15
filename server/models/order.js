@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class order extends Model {
     /**
@@ -12,25 +10,33 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.product, {
-        foreignKey: 'productId',
-        onDelete: "CASCADE"
+        foreignKey: "productId",
+        onDelete: "CASCADE",
+      });
+
+      this.belongsTo(models.user, {
+        foreignKey: "createdBy",
+        onDelete: "CASCADE",
       });
     }
   }
-  order.init({
-    productId: DataTypes.INTEGER,
-    transactionCode: DataTypes.STRING,
-    status: DataTypes.STRING(10),
-    paymentMethod: DataTypes.STRING(20),
-    totalPayment: DataTypes.DECIMAL(10, 2),
-    phone: DataTypes.STRING(20),
-    address: DataTypes.TEXT,
-    businessUserId: DataTypes.INTEGER,
-    isActive: DataTypes.BOOLEAN,
-    createdBy: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'order',
-  });
+  order.init(
+    {
+      productId: DataTypes.INTEGER,
+      transactionCode: DataTypes.STRING,
+      status: DataTypes.ENUM("WAITING", "FAILED", "SUCCESS"),
+      paymentMethod: DataTypes.ENUM("CASH", "TRANSFER"),
+      totalPayment: DataTypes.DECIMAL(10, 2),
+      phone: DataTypes.STRING(20),
+      address: DataTypes.TEXT,
+      businessUserId: DataTypes.INTEGER,
+      isActive: DataTypes.BOOLEAN,
+      createdBy: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "order",
+    }
+  );
   return order;
 };

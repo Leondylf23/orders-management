@@ -1,6 +1,12 @@
 "use strict";
+const bcrypt = require("bcrypt");
 
 /** @type {import('sequelize-cli').Migration} */
+
+const passwordSaltRound = bcrypt.genSaltSync(12);
+const __generateHashPassword = (password) =>
+  bcrypt.hashSync(password, passwordSaltRound);
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("users", {
@@ -15,6 +21,7 @@ module.exports = {
       },
       password: {
         type: Sequelize.TEXT,
+        defaultValue: __generateHashPassword("Phincon123!"),
       },
       fullname: {
         type: Sequelize.STRING,
@@ -26,7 +33,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
       role: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.ENUM,
+        values: ["customer", "business"],
+        defaultValue: "customer",
       },
       isActive: {
         type: Sequelize.BOOLEAN,
