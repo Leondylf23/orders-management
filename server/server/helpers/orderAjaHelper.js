@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 const _ = require("lodash");
+
 const Boom = require("boom");
 const { like } = require("sequelize/lib/operators");
 
@@ -33,6 +34,7 @@ const getAllOrder = async (userId, isBusiness) => {
     const remapData = data?.map((order) => ({
       ...order?.dataValues,
       ...order?.product?.dataValues,
+      location: data?.product?.user?.dataValues?.location,
       product: undefined,
     }));
 
@@ -55,7 +57,7 @@ const getOrderDetailWithId = async (dataObject) => {
             {
               association: "user",
               required: true,
-              attributes: ["fullname"],
+              attributes: ["fullname", "location"],
             },
           ],
         },
@@ -70,6 +72,7 @@ const getOrderDetailWithId = async (dataObject) => {
       ...data?.dataValues,
       ...data?.product?.dataValues,
       organization: data?.product?.user?.dataValues?.fullname,
+      location: data?.product?.user?.dataValues?.location,
       product: undefined,
     };
 
@@ -89,7 +92,7 @@ const getAllProducts = async (dataObject, userId) => {
           association: "user",
           required: true,
           where: { isActive: true },
-          attributes: [["fullname", "organization"]],
+          attributes: [["fullname", "organization"], "location"],
         },
       ],
       where: {
@@ -105,6 +108,7 @@ const getAllProducts = async (dataObject, userId) => {
 
       return {
         organization: product?.user?.dataValues?.organization,
+        location: product?.user?.dataValues?.location,
         ...productValues,
         user: undefined,
       };
@@ -128,7 +132,7 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
             association: "user",
             required: true,
             where: { isActive: true },
-            attributes: [["fullname", "organization"]],
+            attributes: [["fullname", "organization"], "location"],
           },
         ],
       }),
@@ -144,6 +148,7 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
     const remapData = {
       ...data?.dataValues,
       createdBy: undefined,
+      location: data?.product?.user?.dataValues?.location,
       ...(!isBusiness && {
         organization: data?.user?.dataValues?.organization,
       }),
@@ -232,8 +237,7 @@ const addOrder = async (dataObject, userId) => {
 
 const editProductData = async (dataObject, userId) => {
   try {
-    const { id, title, description, imageData, price } =
-      dataObject;
+    const { id, title, description, imageData, price } = dataObject;
 
     const data = await db.product.findOne({
       where: { id, isActive: true },
@@ -327,11 +331,53 @@ const deleteProduct = async (dataObject, userId) => {
   }
 };
 
+const getBestSeller = async () => {
+  try {
+    const bestSellers = await db.order.findAll({
+      where: {
+        isActive: true,
+      },
+      attributes: [
+        "productId",
+        [
+          db.sequelize.fn("COUNT", db.sequelize.col("productId")),
+          "productCount",
+        ],
+      ],
+      include: [
+        {
+          association: "product",
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              association: "user",
+              required: true,
+              where: { isActive: true },
+              attributes: [["fullname", "organization"], "location"],
+            },
+          ],
+        },
+      ],
+      group: "productId",
+      order: [
+        [db.sequelize.fn("COUNT", db.sequelize.col("productId")), "DESC"],
+      ],
+      limit: 10,
+    });
+
+    return Promise.resolve(bestSellers);
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(GeneralHelper.errorResponse(err));
+  }
+};
+
 module.exports = {
   getAllOrder,
   getOrderDetailWithId,
   getAllProducts,
   getProductDetail,
+  getBestSeller,
 
   addOrder,
   addProduct,

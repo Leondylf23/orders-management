@@ -11,6 +11,7 @@ import Orderings from '@pages/Orderings';
 import ProductCreation from '@pages/ProductCreation';
 import Coupons from '@pages/Coupons';
 import Profile from '@pages/Profile';
+import ChangePassword from '@pages/ChangePassword';
 
 const routes = [
   {
@@ -34,6 +35,14 @@ const routes = [
     name: 'Profile',
     protected: true,
     component: Profile,
+    layout: MainLayout,
+    role: '*',
+  },
+  {
+    path: '/profile/change-password',
+    name: 'Profile',
+    protected: true,
+    component: ChangePassword,
     layout: MainLayout,
     role: '*',
   },

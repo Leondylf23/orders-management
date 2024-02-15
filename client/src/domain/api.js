@@ -46,6 +46,7 @@ export const getAllProducts = (formData) => callAPI(urls.product, 'get', {}, for
 export const getProductDetailApi = (formData) => callAPI(`${urls.product}/detail`, 'get', {}, formData);
 export const getMyAllProducts = (formData) => callAPI(`${urls.product}/my-products`, 'get', {}, formData);
 export const getMyProductDetailApi = (formData) => callAPI(`${urls.product}/my-products/detail`, 'get', {}, formData);
+export const getBestSeller = () => callAPI(`${urls.product}/best-seller`, 'get');
 export const createNewProduct = (formData) =>
   callAPI(
     `${urls.product}/create`,
