@@ -36,7 +36,11 @@ const orderRequestValidation = (data) => {
 const orderDataFormValidation = (data) => {
   const schema = Joi.object({
     productId: Joi.number().required().description('Product id is required!'),
-    paymentMethod: Joi.string().required().description('Payment method is required!'),
+    orderForm: Joi.object({
+      phone: Joi.string().required().description('Phone number is required!'),
+      address: Joi.string().required().description('Address is required!'),
+    }),
+    paymentMethod: Joi.string().valid(['CASH', "TRANSFER"]).required().description('Payment method is required!'),
     totalPayment: Joi.number().required().description('Total payment is required!'),
   });
 
@@ -81,7 +85,7 @@ const idValidation = (data) => {
 
 module.exports = {
   allProductQueryValidation,
-  
+
   productFormValidation,
   orderRequestValidation,
   orderDataFormValidation,

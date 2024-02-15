@@ -9,7 +9,7 @@ const urls = {
   register: 'auth/register',
   product: 'orderin-aja/product',
   coupons: 'orderin-aja/coupon',
-  ordering: 'orderin-aja/ordering',
+  ordering: 'orderin-aja/order',
   profile: 'auth/profile',
   resetpassword: 'auth/reset-password',
   changepassword: 'auth/change-password',
@@ -46,6 +46,7 @@ export const getAllProducts = (formData) => callAPI(urls.product, 'get', {}, for
 export const getProductDetailApi = (formData) => callAPI(`${urls.product}/detail`, 'get', {}, formData);
 export const getMyAllProducts = (formData) => callAPI(`${urls.product}/my-products`, 'get', {}, formData);
 export const getMyProductDetailApi = (formData) => callAPI(`${urls.product}/my-products/detail`, 'get', {}, formData);
+export const getBestSeller = () => callAPI(`${urls.product}/best-seller`, 'get');
 export const createNewProduct = (formData) =>
   callAPI(
     `${urls.product}/create`,

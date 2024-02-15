@@ -96,6 +96,7 @@ const getUserProfile = async (userId) => {
       attributes: [
         "email",
         "fullname",
+        "location",
         "profileImage",
         "dob",
         "role",
@@ -173,7 +174,8 @@ const resetPassword = async (dataObject) => {
 };
 
 const updateProfile = async (dataObject, imageFile, userId) => {
-  const { fullname, dob } = dataObject;
+  const { fullname, dob, location } = dataObject;
+  console.log(location);
 
   try {
     const data = await db.user.findByPk(userId);
@@ -190,6 +192,7 @@ const updateProfile = async (dataObject, imageFile, userId) => {
     const checkUpdate = await data.update({
       fullname,
       dob,
+      location,
       ...(imageResult && { profileImage: imageResult?.url }),
     });
     if (_.isEmpty(checkUpdate)) throw Boom.internal("Profile not updated!");

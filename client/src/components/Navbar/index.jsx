@@ -86,7 +86,6 @@ const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTe
                 anchorEl={anchorEl}
                 onClose={openCloseProfileMenu}
                 labeledMenu=""
-                isBusiness={isBusiness}
               />
             </div>
           ) : (

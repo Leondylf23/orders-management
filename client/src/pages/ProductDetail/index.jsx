@@ -22,13 +22,6 @@ const ProductDetail = ({ productDetail }) => {
   const { id } = useParams();
 
   const [detailData, setDetailData] = useState(null);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(-1);
-  const [selectedVariant, setSelectedVariant] = useState(null);
-
-  const selectVariantData = (data, index) => {
-    setSelectedVariant(data);
-    setSelectedVariantIndex(index);
-  };
 
   const payBtn = () => {
     navigate('./pay');
@@ -83,19 +76,7 @@ const ProductDetail = ({ productDetail }) => {
           <h2 className={classes.title}>{detailData?.title}</h2>
           <div className={classes.priceContainer}>
             <LocalOfferIcon className={classes.icon} />
-            <p className={classes.price}>Rp. {numberWithPeriods(selectedVariant?.price)}</p>
-          </div>
-          <div className={classes.variantContainer}>
-            {detailData?.variants?.map((variant, i) => (
-              <div
-                className={classes.variant}
-                key={variant?.variantName}
-                onClick={() => selectVariantData(variant, i)}
-                data-active={i === selectedVariantIndex}
-              >
-                <h4>{variant?.variantName}</h4>
-              </div>
-            ))}
+            <p className={classes.price}>Rp. {numberWithPeriods(detailData?.price)}</p>
           </div>
           <button type="button" className={classes.buyButton} onClick={payBtn}>
             <FormattedMessage id="product_detail_buy_btn" />
@@ -103,11 +84,7 @@ const ProductDetail = ({ productDetail }) => {
           <h3 className={classes.descriptionTitle}>
             <FormattedMessage id="product_detail_desc" />
           </h3>
-          <p className={classes.description}>{`asdwadwadaw
-                    dwadawdwa
-                    dwadwadawd
-                    wadadadadwad
-                    waawdwada`}</p>
+          <p className={classes.description}>{detailData?.description}</p>
         </div>
       </div>
     </div>

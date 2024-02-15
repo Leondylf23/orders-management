@@ -65,6 +65,7 @@ export default {
   product_card_price: 'person',
 
   home_title: 'Browse Products',
+  home_best: 'Best Seller',
   home_create_new: 'Create New',
   home_search_placeholder: 'Search for products...',
 
@@ -96,10 +97,15 @@ export default {
   product_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
   product_creation_image_validation: 'At least have an image!',
   product_creation_save_success: 'Saved!',
+  product_bought_by: 'Product has been bought',
+
+  times: 'kali',
 
   payment_title: 'Payment',
   payment_previous_btn: 'Previous',
   payment_next_btn: 'Next',
+  payment_phone: 'Phone Number',
+  payment_address: 'Shipping Address',
   payment_finish_btn: 'Finish',
   payment_step_1_name: 'Product Detail',
   payment_step_2_name: 'Add Coupon',
@@ -117,12 +123,12 @@ export default {
   payment_summary_variant: 'Variant',
   payment_summary_total_payment: 'Total Payment',
   payment_summary_payment_method: 'Payment Method',
-  payment_step_1_not_complete: 'Please select variant first!',
+  payment_step_1_not_complete: 'Please fill the form first!',
   payment_step_3_not_complete: 'Please select payment method!',
   payment_step_complete: 'Ordering has been created!',
 
   orderings_title: 'Orderings',
-  orderings_variant: 'Variant',
+  orderings_customer_info: 'Customer Information',
   orderings_update_status_complete: 'Ordering Success',
   orderings_update_status_failed: 'Ordering Failed',
 
@@ -153,4 +159,5 @@ export default {
   profile_password_same_pass: 'New password and confirmation password must be same!',
   profile_password_old_pass_not_match: 'Wrong old password!',
   profile_password_success: 'Password changed successfully!',
+  profile_location: 'Store Location',
 };

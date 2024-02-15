@@ -91,6 +91,13 @@ const updateProfileFormValidation = (data) => {
         "Full name must be at least 3 characters and not more than 255 characters and alphabetic characters"
       ),
     dob: Joi.date().required().description("Date of birth must be valid date"),
+    location: Joi.string()
+      .min(3)
+      .max(255)
+      .required()
+      .description(
+        "Location must be at least 3 characters and not more than 255 characters and alphabetic characters"
+      ),
   });
 
   if (schema.validate(data).error) {

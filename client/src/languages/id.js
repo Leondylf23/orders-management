@@ -1,6 +1,6 @@
 export default {
   app_greeting: 'Hai dari Web!',
-  app_title_header: 'Product Aja',
+  app_title_header: 'Produk Aja',
   app_not_found: 'Halaman tidak ditemukan',
   app_lang_id: 'Bahasa Indonesia',
   app_lang_en: 'Bahasa Inggris',
@@ -66,18 +66,19 @@ export default {
 
   product_card_price: 'orang',
 
-  home_title: 'Cari Product',
+  home_title: 'Cari Produk',
+  home_best: 'Penjualan Terbaik',
   home_create_new: 'Buat Baru',
-  home_search_placeholder: 'Cari product...',
+  home_search_placeholder: 'Cari produk...',
 
-  product_detail_title: 'Detil Product',
+  product_detail_title: 'Detil Produk',
   product_detail_buy_btn: 'Beli Sekarang',
   product_detail_desc: 'Deskripsi',
-  product_detail_not_found: 'Product tidak ditemukan!',
+  product_detail_not_found: 'Produk tidak ditemukan!',
   product_detail_used_coupons: 'Kupon yang terpakai',
 
-  product_creation_title: 'Buat Product',
   product_creation_add_img_btn: 'Tambah Gambar',
+  product_creation_title: 'Buat Produk',
   product_creation_chg_img_btn: 'Ganti Gambar',
   product_creation_rmv_img_btn: 'Hapus Gambar',
   product_creation_title_label: 'Nama Produk',
@@ -97,10 +98,15 @@ export default {
   product_creation_variant_price_validation: 'Harga harus lebih dari 5.000 dan kurang dari 5.000.000!',
   product_creation_image_validation: 'Setidaknya memiliki gambar!',
   product_creation_save_success: 'Berhasil disimpan!',
+  product_bought_by: 'Product telah dibeli',
+
+  times: 'kali',
 
   payment_title: 'Pembayaran',
   payment_previous_btn: 'Sebelumnya',
   payment_next_btn: 'Selanjutnya',
+  payment_phone: 'Nomor Telepon',
+  payment_address: 'Alamat Pengiriman',
   payment_finish_btn: 'Selesai',
   payment_step_1_name: 'Detil Produk',
   payment_step_2_name: 'Tambah Kupon',
@@ -118,12 +124,12 @@ export default {
   payment_summary_variant: 'Varian',
   payment_summary_total_payment: 'Total Pembayaran',
   payment_summary_payment_method: 'Methode Pembayaran',
-  payment_step_1_not_complete: 'Silahkan pilih varian terlebih dahulu!',
+  payment_step_1_not_complete: 'Silahkan isi form terlebih dahulu!',
   payment_step_3_not_complete: 'Silahkan pilih metode pembayaran!',
   payment_step_complete: 'Pesanan telah dibuat!',
 
   orderings_title: 'Pemesanan',
-  orderings_variant: 'Varian',
+  orderings_customer_info: 'Informasi Pelanggan',
   orderings_update_status_complete: 'Pesanan Selesai',
   orderings_update_status_failed: 'Pesanan Gagal',
 
@@ -154,4 +160,5 @@ export default {
   profile_password_same_pass: 'Password baru dan konfirmasi password harus sama!',
   profile_password_old_pass_not_match: 'Password lama salah!',
   profile_password_success: 'Password sudah berhasil diganti!',
+  profile_location: 'Lokasi Toko',
 };

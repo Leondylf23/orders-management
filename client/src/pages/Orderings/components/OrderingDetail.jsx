@@ -89,10 +89,10 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
           <h2 className={classes.title}>{orderingData?.title}</h2>
           <div className={classes.priceContainer}>
             <LocalOfferIcon className={classes.icon} />
-            <p className={classes.price}>Rp. {numberWithPeriods(parseFloat(orderingData?.variant?.price))}</p>
+            <p className={classes.price}>Rp. {numberWithPeriods(parseFloat(orderingData?.totalPayment))}</p>
           </div>
           <div className={classes.paymentMethodContainer}>
-            {orderingData?.paymentMethod === 'METHOD_TRANSFER' ? (
+            {orderingData?.paymentMethod === 'TRANSFER' ? (
               <>
                 {/* <img className={classes.image} src={orderingData?.transferImg ?? ""} alt="Failed to Load!" /> */}
                 <h4 className={classes.text}>
@@ -104,11 +104,6 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
                 <FormattedMessage id="payment_payment_onsitepay" />
               </h4>
             )}
-          </div>
-          <div className={classes.variantContainer}>
-            <div className={classes.variant} data-active="true">
-              <h4>{orderingData?.variant?.variantName}</h4>
-            </div>
           </div>
           <div className={classes.statusContainer} data-item={status?.color}>
             {status?.text}
@@ -123,25 +118,21 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
               </button>
             </div>
           )}
-          <div className={classes.couponsContainer}>
-            <h3 className={classes.title}>
-              <FormattedMessage id="product_detail_used_coupons" />
+          <div className={classes.infoContainer}>
+            <h3 className={classes.titleData}>
+              <FormattedMessage id="orderings_customer_info" />
             </h3>
-            <div className={classes.dataContainer}>
-              {orderingData?.coupons?.length > 0 ? (
-                orderingData?.coupons?.map((coupon) => (
-                  <div className={classes.data}>
-                    <p className={classes.name}>{coupon?.couponName}</p>
-                    <p className={classes.price}>Rp. {numberWithPeriods(coupon?.couponPrcCut)}</p>
-                  </div>
-                ))
-              ) : (
-                <div className={classes.emptyContainer}>
-                  <h4 className={classes.text}>
-                    <FormattedMessage id="empty_data" />
-                  </h4>
-                </div>
-              )}
+            <div className={classes.infoDataContainer}>
+              <p className={classes.title}>
+                <FormattedMessage id="payment_phone" /> :
+              </p>
+              <p className={classes.data}>{orderingData?.phone}</p>
+            </div>
+            <div className={classes.infoDataContainer}>
+              <p className={classes.title}>
+                <FormattedMessage id="payment_address" /> :
+              </p>
+              <p className={classes.data}>{orderingData?.address}</p>
             </div>
           </div>
           <h3 className={classes.descriptionTitle}>
@@ -155,7 +146,7 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
 };
 
 OrderingDetailComponent.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   orderingData: PropTypes.object,
   back: PropTypes.func,
   isBusiness: PropTypes.bool,

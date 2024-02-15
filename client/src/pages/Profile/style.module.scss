@@ -10,9 +10,9 @@
     gap: 1.5rem;
 
     @include apply-at-sm-size {
-        @include directionX;
+      @include directionX;
 
-        gap: 3rem;
+      gap: 3rem;
     }
 
     .leftSide {
@@ -23,7 +23,6 @@
       z-index: 0 !important;
 
       @include apply-at-sm-size {
-
         width: 30%;
 
         .profileImage {
@@ -55,35 +54,54 @@
       }
     }
     .rigthSide {
-        @include directionY;
+      @include directionY;
+      width: 100%;
+
+      @include apply-at-sm-size {
+        width: 70%;
+      }
+
+      .containerTitle {
+        margin-bottom: 0.5rem;
+      }
+      .label {
+        margin-bottom: 0.25rem;
+      }
+      .input {
+        @include input;
+
         width: 100%;
+        margin-bottom: 0.5rem;
+      }
 
-        @include apply-at-sm-size {
-            width: 70%;
-        }
+      .password {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        gap: 10px;
 
-        .containerTitle {
-            margin-bottom: 0.5rem;
+        a {
+          background-color: rgb(27, 221, 27);
+          display: flex;
+          border-radius: 3px;
+          color: white;
+          justify-content: center;
+          height: 40px;
+          width: 60px;
+          align-items: center;
         }
-        .label {
-            margin-bottom: 0.25rem;
-        }
-        .input {
-            @include input;
+      }
 
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-        .buttonConatainer {
-            @include directionX;
-            @include marginY(1rem);
+      .buttonConatainer {
+        @include directionX;
+        @include marginY(1rem);
 
-            justify-content: center;
+        justify-content: center;
 
-            .button {
-                @include button;
-            }
+        .button {
+          @include button;
         }
+      }
     }
   }
 }
