@@ -156,16 +156,20 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             value={userData?.dob}
             onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, dob: e.target.value }))}
           />
-          <label htmlFor="dob" className={classes.label}>
-            <FormattedMessage id="profile_location" />
-          </label>
-          <input
-            type="text"
-            id="location"
-            className={classes.input}
-            value={userData?.location}
-            onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, location: e.target.value }))}
-          />
+          {userData.role === 'business' && (
+            <>
+              <label htmlFor="dob" className={classes.label}>
+                <FormattedMessage id="profile_location" />
+              </label>
+              <input
+                type="text"
+                id="location"
+                className={classes.input}
+                value={userData?.location}
+                onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, location: e.target.value }))}
+              />
+            </>
+          )}
           <label htmlFor="dob" className={classes.label}>
             <FormattedMessage id="profile_passwords" />
           </label>
