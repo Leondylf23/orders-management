@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 const _ = require("lodash");
+
 const Boom = require("boom");
 const { like } = require("sequelize/lib/operators");
 
@@ -349,11 +350,53 @@ const deleteProduct = async (dataObject, userId) => {
   }
 };
 
+const getBestSeller = async () => {
+  try {
+    const bestSellers = await db.order.findAll({
+      where: {
+        isActive: true,
+      },
+      attributes: [
+        "productId",
+        [
+          db.sequelize.fn("COUNT", db.sequelize.col("productId")),
+          "productCount",
+        ],
+      ],
+      include: [
+        {
+          association: "product",
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              association: "user",
+              required: true,
+              where: { isActive: true },
+              attributes: [["fullname", "organization"]],
+            },
+          ],
+        },
+      ],
+      group: "productId",
+      order: [
+        [db.sequelize.fn("COUNT", db.sequelize.col("productId")), "DESC"],
+      ],
+      limit: 10,
+    });
+
+    return Promise.resolve(bestSellers);
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(GeneralHelper.errorResponse(err));
+  }
+};
+
 module.exports = {
   getAllOrder,
   getOrderDetailWithId,
   getAllProducts,
   getProductDetail,
+  getBestSeller,
 
   addOrder,
   addProduct,
