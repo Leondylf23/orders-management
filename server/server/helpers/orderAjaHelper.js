@@ -34,7 +34,7 @@ const getAllOrder = async (userId, isBusiness) => {
     const remapData = data?.map((order) => ({
       ...order?.dataValues,
       ...order?.product?.dataValues,
-      variant: order?.dataValues?.variant?.variantName,
+      location: data?.product?.user?.dataValues?.location,
       product: undefined,
     }));
 
@@ -52,12 +52,12 @@ const getOrderDetailWithId = async (dataObject) => {
         {
           association: "product",
           required: true,
-          attributes: ["title", "imageUrl", "location", "description"],
+          attributes: ["title", "imageUrl", "description"],
           include: [
             {
               association: "user",
               required: true,
-              attributes: ["fullname"],
+              attributes: ["fullname", "location"],
             },
           ],
         },
@@ -72,6 +72,7 @@ const getOrderDetailWithId = async (dataObject) => {
       ...data?.dataValues,
       ...data?.product?.dataValues,
       organization: data?.product?.user?.dataValues?.fullname,
+      location: data?.product?.user?.dataValues?.location,
       product: undefined,
     };
 
@@ -91,7 +92,7 @@ const getAllProducts = async (dataObject, userId) => {
           association: "user",
           required: true,
           where: { isActive: true },
-          attributes: [["fullname", "organization"]],
+          attributes: [["fullname", "organization"], "location"],
         },
       ],
       where: {
@@ -107,6 +108,7 @@ const getAllProducts = async (dataObject, userId) => {
 
       return {
         organization: product?.user?.dataValues?.organization,
+        location: product?.user?.dataValues?.location,
         ...productValues,
         user: undefined,
       };
@@ -130,7 +132,7 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
             association: "user",
             required: true,
             where: { isActive: true },
-            attributes: [["fullname", "organization"]],
+            attributes: [["fullname", "organization"], "location"],
           },
         ],
       }),
@@ -146,6 +148,7 @@ const getProductDetail = async (dataObject, userId, isBusiness) => {
     const remapData = {
       ...data?.dataValues,
       createdBy: undefined,
+      location: data?.product?.user?.dataValues?.location,
       ...(!isBusiness && {
         organization: data?.user?.dataValues?.organization,
       }),
@@ -166,8 +169,6 @@ const addProduct = async (dataObject, userId) => {
 
     const imageResult = await cloudinary.uploadToCloudinary(imageData, "image");
     if (!imageResult) throw Boom.internal("Cloudinary failed to upload image!");
-
-    console.log(imageResult);
 
     let firstVariantPrice = 0;
     try {
@@ -372,7 +373,7 @@ const getBestSeller = async () => {
               association: "user",
               required: true,
               where: { isActive: true },
-              attributes: [["fullname", "organization"]],
+              attributes: [["fullname", "organization"], "location"],
             },
           ],
         },
