@@ -63,7 +63,14 @@ const getOrderDetailWithId = async (dataObject) => {
           ],
         },
       ],
-      attributes: ["transactionCode", "status", "paymentMethod", "address", "phone", "totalPayment"],
+      attributes: [
+        "transactionCode",
+        "status",
+        "paymentMethod",
+        "address",
+        "phone",
+        "totalPayment",
+      ],
       where: { id, isActive: true },
     });
 
@@ -75,7 +82,7 @@ const getOrderDetailWithId = async (dataObject) => {
       organization: data?.product?.user?.dataValues?.fullname,
       location: data?.product?.user?.dataValues?.location,
       product: undefined,
-      user: undefined
+      user: undefined,
     };
 
     return Promise.resolve(remapData);
@@ -338,6 +345,7 @@ const deleteProduct = async (dataObject, userId) => {
 
 const getBestSeller = async () => {
   try {
+    console.log("test");
     const bestSellers = await db.order.findAll({
       where: {
         isActive: true,
