@@ -14,6 +14,7 @@ const allProductQueryValidation = (data) => {
 const productFormValidation = (data) => {
   const schema = Joi.object({
     title: Joi.string().min(5).max(255).required().description('Title product'),
+    price: Joi.number().min(5000).max(50000000).required().description('Price of product'),
     description: Joi.string().min(5).max(500).required().description('Product description'),
   });
 
@@ -35,10 +36,6 @@ const orderRequestValidation = (data) => {
 const orderDataFormValidation = (data) => {
   const schema = Joi.object({
     productId: Joi.number().required().description('Product id is required!'),
-    variant: Joi.object({
-      variantName: Joi.string().required().description('Variant name is required!'),
-      price: Joi.number().min(5000).max(5000000).required().description('Price is required!')
-    }).required().description('Variant is required!'),
     paymentMethod: Joi.string().required().description('Payment method is required!'),
     totalPayment: Joi.number().required().description('Total payment is required!'),
   });
@@ -52,9 +49,8 @@ const editProductFormValidation = (data) => {
   const schema = Joi.object({
     id: Joi.number().integer().required().description('Id of product'),
     title: Joi.string().min(5).max(255).required().description('Title product'),
-    location: Joi.string().min(2).max(255).required().description('Location of product'),
+    price: Joi.number().min(5000).max(50000000).required().description('Price of product'),
     description: Joi.string().min(5).max(500).required().description('Product description'),
-    variants: Joi.string().required().description('Product variants in json')
   });
 
   if (schema.validate(data).error) {
