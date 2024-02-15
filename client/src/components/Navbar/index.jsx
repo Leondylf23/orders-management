@@ -81,12 +81,7 @@ const Navbar = ({ title, locale, theme, isUserLogined, userData, isUserLoginedTe
               <div onClick={openCloseProfileMenu}>
                 <Avatar className={classes.avatar} src={profileImg} />
               </div>
-              <DropDownMenu
-                isOpen={isOpenMenu}
-                anchorEl={anchorEl}
-                onClose={openCloseProfileMenu}
-                labeledMenu=""
-              />
+              <DropDownMenu isOpen={isOpenMenu} anchorEl={anchorEl} onClose={openCloseProfileMenu} labeledMenu="" />
             </div>
           ) : (
             <div className={classes.userButtons}>
