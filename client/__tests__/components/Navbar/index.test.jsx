@@ -7,14 +7,12 @@ import Language from '@containers/Language';
 
 const ParentComponent = (children) => (
   <Provider store={store}>
-    <Language>
-      {children}
-    </Language>
+    <Language>{children}</Language>
   </Provider>
 );
 
 jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux')
+  ...jest.requireActual('react-redux'),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -22,12 +20,11 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('reselect', () => ({
-  ...jest.requireActual('reselect')
+  ...jest.requireActual('reselect'),
 }));
 
 describe('Navbar Component', () => {
-  beforeEach(() => {
-  });
+  beforeEach(() => {});
 
   test('Correct render', () => {
     const navbar = render(ParentComponent(<Navbar title="Title" />));
@@ -35,18 +32,16 @@ describe('Navbar Component', () => {
   });
 
   test('Button profile clicked', () => {
-    const navbar = render(ParentComponent(<Navbar title="Title" isUserLoginedTest={true} />));
+    const navbar = render(ParentComponent(<Navbar title="Title" isUserLoginedTest />));
 
-    const profileBtn = navbar.getByTestId('nav-profile-btn')
+    const profileBtn = navbar.getByTestId('nav-profile-btn');
     fireEvent.click(profileBtn);
 
     expect(navbar.queryByTestId('nav-dropdown')).toBeInTheDocument();
   });
 
   test('Should match with snapshot', () => {
-    const navbar = render(ParentComponent(
-      < Navbar title="Title" />
-    ));
+    const navbar = render(ParentComponent(<Navbar title="Title" />));
     expect(navbar).toMatchSnapshot();
   });
 });

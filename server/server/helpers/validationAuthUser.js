@@ -93,7 +93,7 @@ const updateProfileFormValidation = (data) => {
     location: Joi.string()
       .min(3)
       .max(255)
-      .required()
+      .optional()
       .description(
         "Location must be at least 3 characters and not more than 255 characters and alphabetic characters"
       ),
