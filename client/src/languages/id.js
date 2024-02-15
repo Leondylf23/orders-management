@@ -156,4 +156,5 @@ export default {
   profile_password_same_pass: 'Password baru dan konfirmasi password harus sama!',
   profile_password_old_pass_not_match: 'Password lama salah!',
   profile_password_success: 'Password sudah berhasil diganti!',
+  profile_location: 'Lokasi Toko',
 };

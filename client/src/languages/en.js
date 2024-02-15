@@ -155,4 +155,5 @@ export default {
   profile_password_same_pass: 'New password and confirmation password must be same!',
   profile_password_old_pass_not_match: 'Wrong old password!',
   profile_password_success: 'Password changed successfully!',
+  profile_location: 'Store Location',
 };

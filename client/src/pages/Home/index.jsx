@@ -26,8 +26,6 @@ const Home = ({ products, userData, best }) => {
   const [search, setSearch] = useState('');
   const [isBusiness, setIsBusiness] = useState(false);
 
-  console.log(best);
-
   const getProductFromApi = () => {
     const user = getUserDataDecrypt(userData);
     if (user && user?.role === 'business') {

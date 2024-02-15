@@ -19,7 +19,7 @@ const BestSellerCard = ({ data }) => (
         </span>{' '}
         {data.productCount}{' '}
         <span>
-          <FormattedMessage id="people" />
+          <FormattedMessage id="times" />
         </span>
       </p>
     </div>
@@ -27,7 +27,7 @@ const BestSellerCard = ({ data }) => (
 );
 
 BestSellerCard.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
 };
 
 export default BestSellerCard;

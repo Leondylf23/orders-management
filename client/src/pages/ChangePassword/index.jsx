@@ -4,11 +4,11 @@ import { encryptDataAES } from '@utils/allUtils';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import classes from './style.module.scss';
-import { Link } from 'react-router-dom';
 
 const ChangePassword = () => {
   const intl = useIntl();
