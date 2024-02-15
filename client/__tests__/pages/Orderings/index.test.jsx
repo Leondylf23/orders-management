@@ -1,6 +1,6 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import RouterDom from 'react-router-dom';
+// import RouterDom from 'react-router-dom';
 
 import Orderings from '@pages/Orderings';
 import store from '@store';

@@ -96,7 +96,7 @@ const PaymentPage = ({ inputtedData, productDetail }) => {
   }, []);
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={classes.mainContainer} data-testid="payment-page">
       <div className={classes.innerContainer}>
         <div className={classes.leftSide}>
           {stepPages.map((page) => (

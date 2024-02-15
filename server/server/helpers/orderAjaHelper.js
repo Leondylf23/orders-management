@@ -153,7 +153,6 @@ const getAllProducts = async (dataObject, userId) => {
 
     return Promise.resolve(remapData);
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };
@@ -248,29 +247,22 @@ const addOrder = async (dataObject, userId) => {
     const dateNow = new Date().toISOString().slice(0, 10);
     const transactionId = `TRX/${dateNow}/${generateRandomString(5)}`;
 
-    const result = await db.sequelize.transaction(async () => {
-      const createdOrder = await db.order.create({
-        productId,
-        paymentMethod,
-        totalPayment,
-        createdBy: userId,
-        phone: orderForm?.phone,
-        address: orderForm?.address,
-        businessUserId: checkProductId?.dataValues?.createdBy,
-        transactionCode: transactionId,
-      });
-      if (!createdOrder?.id) throw new Error("Order not created!");
-
-      const orderId = createdOrder?.id;
-
-      return orderId;
+    const createdOrder = await db.order.create({
+      productId,
+      paymentMethod,
+      totalPayment,
+      createdBy: userId,
+      phone: orderForm?.phone,
+      address: orderForm?.address,
+      businessUserId: checkProductId?.dataValues?.createdBy,
+      transactionCode: transactionId,
     });
+    if (!createdOrder) throw new Error("Order not created!");
 
     return Promise.resolve({
-      createdId: result,
+      createdId: createdOrder?.id,
     });
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };
@@ -407,7 +399,6 @@ const getBestSeller = async () => {
 
     return Promise.resolve(bestSellers);
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };

@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -222,7 +222,12 @@
 <a name='L157'></a><a href='#L157'>157</a>
 <a name='L158'></a><a href='#L158'>158</a>
 <a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -331,13 +336,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -418,7 +428,7 @@ const OrderingDetailComponent = <span class="fstat-no" title="function not cover
           status: statusData,
         });
 <span class="cstat-no" title="statement not covered" >        break;</span>
-      case 'ORDERED':
+      case 'SUCCESS':
 <span class="cstat-no" title="statement not covered" >        setStatus({</span>
           text: &lt;FormattedMessage id="status_success" /&gt;,
           color: 'green',
@@ -431,7 +441,7 @@ const OrderingDetailComponent = <span class="fstat-no" title="function not cover
   const updateStatusBtn = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>sSuccess) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    dispatch(</span>
       updateOrderingStatus({ id, isSuccess }, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        setStatusView(isSuccess ? 'ORDERED' : 'FAILED');</span>
+<span class="cstat-no" title="statement not covered" >        setStatusView(isSuccess ? 'SUCCESS' : 'FAILED');</span>
 <span class="cstat-no" title="statement not covered" >        setIsRequireRefresh(true);</span>
       })
     );
@@ -476,12 +486,9 @@ const OrderingDetailComponent = <span class="fstat-no" title="function not cover
           &lt;/div&gt;
           &lt;div className={classes.paymentMethodContainer}&gt;
             {orderingData?.paymentMethod === 'TRANSFER' ? (
-              &lt;&gt;
-                {/* &lt;img className={classes.image} src={orderingData?.transferImg ?? ""} alt="Failed to Load!" /&gt; */}
-                &lt;h4 className={classes.text}&gt;
-                  &lt;FormattedMessage id="payment_payment_transfer" /&gt;
-                &lt;/h4&gt;
-              &lt;/&gt;
+              &lt;h4 className={classes.text}&gt;
+                &lt;FormattedMessage id="payment_payment_transfer" /&gt;
+              &lt;/h4&gt;
             ) : (
               &lt;h4 className={classes.text}&gt;
                 &lt;FormattedMessage id="payment_payment_onsitepay" /&gt;
@@ -505,17 +512,25 @@ const OrderingDetailComponent = <span class="fstat-no" title="function not cover
             &lt;h3 className={classes.titleData}&gt;
               &lt;FormattedMessage id="orderings_customer_info" /&gt;
             &lt;/h3&gt;
+            {isBusiness &amp;&amp; (
+              &lt;div className={classes.infoDataContainer}&gt;
+                &lt;p className={classes.title}&gt;
+                  &lt;FormattedMessage id="orderings_customer_name" /&gt; :
+                &lt;/p&gt;
+                &lt;p className={classes.data}&gt;- {orderingData?.customer}&lt;/p&gt;
+              &lt;/div&gt;
+            )}
             &lt;div className={classes.infoDataContainer}&gt;
               &lt;p className={classes.title}&gt;
                 &lt;FormattedMessage id="payment_phone" /&gt; :
               &lt;/p&gt;
-              &lt;p className={classes.data}&gt;{orderingData?.phone}&lt;/p&gt;
+              &lt;p className={classes.data}&gt;- {orderingData?.phone}&lt;/p&gt;
             &lt;/div&gt;
             &lt;div className={classes.infoDataContainer}&gt;
               &lt;p className={classes.title}&gt;
                 &lt;FormattedMessage id="payment_address" /&gt; :
               &lt;/p&gt;
-              &lt;p className={classes.data}&gt;{orderingData?.address}&lt;/p&gt;
+              &lt;p className={classes.data}&gt;- {orderingData?.address}&lt;/p&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;h3 className={classes.descriptionTitle}&gt;
@@ -547,7 +562,7 @@ export default connect(mapStateToProps)(OrderingDetailComponent);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-15T04:53:59.592Z
+                at 2024-02-15T09:11:41.999Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
