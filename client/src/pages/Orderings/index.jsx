@@ -36,7 +36,7 @@ const Orderings = ({ orderingData, userData }) => {
   }, [dispatch, userData]);
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={classes.mainContainer} data-testid="orderings-page">
       <h1 className={classes.title}>
         <FormattedMessage id="orderings_title" />
       </h1>
