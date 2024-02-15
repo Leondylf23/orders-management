@@ -155,7 +155,6 @@ const allMyProducts = async (request, reply) => {
 const myProductDetail = async (request, reply) => {
   try {
     ValidationOrderinAja.idValidation(request.query);
-    console.log(request.query, "<<<< ");
 
     const userData = GeneralHelper.getUserData(request);
     if (!(userData?.role === "business"))

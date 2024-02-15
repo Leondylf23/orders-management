@@ -4,7 +4,6 @@ import {
   SEND_ORDERING_DATA,
   SET_COUPONS_DATA,
   SET_PRODUCT_DETAIL,
-  SET_PRODUCT_ID,
   SET_USER_INPUTS,
 } from './constants';
 
@@ -21,11 +20,6 @@ export const getCouponsData = (formData) => ({
 export const setCouponsData = (data) => ({
   type: SET_COUPONS_DATA,
   data,
-});
-
-export const setProductId = (id) => ({
-  type: SET_PRODUCT_ID,
-  id,
 });
 
 export const sendOrderingData = (formData, cb) => ({

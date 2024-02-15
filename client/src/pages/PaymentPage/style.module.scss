@@ -167,7 +167,7 @@
   .pageTitleBig {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
   }
   .formInputs {
     @include directionY;
@@ -176,7 +176,7 @@
     .input {
       @include input;
 
-      margin-bottom: 1rem
+      margin-bottom: 1rem;
     }
     .label {
       margin-bottom: 0.5rem;
@@ -253,8 +253,19 @@
       .name {
         flex-grow: 1;
       }
-      .price {
+      .value {
         font-weight: 600;
+      }
+
+      &[data-type='dirY'] {
+        @include directionY;
+
+        align-items: start;
+
+        .value {
+          width: 100%;
+          text-align: end;
+        }
       }
     }
   }

@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING(10),
     paymentMethod: DataTypes.STRING(20),
     totalPayment: DataTypes.DECIMAL(10, 2),
+    phone: DataTypes.STRING(20),
+    address: DataTypes.TEXT,
     businessUserId: DataTypes.INTEGER,
     isActive: DataTypes.BOOLEAN,
     createdBy: DataTypes.INTEGER,

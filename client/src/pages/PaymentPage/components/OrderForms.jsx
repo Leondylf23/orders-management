@@ -22,11 +22,9 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
   const [orderForm, setOrderForm] = useState(orderFormsDefault);
 
   const dataOnChange = (data) => {
-    setOrderForm((prevVal) => {
-      dispatch(setUserInputs({ ...inputtedData, ...{ ...prevVal, ...data } }));
-
-      return { ...prevVal, ...data };
-    });
+    // eslint-disable-next-line no-restricted-globals
+    if (data?.phone && isNaN(data?.phone)) return;
+    setOrderForm((prevVal) => ({ ...prevVal, ...data }));
   };
 
   useEffect(() => {
@@ -34,6 +32,9 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
       setOrderForm(inputtedData?.orderForm);
     }
   }, []);
+  useEffect(() => {
+    dispatch(setUserInputs({ ...inputtedData, orderForm }));
+  }, [orderForm, dispatch]);
 
   return (
     <div className={classes.componentContainer}>
@@ -43,7 +44,7 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
       </h4>
       <div className={classes.formInputs}>
         <label className={classes.label} htmlFor="phone">
-          Phone Number
+          <FormattedMessage id="payment_phone" />
         </label>
         <input
           id="phone"
@@ -53,7 +54,7 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
           onChange={(e) => dataOnChange({ phone: e.target.value })}
         />
         <label className={classes.label} htmlFor="address">
-          Alamat
+          <FormattedMessage id="payment_address" />
         </label>
         <textarea
           id="address"

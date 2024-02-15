@@ -11,12 +11,12 @@ import { showPopup } from '@containers/App/actions';
 import OrderForms from './components/OrderForms';
 import PaymentSelection from './components/PaymentSelection';
 import PaymentSumary from './components/PaymentSumary';
-import { selectProductId, selectUserInputData } from './selectors';
+import { selectUserInputData } from './selectors';
 import { sendOrderingData, setUserInputs } from './actions';
 
 import classes from './style.module.scss';
 
-const PaymentPage = ({ inputtedData, productId, productDetail }) => {
+const PaymentPage = ({ inputtedData, productDetail }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const intl = useIntl();
@@ -41,15 +41,11 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
 
   const [stepPage, setStepPage] = useState(null);
   const [step, setStep] = useState(-1);
-  const [userInputProgress, setUserInputProgress] = useState(null);
 
   const setStepPageTab = (data) => {
     if (
       data?.id > 1 &&
-      !(
-        userInputProgress &&
-        !(userInputProgress?.orderForm?.phone === '' || userInputProgress?.orderForm?.address === '')
-      )
+      !(inputtedData && inputtedData?.orderForm?.phone !== '' && inputtedData?.orderForm?.address !== '')
     ) {
       dispatch(
         showPopup(
@@ -59,7 +55,7 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
       );
       return;
     }
-    if (data?.id > 2 && !(userInputProgress && userInputProgress?.paymentMethod)) {
+    if (data?.id > 2 && !(inputtedData && inputtedData?.paymentMethod)) {
       dispatch(
         showPopup(
           intl.formatMessage({ id: 'payment_title' }),
@@ -77,9 +73,7 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
     const encryptedData = encryptDataAES(
       JSON.stringify({
         ...inputtedData,
-        productId,
         paymentMethod: inputtedData?.paymentMethod?.id,
-        coupons: inputtedData?.coupons?.map((coupon) => coupon?.id),
         index: undefined,
       })
     );
@@ -96,22 +90,10 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
   };
 
   useEffect(() => {
+    if (!productDetail) navigate(`/product/${id}`);
     setStepPageTab(stepPages[0]);
+    dispatch(setUserInputs({ productId: id, totalPayment: productDetail?.price }));
   }, []);
-  useEffect(() => {
-    if (!productDetail) {
-      navigate(`/product/${id}`);
-    }
-    if (inputtedData) {
-      if (inputtedData?.productId !== id) {
-        dispatch(setUserInputs({ productId: id, totalPayment: productDetail?.price }));
-        return;
-      }
-      setUserInputProgress(inputtedData);
-    } else {
-      dispatch(setUserInputs((prevVal) => ({ ...prevVal, productId: id, totalPayment: productDetail?.price })));
-    }
-  }, [inputtedData, productId, productDetail, navigate, id, dispatch]);
 
   return (
     <div className={classes.mainContainer}>
@@ -134,11 +116,13 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
         <div className={classes.rightSide}>
           {stepPage}
           <div className={classes.rightSideFooter}>
-            {step > 1 && (
-              <button type="button" className={classes.prevBtn} onClick={() => setStepPageTab(stepPages[step - 2])}>
-                <FormattedMessage id="payment_previous_btn" />
-              </button>
-            )}
+            <button
+              type="button"
+              className={classes.prevBtn}
+              onClick={() => (step === 1 ? navigate(`/product/${id}`) : setStepPageTab(stepPages[step - 2]))}
+            >
+              <FormattedMessage id="payment_previous_btn" />
+            </button>
             <button
               type="button"
               className={classes.nextBtn}
@@ -157,13 +141,11 @@ const PaymentPage = ({ inputtedData, productId, productDetail }) => {
 
 PaymentPage.propTypes = {
   inputtedData: PropTypes.object,
-  productId: PropTypes.string,
   productDetail: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   inputtedData: selectUserInputData,
-  productId: selectProductId,
   productDetail: selectProductDetail,
 });
 

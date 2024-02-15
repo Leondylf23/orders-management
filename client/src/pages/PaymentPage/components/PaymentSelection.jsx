@@ -1,6 +1,6 @@
 import { useDispatch, connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -13,18 +13,17 @@ import classes from '../style.module.scss';
 
 const PaymentSelectionComponent = ({ inputtedData }) => {
   const dispatch = useDispatch();
-  const intl = useIntl();
 
   const [selectedPayment, setSelectedPayment] = useState(null);
 
   const selectPaymentBtn = (isTransfer) => {
     const temp = isTransfer
       ? {
-          id: 'METHOD_TRANSFER',
+          id: 'TRANSFER',
           nameIntlId: 'payment_payment_transfer',
         }
       : {
-          id: 'METHOD_ONSITE_PAY',
+          id: 'CASH',
           nameIntlId: 'payment_payment_onsitepay',
         };
 
@@ -50,7 +49,7 @@ const PaymentSelectionComponent = ({ inputtedData }) => {
         <div
           className={classes.payment}
           onClick={() => selectPaymentBtn(true)}
-          data-active={selectedPayment?.id === 'METHOD_TRANSFER'}
+          data-active={selectedPayment?.id === 'TRANSFER'}
         >
           <AccountBalanceIcon />
           <p className={classes.text}>
@@ -60,7 +59,7 @@ const PaymentSelectionComponent = ({ inputtedData }) => {
         <div
           className={classes.payment}
           onClick={() => selectPaymentBtn(false)}
-          data-active={selectedPayment?.id === 'METHOD_ONSITE_PAY'}
+          data-active={selectedPayment?.id === 'CASH'}
         >
           <PointOfSaleIcon />
           <p className={classes.text}>
