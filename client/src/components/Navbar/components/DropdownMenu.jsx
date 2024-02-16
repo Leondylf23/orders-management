@@ -37,6 +37,7 @@ const DropDownMenu = ({ isOpen, anchorEl, onClose, labeledMenu }) => {
         dispatch(setUserData(null));
         dispatch(setToken(null));
         onClose();
+        navigate('/login');
         break;
     }
   }
