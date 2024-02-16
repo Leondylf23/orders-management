@@ -33,14 +33,22 @@ const OrderingCard = ({ data, onClickDetail, isBusiness }) => {
   }, [data]);
 
   return (
-    <div className={classes.orderingCard} onClick={() => onClickDetail(data?.id)}>
-      <img className={classes.cardImage} src={data?.imageUrl} alt="Img Failed" />
+    <div className={classes.orderingCard} onClick={() => onClickDetail(data?.id)} data-testid="ordering-card-page">
+      <img className={classes.cardImage} src={data?.imageUrl} alt="Img Failed" data-testid="ordering-card-page-img" />
       <div className={classes.cardContent}>
-        <h4 className={classes.orderCode}>{data?.transactionCode}</h4>
-        <h4 className={classes.title}>{data?.title}</h4>
-        {isBusiness && <p className={classes.customerName}>{data?.customer}</p>}
+        <h4 className={classes.orderCode} data-testid="ordering-card-page-transaction-code">
+          {data?.transactionCode}
+        </h4>
+        <h4 className={classes.title} data-testid="ordering-card-page-title">
+          {data?.title}
+        </h4>
+        {isBusiness && (
+          <p className={classes.customerName} data-testid="ordering-card-page-customer">
+            {data?.customer}
+          </p>
+        )}
         <div className={classes.statusContainer} data-item={status?.color}>
-          <h5 className="">{status?.text}</h5>
+          <h5 className={classes.text}>{status?.text}</h5>
         </div>
       </div>
     </div>

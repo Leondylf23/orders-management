@@ -69,7 +69,7 @@ const ProductDetail = ({ productDetail, userData }) => {
   }, [userData]);
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={classes.mainContainer} data-testid="product-detail-page">
       <div className={classes.topContentContainer}>
         <div className={classes.leftContent}>
           <img className={classes.image} src={detailData?.imageUrl} alt="Img failed!" />

@@ -64,7 +64,7 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
   }, [dispatch, id, isBusiness]);
 
   return (
-    <div className={classes.detailContainer}>
+    <div className={classes.detailContainer} data-testid="ordering-detail-page">
       <div className={classes.buttonContainer}>
         <button type="button" className={classes.backBtn} onClick={() => back(isRequireRefresh)}>
           <FormattedMessage id="back" />
