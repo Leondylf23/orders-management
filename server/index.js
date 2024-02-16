@@ -3,14 +3,14 @@ const dotenv = require('dotenv');
 const Boom = require('boom');
 const cors = require('cors');
 
+dotenv.config();
+
 const app = express();
 const Port = process.env.NODEJS_PORT || 8080;
 
 // Import routes
-const Ticket = require('./server/api/ticket');
+const OrderinAja = require('./server/api/orderinAja');
 const AuthUser = require('./server/api/authUser');
-
-dotenv.config();
 
 // Middleware
 app.use(cors());
@@ -72,7 +72,7 @@ app.use((req, res, next) => {
 });
 
 // Route middlewares
-app.use('/api/ticket', Ticket);
+app.use('/api/orderin-aja', OrderinAja);
 app.use('/api/auth', AuthUser);
 
 // Sys ping api 

@@ -1,37 +1,51 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { showPopup, setLoading } from '@containers/App/actions';
-import { GET_MY_TICKETS_DATA, GET_TICKETS_DATA } from './constants';
-import { getAllTickets, getMyAllTickets } from '@domain/api';
-import { setTicketsData } from './actions';
+import { getAllProducts, getBestSeller, getMyAllProducts } from '@domain/api';
+import { GET_BEST_SELLER, GET_MY_PRODUCTS_DATA, GET_PRODUCTS_DATA } from './constants';
+import { setBestSeller, setProductsData } from './actions';
 
-function* doGetTicketData({ formData }) {
-    yield put(setLoading(true));
+function* doGetProductData({ formData }) {
+  yield put(setLoading(true));
 
-    try {
-        const res = yield call(getAllTickets, formData);
-        yield put(setTicketsData(res?.data));
-    } catch (error) {
-        yield put(showPopup());
-    }
+  try {
+    const res = yield call(getAllProducts, formData);
+    yield put(setProductsData(res?.data));
+  } catch (error) {
+    yield put(showPopup());
+  }
 
-    yield put(setLoading(false));
+  yield put(setLoading(false));
 }
 
-function* doGetMyTicketData({ formData }) {
-    yield put(setLoading(true));
-    
-    try {
-        const res = yield call(getMyAllTickets, formData);
-        yield put(setTicketsData(res?.data));
-    } catch (error) {
-        yield put(showPopup());
-    }
+function* doGetMyProductData({ formData }) {
+  yield put(setLoading(true));
 
-    yield put(setLoading(false));
+  try {
+    const res = yield call(getMyAllProducts, formData);
+    yield put(setProductsData(res?.data));
+  } catch (error) {
+    yield put(showPopup());
+  }
+
+  yield put(setLoading(false));
+}
+
+function* doGetBestSeller() {
+  yield put(setLoading(true));
+
+  try {
+    const res = yield call(getBestSeller);
+    yield put(setBestSeller(res?.data));
+  } catch (error) {
+    yield put(showPopup());
+  }
+
+  yield put(setLoading(false));
 }
 
 export default function* homeSaga() {
-    yield takeLatest(GET_TICKETS_DATA, doGetTicketData);
-    yield takeLatest(GET_MY_TICKETS_DATA, doGetMyTicketData);
+  yield takeLatest(GET_PRODUCTS_DATA, doGetProductData);
+  yield takeLatest(GET_MY_PRODUCTS_DATA, doGetMyProductData);
+  yield takeLatest(GET_BEST_SELLER, doGetBestSeller);
 }

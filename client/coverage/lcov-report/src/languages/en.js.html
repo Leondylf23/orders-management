@@ -216,7 +216,29 @@
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,7 +393,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default {
   app_greeting: 'Hi from Web!',
-  app_title_header: 'Ticket Aja',
+  app_title_header: 'Product Aja',
   app_not_found: 'Page not found',
   app_lang_id: 'Indonesian',
   app_lang_en: 'English',
@@ -382,16 +404,16 @@
   nav_login: 'Login',
   nav_register: 'Register',
   nav_profile: 'Profile',
-  nav_bookings: 'Bookings',
+  nav_orderings: 'Orderings',
   nav_coupons: 'Coupons',
   nav_logout: 'Logout',
 &nbsp;
   empty_data: 'Empty',
   status_waiting: 'Waiting',
   status_failed: 'Failed',
-  status_success: 'Booked',
+  status_success: 'Ordered',
   back: 'Back',
-  
+&nbsp;
   login_title: 'Login',
   login_title_forgot: 'Forgot Password',
   login_email: 'Email',
@@ -404,7 +426,7 @@
   login_forgot_pass: 'Forgot Password?',
   login_forgot_pass_back: 'Back to login',
   login_forgot_pass_email_not_found: 'Email not found!',
-  login_register_footer: 'Don\'t have account? Register ',
+  login_register_footer: "Don't have account? Register here",
   login_register_footer_link: 'here',
   login_validation: 'Must fill all!',
   login_wrong_credentials: 'Wrong email or password!',
@@ -417,12 +439,13 @@
   register_email_placeholder: 'email_example@mail.com',
   register_password: 'Password',
   register_password_placeholder: 's3CRetp4sSW0rd',
+  register_location: 'Location',
   register_role: 'Role',
   register_role_placeholder: 'Choose Role',
   register_role_customer: 'Customer',
   register_role_business: 'Business',
   register_button: 'Register',
-  register_login_footer: 'Have account? Login ',
+  register_login_footer: 'Have account? Login here',
   register_login_footer_link: 'here',
   register_fullname_validation: 'Name must be at least 3 characters long and lower equal than 255 characters!',
   register_email_validation: 'Must be a valid email address!',
@@ -432,49 +455,57 @@
   register_role_valiation: 'Role must be filled!',
   register_email_has_taken: 'This email has already been taken!',
 &nbsp;
-  ticket_card_price: 'person',
+  product_card_price: 'person',
 &nbsp;
-  home_title: 'Browse Tickets',
+  home_title: 'Browse Products',
+  home_best: 'Best Seller',
   home_create_new: 'Create New',
-  home_search_placeholder: 'Search for tickets...',
+  home_search_placeholder: 'Search for products...',
 &nbsp;
-  ticket_detail_title: 'Ticket Detail',
-  ticket_detail_buy_btn: 'Buy Now',
-  ticket_detail_desc: 'Description',
-  ticket_detail_not_found: 'Tiket tidak ditemukan!',
-  ticket_detail_used_coupons: 'Used Coupon',
+  product_detail_title: 'Product Detail',
+  product_detail_buy_btn: 'Buy Now',
+  product_detail_desc: 'Description',
+  product_detail_not_found: 'Product tidak ditemukan!',
+  product_detail_used_coupons: 'Used Coupon',
 &nbsp;
-  ticket_creation_title: 'Ticket Creation',
-  ticket_creation_chg_img_btn: 'Change Image',
-  ticket_creation_rmv_img_btn: 'Delete Image',
-  ticket_creation_title_label: 'Title',
-  ticket_creation_location_label: 'Location',
-  ticket_creation_variant_label: 'Variant',
-  ticket_creation_name_label: 'Name',
-  ticket_creation_price_label: 'Price (Rp.)',
-  ticket_creation_add_btn: 'Add',
-  ticket_creation_desc_label: 'Description',
-  ticket_creation_save_btn: 'Save',
-  ticket_creation_delete_btn: 'Delete',
-  ticket_creation_title_validation: 'Title must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_location_validation: 'Location must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_description_validation: 'Description must be more than 5 characters and less equal than 255 characters!',
-  ticket_creation_variant_validation: 'At least have 1 variant!',
-  ticket_creation_variant_empty_validation: 'Must fill all!',
-  ticket_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
-  ticket_creation_image_validation: 'At least have an image!',
-  ticket_creation_save_success: 'Saved!',
+  product_creation_title: 'Product Creation',
+  product_creation_add_img_btn: 'Add Image',
+  product_creation_chg_img_btn: 'Change Image',
+  product_creation_rmv_img_btn: 'Delete Image',
+  product_creation_title_label: 'Product Name',
+  product_creation_location_label: 'Location',
+  product_creation_variant_label: 'Variant',
+  product_creation_name_label: 'Name',
+  product_creation_price_label: 'Price (Rp.)',
+  product_creation_add_btn: 'Add',
+  product_creation_desc_label: 'Description',
+  product_creation_save_btn: 'Save',
+  product_creation_delete_btn: 'Delete',
+  product_creation_title_validation: 'Title must be more than 5 characters and less equal than 255 characters!',
+  product_creation_location_validation: 'Location must be more than 5 characters and less equal than 255 characters!',
+  product_creation_description_validation:
+    'Description must be more than 5 characters and less equal than 255 characters!',
+  product_creation_variant_validation: 'At least have 1 variant!',
+  product_creation_variant_empty_validation: 'Must fill all!',
+  product_creation_variant_price_validation: 'Price must be more than 5,000 and less than 5,000,000!',
+  product_creation_image_validation: 'At least have an image!',
+  product_creation_save_success: 'Saved!',
+  product_bought_by: 'Product has been bought',
+&nbsp;
+  times: 'kali',
 &nbsp;
   payment_title: 'Payment',
   payment_previous_btn: 'Previous',
   payment_next_btn: 'Next',
+  payment_phone: 'Phone Number',
+  payment_address: 'Shipping Address',
   payment_finish_btn: 'Finish',
-  payment_step_1_name: 'Product Detail',
+  payment_step_1_name: 'Order Forms',
   payment_step_2_name: 'Add Coupon',
   payment_step_3_name: 'Payment',
   payment_step_4_name: 'Summary',
   payment_total: 'Total',
-  payment_prct_detail_page_title: 'Select ticket variant',
+  payment_prct_detail_page_title: 'Fill your shipping information below',
   payment_add_cpn_page_title: 'Select your preferred coupon',
   payment_add_cpn_page_prc_cut_none: 'Total Price',
   payment_add_cpn_page_prc_cut: 'Price Cut to',
@@ -485,14 +516,15 @@
   payment_summary_variant: 'Variant',
   payment_summary_total_payment: 'Total Payment',
   payment_summary_payment_method: 'Payment Method',
-  payment_step_1_not_complete: 'Please select variant first!',
+  payment_step_1_not_complete: 'Please fill the form first!',
   payment_step_3_not_complete: 'Please select payment method!',
-  payment_step_complete: 'Booking has been created!',
+  payment_step_complete: 'Ordering has been created!',
 &nbsp;
-  bookings_title: 'Bookings',
-  bookings_variant: 'Variant',
-  bookings_update_status_complete: 'Booking Success',
-  bookings_update_status_failed: 'Booking Failed',
+  orderings_title: 'Orderings',
+  orderings_customer_name: 'Customer Name',
+  orderings_customer_info: 'Customer Information',
+  orderings_update_status_complete: 'Ordering Success',
+  orderings_update_status_failed: 'Ordering Failed',
 &nbsp;
   coupons_title: 'Coupons',
   coupons_create_new: 'Create New',
@@ -521,6 +553,7 @@
   profile_password_same_pass: 'New password and confirmation password must be same!',
   profile_password_old_pass_not_match: 'Wrong old password!',
   profile_password_success: 'Password changed successfully!',
+  profile_location: 'Store Location',
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -529,7 +562,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-12T07:29:08.625Z
+                at 2024-02-16T08:59:34.765Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

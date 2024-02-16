@@ -2,16 +2,15 @@ import { combineReducers } from 'redux';
 
 import appReducer, { storedKey as storedAppState } from '@containers/App/reducer';
 import clientReducer, { storedKey as storedClientState } from '@containers/Client/reducer';
-import paymentPageReducer, { storedKey as storedPaymentPageState } from '@pages/PaymentPage/reducer';
-import ticketDetailReducer, { storedKey as storedTicketDetailState } from '@pages/TicketDetail/reducer';
-import bookingsReducer, { storedKey as storedBookingsState } from '@pages/Bookings/reducer';
-import ticketCreationReducer, { storedKey as storedTicketCreationState } from '@pages/TicketCreation/reducer';
+import paymentPageReducer from '@pages/PaymentPage/reducer';
+import productDetailReducer from '@pages/ProductDetail/reducer';
+import orderingsReducer from '@pages/Orderings/reducer';
+import productCreationReducer from '@pages/ProductCreation/reducer';
 import languageReducer from '@containers/Language/reducer';
 
-import { mapWithPersistor } from './persistence';
-import couponsReducer from '@pages/Coupons/reducer';
 import homeReducer from '@pages/Home/reducer';
 import profileReducer from '@pages/Profile/reducer';
+import { mapWithPersistor } from './persistence';
 
 const storedReducers = {
   app: { reducer: appReducer, whitelist: storedAppState },
@@ -21,12 +20,11 @@ const storedReducers = {
 const temporaryReducers = {
   language: languageReducer,
   paymentPage: paymentPageReducer,
-  ticketDetail: ticketDetailReducer,
-  bookings: bookingsReducer,
-  ticketCreation: ticketCreationReducer,
-  coupons: couponsReducer,
+  productDetail: productDetailReducer,
+  orderings: orderingsReducer,
+  productCreation: productCreationReducer,
   home: homeReducer,
-  profile: profileReducer
+  profile: profileReducer,
 };
 
 const createReducer = () => {

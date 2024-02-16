@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "03d41fa1-35b7-4678-828e-e86d94d08e31",
+		"name": "PHINCON (Group Project) 2-13-2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32932745",
+		"_collection_link": "https://lively-station-936193.postman.co/workspace/Team-Workspace~4ce2a0a9-c02c-4291-8b5c-6ae8fde1d36d/collection/26453564-03d41fa1-35b7-4678-828e-e86d94d08e31?action=share&source=collection_link&creator=32932745"
+	},
+	"item": [
+		{
+			"name": "[GET AUTH] Get User Profile Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/profile",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST AUTH] Login User Business",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"let body = {\r",
+							"    email: encryptData(\"test_business@main.com\"),\r",
+							"    password: encryptData(\"aaa123\"),\r",
+							"};\r",
+							"\r",
+							"pm.collectionVariables.set(\"body_login\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[POST AUTH] Login User Business\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    const tokenData = jsonData?.data?.token;\r",
+							"\r",
+							"    pm.collectionVariables.set(\"login_token\", tokenData);\r",
+							"\r",
+							"    const tokenValue = pm.collectionVariables.get(\"login_token\");\r",
+							"    console.log(\"Set token to: \", tokenValue);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body_login}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/login",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST AUTH] Login User Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"let body = {\r",
+							"    email: encryptData(\"test_customer@main.com\"),\r",
+							"    password: encryptData(\"aaa123\"),\r",
+							"};\r",
+							"\r",
+							"pm.collectionVariables.set(\"body_login\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"[POST AUTH] Login User Customer\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    const tokenData = jsonData?.data?.token;\r",
+							"\r",
+							"    pm.collectionVariables.set(\"login_token\", tokenData);\r",
+							"\r",
+							"    const tokenValue = pm.collectionVariables.get(\"login_token\");\r",
+							"    console.log(\"Set token to: \", tokenValue);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body_login}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/login",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST AUTH] Register User Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"let body = {\r",
+							"    fullname: encryptData(\"User Customer\"),\r",
+							"    dob: encryptData(\"2000-01-01\"),\r",
+							"    email: encryptData(\"test_customer@main.com\"),\r",
+							"    password: encryptData(\"aaa123\"),\r",
+							"    role: encryptData(\"customer\"),\r",
+							"    location: encryptData(\"location\"),\r",
+							"};\r",
+							"\r",
+							"pm.variables.set(\"body_register\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body_register}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/register",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST AUTH] Register User Business",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"let body = {\r",
+							"    fullname: encryptData(\"User Business\"),\r",
+							"    dob: encryptData(\"2000-01-01\"),\r",
+							"    email: encryptData(\"test_business@main.com\"),\r",
+							"    password: encryptData(\"aaa123\"),\r",
+							"    role: encryptData(\"business\")\r",
+							"};\r",
+							"\r",
+							"pm.variables.set(\"body_register\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body_register}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/register",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST AUTH] Reset User Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@a.ab\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/reset-password",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"reset-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[PATCH AUTH] Change User Password",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"let body = {\r",
+							"    oldPassword: encryptData(\"aaa123\"),\r",
+							"    newPassword: encryptData(\"aaa1234\"),\r",
+							"};\r",
+							"\r",
+							"pm.collectionVariables.set(\"body_temp\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body_temp}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/change-password",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[PATCH AUTH] Update User Profile Data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fullname",
+							"value": "Tahina",
+							"type": "text"
+						},
+						{
+							"key": "dob",
+							"value": "2012-01-01",
+							"type": "text"
+						},
+						{
+							"key": "imageData",
+							"type": "file",
+							"src": "/D:/Pictures/333580.jpg"
+						},
+						{
+							"key": "location",
+							"value": "Surabaja",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_AUTH}}/profile/update",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_AUTH}}",
+						"profile",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Customer Order Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Customer Order Detail Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order/detail?id=6",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Business Orders Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order/business",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Business Order Detail Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order/business/detail?id=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order",
+						"business",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product?productName=test",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Best Seller Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/best-seller",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"best-seller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Product Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/detail?id=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Business Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/my-products?productName=waaa",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"my-products"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "waaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET ORDERIN AJA] Get Business Product Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/my-products/detail?id=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"my-products",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[POST ORDERIN AJA] Create Customer Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const secret = pm.collectionVariables.get(\"encrypt_secret\");\r",
+							"const encryptData = (data) => CryptoJS.AES.encrypt(data, secret).toString();\r",
+							"\r",
+							"const body = {\r",
+							"    productId: 1,\r",
+							"    orderForm: {\r",
+							"        phone: \"081234567890\",\r",
+							"        address: 'jalan aja'\r",
+							"    },\r",
+							"    paymentMethod: \"CASH\",\r",
+							"    totalPayment: 100000\r",
+							"}\r",
+							"\r",
+							"const encryptedBody = encryptData(JSON.stringify(body));\r",
+							"\r",
+							"pm.collectionVariables.set(\"body_temp\", encryptedBody);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"{{body_temp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order/create",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[PUT ORDERIN AJA] Create Business New Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Test create dawdwa",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "imageData",
+							"type": "file",
+							"src": "/D:/Pictures/CREATEPH-0-icon-b22e51eb81638f76002b341ee8fa48e1.gif"
+						},
+						{
+							"key": "description",
+							"value": "awdawdwadaawdw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/create",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[PATCH ORDERIN AJA] Edit Business Existing Product",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Test edit",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "test description inputed data",
+							"type": "text"
+						},
+						{
+							"key": "imageData",
+							"type": "file",
+							"src": "/D:/Pictures/8823600fdfa118bad6245f3f56852341.jpeg"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "123123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/edit",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[PATCH ORDERIN AJA] Update Order Status Form Business",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"isSuccess\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/order/status/update",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"order",
+						"status",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[DELETE ORDERIN AJA] Delete Business Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/{{ROUTE_ORDERIN_AJA}}/product/delete",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"{{ROUTE_ORDERIN_AJA}}",
+						"product",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{login_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "ROUTE_ORDERIN_AJA",
+			"value": "orderin-aja",
+			"type": "string"
+		},
+		{
+			"key": "ROUTE_AUTH",
+			"value": "auth",
+			"type": "string"
+		},
+		{
+			"key": "body_login",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "body_register",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "encrypt_secret",
+			"value": "xS2atT7h810yD",
+			"type": "string"
+		},
+		{
+			"key": "login_token",
+			"value": "a"
+		},
+		{
+			"key": "body_temp",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
