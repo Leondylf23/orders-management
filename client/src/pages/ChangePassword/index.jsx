@@ -107,7 +107,7 @@ const ChangePassword = () => {
         onChange={(e) => setUserPassword((prevVal) => ({ ...prevVal, confirmPass: e.target.value }))}
       />
       <div className={classes.buttonConatainer}>
-        <button type="button" className={classes.button} onClick={saveNewPasswordData}>
+        <button type="button" className={classes.button} onClick={saveNewPasswordData} data-testid="changePassword-btn">
           <FormattedMessage id="profile_save" />
         </button>
       </div>

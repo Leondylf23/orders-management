@@ -43,7 +43,7 @@ const getOrderDetail = async (request, reply) => {
       throw Boom.unauthorized("User role not allowed!");
 
     const formData = request.query;
-    const response = await OrderinAjaHelper.getOrderDetailWithId(formData);
+    const response = await OrderinAjaHelper.getOrderDetailWithId(formData, false);
 
     return reply.send({
       message: "success",
@@ -82,7 +82,7 @@ const getBusinessOrderDetail = async (request, reply) => {
       throw Boom.unauthorized("User role not allowed!");
 
     const formData = request.query;
-    const response = await OrderinAjaHelper.getOrderDetailWithId(formData);
+    const response = await OrderinAjaHelper.getOrderDetailWithId(formData, true);
 
     return reply.send({
       message: "success",

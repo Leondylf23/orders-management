@@ -54,6 +54,8 @@
 
     width: 100%;
     margin-top: 0.5rem;
+    flex-grow: 1;
+
     .orderCode {
       font-weight: 700;
       font-size: 1.2rem;
@@ -63,13 +65,20 @@
       margin-bottom: 0.2rem;
       font-size: 0.8rem;
     }
-    .variant {
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
+    .customerName {
+      width: 100%;
+      margin-bottom: 0.2rem;
+      font-size: 0.9rem;
     }
-    .statusContainer {
-      @include statusContainer;
+    .footer {
+      @include directionX;
+
+      flex-grow: 1;
+      align-items: end;
+
+      .statusContainer {
+        @include statusContainer;
+      }
     }
   }
 }
@@ -183,21 +192,6 @@
           font-weight: 500;
         }
       }
-      .variant {
-        @include paddingY(0.2rem);
-        @include paddingX(0.4rem);
-
-        border: 1px solid var(--color-border);
-        border-radius: 9999px;
-        width: max-content;
-        flex-shrink: 0;
-        cursor: pointer;
-        margin-bottom: 1rem;
-
-        &[data-active='true'] {
-          background-color: var(--color-button);
-        }
-      }
       .statusContainer {
         @include statusContainer;
 
@@ -225,12 +219,14 @@
           @include directionY;
 
           width: 100%;
+          margin-bottom: 0.5rem;
 
           .title {
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.25rem;
           }
           .data {
+            font-weight: 400;
           }
         }
       }
