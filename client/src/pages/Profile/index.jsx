@@ -60,7 +60,16 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
 
     form.append('fullname', userData?.fullname);
     form.append('dob', userData?.dob);
-    form.append('location', userData?.location);
+    if (userData) {
+      try {
+        const user = JSON.parse(decryptDataAES(userData));
+        if (user.role === 'business') {
+          form.append('location', userData?.location);
+        }
+      } catch (error) {
+        console.log('error parsing user data');
+      }
+    }
 
     if (profileImg) form.append('imageData', profileImg);
 
