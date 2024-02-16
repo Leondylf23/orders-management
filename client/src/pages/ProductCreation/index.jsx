@@ -132,7 +132,7 @@ const ProductCreation = ({ productDetail }) => {
   }, [productDetail]);
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={classes.mainContainer} data-testid="productCreation-page">
       <div className={classes.topContentContainer}>
         <div className={classes.leftContent}>
           <img
@@ -143,7 +143,7 @@ const ProductCreation = ({ productDetail }) => {
           <div className={classes.contentDetails}>
             {imageData ? (
               <button type="button" className={classes.deleteBtn} data-type="red" onClick={() => removeImage()}>
-                <FormattedMessage id="product_creation_rmv_img_btn" />
+                <FormattedMessage id="product_creation_rmv_img_btn" data-testid="image-button" />
               </button>
             ) : id ? (
               <>
@@ -197,11 +197,11 @@ const ProductCreation = ({ productDetail }) => {
           />
           <div className={classes.footerButtons}>
             <button type="button" className={classes.button} onClick={saveBtn}>
-              <FormattedMessage id="product_creation_save_btn" />
+              <FormattedMessage id="product_creation_save_btn" data-testid="save-button" />
             </button>
             {id && (
               <button type="button" className={classes.button} data-type="red" onClick={deleteBtn}>
-                <FormattedMessage id="product_creation_delete_btn" />
+                <FormattedMessage id="product_creation_delete_btn" data-testid="delete-button" />
               </button>
             )}
           </div>

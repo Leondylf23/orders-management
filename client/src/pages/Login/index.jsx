@@ -105,137 +105,153 @@ const Login = ({ isLogin }) => {
   }, [isLogin, navigate]);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          {isForgotPassPage ? (
-            <Box
-              sx={{
-                my: 8,
-                mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Typography component="h1" variant="h5">
-                <FormattedMessage id="login_title_forgot" />
-              </Typography>
-              <Box component="form" noValidate onSubmit={sendForgotPasswordData} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label={<FormattedMessage id="login_email" />}
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  onChange={(e) => setEmail(e.target.value)}
-                  size="small"
-                />
-                {newPass !== '' && (
-                  <div className={classes.newPassContainer}>
-                    <p className={classes.title}>
-                      <FormattedMessage id="login_forgot_pass_new_pass" />
-                    </p>
-                    <div className={classes.newPass}>
-                      <h5 className={classes.content}>{newPass}</h5>
-                      <CopyToClipboard text={newPass} onCopy={onCopyText}>
-                        <ContentPasteIcon sx={{ opacity: 0.5, cursor: 'pointer', width: '15px', height: '15px' }} />
-                      </CopyToClipboard>
-                    </div>
+    <div data-testid="login-page">
+      <ThemeProvider theme={defaultTheme}>
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+              backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            {isForgotPassPage ? (
+              <div data-testid="forgot-pass-page">
+                <Box
+                  sx={{
+                    my: 8,
+                    mx: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography component="h1" variant="h5">
+                    <FormattedMessage id="login_title_forgot" />
+                  </Typography>
+                  <Box component="form" noValidate onSubmit={sendForgotPasswordData} sx={{ mt: 1 }}>
+                    <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="email"
+                      label={<FormattedMessage id="login_email" />}
+                      name="email"
+                      autoComplete="email"
+                      autoFocus
+                      onChange={(e) => setEmail(e.target.value)}
+                      size="small"
+                    />
+                    {newPass !== '' && (
+                      <div className={classes.newPassContainer}>
+                        <p className={classes.title}>
+                          <FormattedMessage id="login_forgot_pass_new_pass" />
+                        </p>
+                        <div className={classes.newPass}>
+                          <h5 className={classes.content}>{newPass}</h5>
+                          <CopyToClipboard text={newPass} onCopy={onCopyText} data-testid="forgot-password-copy">
+                            <ContentPasteIcon sx={{ opacity: 0.5, cursor: 'pointer', width: '15px', height: '15px' }} />
+                          </CopyToClipboard>
+                        </div>
 
-                    {copyStatus && <p className={classes.copyText}>Text copied to clipboard!</p>}
+                        {copyStatus && <p className={classes.copyText}>Text copied to clipboard!</p>}
+                      </div>
+                    )}
+                    {newPass === '' && (
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ my: 1, textTransform: 'none' }}
+                        size="small"
+                        data-testid="forgot-password-submit"
+                      >
+                        <FormattedMessage id="login_button_forgot" />
+                      </Button>
+                    )}
+                    <h5
+                      className={classes.forgotPassFooter}
+                      onClick={() => setIsForgotPassPage(false)}
+                      data-testid="forgot-password-back"
+                    >
+                      <FormattedMessage id="login_forgot_pass_back" />
+                    </h5>
+                  </Box>
+                </Box>
+              </div>
+            ) : (
+              <Box
+                sx={{
+                  my: 8,
+                  mx: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography component="h1" variant="h5">
+                  <FormattedMessage id="login_title" />
+                </Typography>
+                <Box component="form" noValidate onSubmit={sendLogin} sx={{ mt: 1 }}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label={<FormattedMessage id="login_email" />}
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    onChange={(e) => setEmail(e.target.value)}
+                    size="small"
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label={<FormattedMessage id="login_password" />}
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    size="small"
+                  />
+                  <div className={classes.forgotPass}>
+                    <h5 onClick={() => setIsForgotPassPage(true)} data-testid="forgot-pass-button">
+                      <FormattedMessage id="login_forgot_pass" />
+                    </h5>
                   </div>
-                )}
-                {newPass === '' && (
+
                   <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ my: 1, textTransform: 'none' }}
                     size="small"
+                    data-testid="login-button-submit"
                   >
-                    <FormattedMessage id="login_button_forgot" />
+                    <FormattedMessage id="login_title" />
                   </Button>
-                )}
-                <h5 className={classes.forgotPassFooter} onClick={() => setIsForgotPassPage(false)}>
-                  <FormattedMessage id="login_forgot_pass_back" />
-                </h5>
+                  <div className={classes.register} data-testid="register-button">
+                    <h5 onClick={() => navigate('/register')}>
+                      <FormattedMessage id="login_register_footer" />
+                    </h5>
+                  </div>
+                </Box>
               </Box>
-            </Box>
-          ) : (
-            <Box
-              sx={{
-                my: 8,
-                mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Typography component="h1" variant="h5">
-                <FormattedMessage id="login_title" />
-              </Typography>
-              <Box component="form" noValidate onSubmit={sendLogin} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label={<FormattedMessage id="login_email" />}
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  onChange={(e) => setEmail(e.target.value)}
-                  size="small"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label={<FormattedMessage id="login_password" />}
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  size="small"
-                />
-                <div className={classes.forgotPass}>
-                  <h5 onClick={() => setIsForgotPassPage(true)}>
-                    <FormattedMessage id="login_forgot_pass" />
-                  </h5>
-                </div>
-
-                <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: 'none' }} size="small">
-                  <FormattedMessage id="login_title" />
-                </Button>
-                <div className={classes.register}>
-                  <h5 onClick={() => navigate('/register')}>
-                    <FormattedMessage id="login_register_footer" />
-                  </h5>
-                </div>
-              </Box>
-            </Box>
-          )}
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   );
 };
 
