@@ -26,11 +26,15 @@ exports[`Ordering Card Should match with snapshot 1`] = `
             data-testid="ordering-card-page-title"
           />
           <div
-            class="statusContainer"
+            class="footer"
           >
-            <h5
-              class="text"
-            />
+            <div
+              class="statusContainer"
+            >
+              <h5
+                class="text"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -58,11 +62,15 @@ exports[`Ordering Card Should match with snapshot 1`] = `
           data-testid="ordering-card-page-title"
         />
         <div
-          class="statusContainer"
+          class="footer"
         >
-          <h5
-            class="text"
-          />
+          <div
+            class="statusContainer"
+          >
+            <h5
+              class="text"
+            />
+          </div>
         </div>
       </div>
     </div>

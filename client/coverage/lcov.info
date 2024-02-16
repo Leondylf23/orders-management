@@ -409,7 +409,7 @@ DA:26,0
 DA:30,0
 DA:35,4
 DA:36,0
-DA:58,2
+DA:60,2
 LF:14
 LH:6
 BRDA:11,0,0,0
@@ -684,8 +684,7 @@ FN:32,(anonymous_2)
 FN:43,(anonymous_3)
 FN:46,(anonymous_4)
 FN:60,(anonymous_5)
-FN:125,oo_cm
-FNF:7
+FNF:6
 FNH:4
 FNDA:2,(anonymous_0)
 FNDA:0,(anonymous_1)
@@ -693,7 +692,6 @@ FNDA:2,(anonymous_2)
 FNDA:2,(anonymous_3)
 FNDA:0,(anonymous_4)
 FNDA:2,(anonymous_5)
-FNDA:0,oo_cm
 DA:19,1
 DA:20,2
 DA:21,2
@@ -723,8 +721,7 @@ DA:67,0
 DA:71,2
 DA:108,1
 DA:113,1
-DA:125,0
-LF:30
+LF:29
 LH:21
 BRDA:35,0,0,2
 BRDA:35,0,1,0
@@ -734,9 +731,7 @@ BRDA:63,2,0,0
 BRDA:63,2,1,2
 BRDA:93,3,0,2
 BRDA:93,3,1,0
-BRDA:125,4,0,0
-BRDA:125,4,1,0
-BRF:10
+BRF:8
 BRH:4
 end_of_record
 TN:

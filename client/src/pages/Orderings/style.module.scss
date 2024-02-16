@@ -54,6 +54,7 @@
 
     width: 100%;
     margin-top: 0.5rem;
+    flex-grow: 1;
 
     .orderCode {
       font-weight: 700;
@@ -69,8 +70,15 @@
       margin-bottom: 0.2rem;
       font-size: 0.9rem;
     }
-    .statusContainer {
-      @include statusContainer;
+    .footer {
+      @include directionX;
+
+      flex-grow: 1;
+      align-items: end;
+
+      .statusContainer {
+        @include statusContainer;
+      }
     }
   }
 }

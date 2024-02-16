@@ -47,8 +47,10 @@ const OrderingCard = ({ data, onClickDetail, isBusiness }) => {
             {data?.customer}
           </p>
         )}
-        <div className={classes.statusContainer} data-item={status?.color}>
-          <h5 className={classes.text}>{status?.text}</h5>
+        <div className={classes.footer}>
+          <div className={classes.statusContainer} data-item={status?.color}>
+            <h5 className={classes.text}>{status?.text}</h5>
+          </div>
         </div>
       </div>
     </div>

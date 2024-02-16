@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708054821007" clover="3.2.0">
-  <project timestamp="1708054821007" name="All files">
-    <metrics statements="285" coveredstatements="183" conditionals="115" coveredconditionals="45" methods="83" coveredmethods="40" elements="483" coveredelements="268" complexity="0" loc="285" ncloc="285" packages="15" files="26" classes="26"/>
+<coverage generated="1708059072604" clover="3.2.0">
+  <project timestamp="1708059072604" name="All files">
+    <metrics statements="284" coveredstatements="183" conditionals="113" coveredconditionals="45" methods="82" coveredmethods="40" elements="479" coveredelements="268" complexity="0" loc="284" ncloc="284" packages="15" files="26" classes="26"/>
     <package name="config">
       <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="development.js" path="D:\Projects\orders-management\client\config\development.js">
@@ -224,7 +224,7 @@
         <line num="30" count="0" type="stmt"/>
         <line num="35" count="4" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
       </file>
       <file name="OrderingDetail.jsx" path="D:\Projects\orders-management\client\src\pages\Orderings\components\OrderingDetail.jsx">
         <metrics statements="27" coveredstatements="13" conditionals="14" coveredconditionals="4" methods="9" coveredmethods="3"/>
@@ -347,9 +347,9 @@
       </file>
     </package>
     <package name="src.pages.ProductDetail">
-      <metrics statements="30" coveredstatements="21" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="4"/>
+      <metrics statements="29" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="4"/>
       <file name="index.jsx" path="D:\Projects\orders-management\client\src\pages\ProductDetail\index.jsx">
-        <metrics statements="30" coveredstatements="21" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="4"/>
+        <metrics statements="29" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="4"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
@@ -379,7 +379,6 @@
         <line num="71" count="2" type="stmt"/>
         <line num="108" count="1" type="stmt"/>
         <line num="113" count="1" type="stmt"/>
-        <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
     </package>
     <package name="src.utils">
