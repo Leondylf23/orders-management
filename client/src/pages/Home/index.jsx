@@ -59,6 +59,11 @@ const Home = ({ products, userData, best }) => {
     }
   };
 
+  const handleSearch = () => {
+    setData([]);
+    getProductSearch(search);
+  };
+
   const handleLoadMore = () => {
     setPage((prev) => prev + 6);
     getProductSearch();
@@ -121,7 +126,7 @@ const Home = ({ products, userData, best }) => {
             )}
           </div>
           <Button variant="contained">
-            <SearchIcon onClick={() => getProductSearch(search)} />
+            <SearchIcon onClick={() => handleSearch()} />
           </Button>
         </div>
       </div>
