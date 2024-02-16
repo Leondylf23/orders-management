@@ -29,6 +29,7 @@ const Home = ({ products, userData, best }) => {
   const [data, setData] = useState([]);
   const [isBusiness, setIsBusiness] = useState(false);
   const [search, setSearch] = useState('');
+  const [isMore, setIsMore] = useState(false);
 
   const getProductFromApi = () => {
     setSearchParams({});
@@ -66,6 +67,7 @@ const Home = ({ products, userData, best }) => {
   useEffect(() => {
     if (products) {
       setData((prev) => [...prev, ...products]);
+      setIsMore(products.length >= 6);
     }
   }, [products]);
 
@@ -145,11 +147,13 @@ const Home = ({ products, userData, best }) => {
                 ))}
               </div>
             </div>
-            <div className={clasess.loadMore}>
-              <Button variant="contained" onClick={handleLoadMore}>
-                Load more
-              </Button>
-            </div>
+            {isMore && (
+              <div className={clasess.loadMore}>
+                <Button variant="contained" onClick={handleLoadMore}>
+                  Load more
+                </Button>
+              </div>
+            )}
           </>
         ) : (
           <div className={clasess.empty}>
