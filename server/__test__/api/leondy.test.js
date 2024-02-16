@@ -33,7 +33,6 @@ let mockOrder;
 let getOrder;
 let createOrder;
 let updateTickets;
-let transaction;
 
 describe("Leondy Order Json", () => {
   beforeAll(() => {

@@ -365,7 +365,6 @@ const deleteProduct = async (dataObject, userId) => {
 
 const getBestSeller = async () => {
   try {
-    console.log("test");
     const bestSellers = await db.order.findAll({
       where: {
         isActive: true,
