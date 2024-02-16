@@ -110,7 +110,7 @@ const getOrderDetailWithId = async (dataObject, isBusiness) => {
       location: data?.product?.user?.dataValues?.location,
       customer: data?.user?.fullname,
       product: undefined,
-      user: undefined
+      user: undefined,
     };
 
     return Promise.resolve(remapData);
@@ -365,6 +365,7 @@ const deleteProduct = async (dataObject, userId) => {
 
 const getBestSeller = async () => {
   try {
+    console.log("test");
     const bestSellers = await db.order.findAll({
       where: {
         isActive: true,
