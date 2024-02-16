@@ -1,7 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { showPopup, setLoading } from '@containers/App/actions';
-import { GET_ORDERING_DATA, GET_ORDERING_DETAIL_DATA, UPDATE_ORDERING_STATUS } from './constants';
 import {
   getOrderingDetailApi,
   getAllOrderingsApi,
@@ -9,6 +8,7 @@ import {
   getBusinessOrderingDetailApi,
   updateOrderingStatusApi,
 } from '@domain/api';
+import { GET_ORDERING_DATA, GET_ORDERING_DETAIL_DATA, UPDATE_ORDERING_STATUS } from './constants';
 import { setOrderingDetailData, setOrderingsData } from './actions';
 
 function* doGetOrderingData({ isBusiness }) {

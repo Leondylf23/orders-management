@@ -44,7 +44,7 @@ let uploadCloudinary;
 
 describe("Ticket Json", () => {
   beforeAll(() => {
-    server = GeneralHelper.createTestServer("/ticket", TicketPlugin);
+    server = GeneralHelper.createTestServer("/order-aja", TicketPlugin);
   });
 
   afterAll(async () => {

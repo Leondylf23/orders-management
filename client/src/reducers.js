@@ -8,7 +8,6 @@ import orderingsReducer from '@pages/Orderings/reducer';
 import productCreationReducer from '@pages/ProductCreation/reducer';
 import languageReducer from '@containers/Language/reducer';
 
-import couponsReducer from '@pages/Coupons/reducer';
 import homeReducer from '@pages/Home/reducer';
 import profileReducer from '@pages/Profile/reducer';
 import { mapWithPersistor } from './persistence';
@@ -24,7 +23,6 @@ const temporaryReducers = {
   productDetail: productDetailReducer,
   orderings: orderingsReducer,
   productCreation: productCreationReducer,
-  coupons: couponsReducer,
   home: homeReducer,
   profile: profileReducer,
 };

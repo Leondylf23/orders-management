@@ -2,34 +2,40 @@
   {
     "dataValues": {
       "id": 15,
-      "bookingCode": "TRX/2024-02-09/NhTxt",
-      "status": "FAILED",
-      "variant": {
-        "price": "1000000",
-        "variantName": "asdwdwadw"
+      "transactionCode": "TRX/2024-02-09/NhTxt",
+      "status": "FAILED"
+    },
+    "product": {
+      "dataValues": {
+        "title": "product 2",
+        "imageUrl": "http://res.cloudinary.com/dwyzuwtel/image/upload/v1707507294/image/cmri23yzcdfennvhi5e2.jpg"
       }
     },
-    "ticket": {
+    "user": {
       "dataValues": {
-        "title": "tiket 2",
-        "imageUrl": "http://res.cloudinary.com/dwyzuwtel/image/upload/v1707507294/image/cmri23yzcdfennvhi5e2.jpg"
+        "fullname": "user"
       }
     }
   },
   {
     "dataValues": {
       "id": 16,
-      "bookingCode": "TRX/2024-02-09/t1Fez",
-      "status": "BOOKED",
+      "transactionCode": "TRX/2024-02-09/t1Fez",
+      "status": "SUCCESS",
       "variant": {
         "price": "10000",
         "variantName": "fffff"
       }
     },
-    "ticket": {
+    "product": {
       "dataValues": {
-        "title": "tiket 2",
+        "title": "product 2",
         "imageUrl": "http://res.cloudinary.com/dwyzuwtel/image/upload/v1707507294/image/cmri23yzcdfennvhi5e2.jpg"
+      }
+    },
+    "user": {
+      "dataValues": {
+        "fullname": "user"
       }
     }
   }

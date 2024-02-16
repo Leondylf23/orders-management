@@ -37,7 +37,7 @@ const ProductDetailComponent = ({ productData, inputtedData }) => {
   }, [orderForm, dispatch]);
 
   return (
-    <div className={classes.componentContainer}>
+    <div className={classes.componentContainer} data-testid="payment-page-order-forms">
       <h2 className={classes.title}>{productData?.title}</h2>
       <h4 className={classes.pageTitle}>
         <FormattedMessage id="payment_prct_detail_page_title" />
