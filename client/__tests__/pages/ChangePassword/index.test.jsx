@@ -18,7 +18,7 @@ const ParentComponent = (children) => (
   </Provider>
 );
 
-describe('Best Seller Card', () => {
+describe('Change Password Page', () => {
   beforeEach(() => {});
 
   test('Correct Render', () => {
@@ -29,7 +29,7 @@ describe('Best Seller Card', () => {
 
   test('Button Clicked', () => {
     const { getByTestId } = render(ParentComponent(<ChangePassword />));
-    const buttonSubmit = getByTestId('profile-button-submit');
+    const buttonSubmit = getByTestId('changePassword-btn');
     expect(buttonSubmit).toBeInTheDocument();
     fireEvent.click(buttonSubmit);
   });

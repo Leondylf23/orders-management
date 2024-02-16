@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708059072604" clover="3.2.0">
-  <project timestamp="1708059072604" name="All files">
-    <metrics statements="284" coveredstatements="183" conditionals="113" coveredconditionals="45" methods="82" coveredmethods="40" elements="479" coveredelements="268" complexity="0" loc="284" ncloc="284" packages="15" files="26" classes="26"/>
+<coverage generated="1708063667955" clover="3.2.0">
+  <project timestamp="1708063667956" name="All files">
+    <metrics statements="355" coveredstatements="218" conditionals="146" coveredconditionals="57" methods="109" coveredmethods="47" elements="610" coveredelements="322" complexity="0" loc="355" ncloc="355" packages="18" files="29" classes="29"/>
     <package name="config">
       <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="development.js" path="D:\Projects\orders-management\client\config\development.js">
@@ -9,9 +9,9 @@
       </file>
       <file name="index.js" path="D:\Projects\orders-management\client\config\index.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
-        <line num="5" count="12" type="cond" truecount="1" falsecount="1"/>
-        <line num="7" count="12" type="stmt"/>
-        <line num="9" count="12" type="stmt"/>
+        <line num="5" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
       </file>
       <file name="production.js" path="D:\Projects\orders-management\client\config\production.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -24,43 +24,52 @@
       <metrics statements="28" coveredstatements="28" conditionals="7" coveredconditionals="4" methods="7" coveredmethods="7"/>
       <file name="configureStore.js" path="D:\Projects\orders-management\client\src\configureStore.js">
         <metrics statements="16" coveredstatements="16" conditionals="7" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="9" count="12" type="stmt"/>
-        <line num="12" count="12" type="cond" truecount="0" falsecount="1"/>
-        <line num="13" count="12" type="stmt"/>
-        <line num="14" count="12" type="stmt"/>
-        <line num="18" count="12" type="cond" truecount="3" falsecount="1"/>
-        <line num="19" count="12" type="cond" truecount="1" falsecount="1"/>
-        <line num="22" count="12" type="stmt"/>
-        <line num="23" count="12" type="stmt"/>
-        <line num="24" count="12" type="stmt"/>
-        <line num="25" count="12" type="stmt"/>
-        <line num="27" count="12" type="stmt"/>
-        <line num="29" count="12" type="stmt"/>
-        <line num="32" count="12" type="stmt"/>
-        <line num="33" count="12" type="stmt"/>
-        <line num="36" count="12" type="stmt"/>
-        <line num="39" count="12" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="14" count="15" type="stmt"/>
+        <line num="18" count="15" type="cond" truecount="3" falsecount="1"/>
+        <line num="19" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="22" count="15" type="stmt"/>
+        <line num="23" count="15" type="stmt"/>
+        <line num="24" count="15" type="stmt"/>
+        <line num="25" count="15" type="stmt"/>
+        <line num="27" count="15" type="stmt"/>
+        <line num="29" count="15" type="stmt"/>
+        <line num="32" count="15" type="stmt"/>
+        <line num="33" count="15" type="stmt"/>
+        <line num="36" count="15" type="stmt"/>
+        <line num="39" count="15" type="stmt"/>
       </file>
       <file name="persistence.js" path="D:\Projects\orders-management\client\src\persistence.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="10" count="12" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
-        <line num="12" count="24" type="stmt"/>
-        <line num="22" count="24" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="11" count="15" type="stmt"/>
+        <line num="12" count="30" type="stmt"/>
+        <line num="22" count="30" type="stmt"/>
       </file>
       <file name="reducers.js" path="D:\Projects\orders-management\client\src\reducers.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="15" count="12" type="stmt"/>
-        <line num="20" count="12" type="stmt"/>
-        <line num="30" count="12" type="stmt"/>
-        <line num="31" count="12" type="stmt"/>
-        <line num="35" count="77" type="stmt"/>
-        <line num="36" count="12" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="20" count="15" type="stmt"/>
+        <line num="30" count="15" type="stmt"/>
+        <line num="31" count="15" type="stmt"/>
+        <line num="35" count="99" type="stmt"/>
+        <line num="36" count="15" type="stmt"/>
       </file>
       <file name="rootSaga.js" path="D:\Projects\orders-management\client\src\rootSaga.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="12" count="12" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.BestSellerCard">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="D:\Projects\orders-management\client\src\components\BestSellerCard\index.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.Loader">
@@ -166,10 +175,10 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="index.jsx" path="D:\Projects\orders-management\client\src\containers\Language\index.jsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="9" count="12" type="stmt"/>
-        <line num="10" count="30" type="stmt"/>
-        <line num="15" count="12" type="stmt"/>
-        <line num="21" count="12" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="10" count="35" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
       </file>
     </package>
     <package name="src.languages">
@@ -179,6 +188,35 @@
       </file>
       <file name="id.js" path="D:\Projects\orders-management\client\src\languages\id.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.pages.ChangePassword">
+      <metrics statements="23" coveredstatements="9" conditionals="11" coveredconditionals="2" methods="10" coveredmethods="2"/>
+      <file name="index.jsx" path="D:\Projects\orders-management\client\src\pages\ChangePassword\index.jsx">
+        <metrics statements="23" coveredstatements="9" conditionals="11" coveredconditionals="2" methods="10" coveredmethods="2"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="2" falsecount="3"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.Orderings">
@@ -347,9 +385,9 @@
       </file>
     </package>
     <package name="src.pages.ProductDetail">
-      <metrics statements="29" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="4"/>
+      <metrics statements="30" coveredstatements="21" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="4"/>
       <file name="index.jsx" path="D:\Projects\orders-management\client\src\pages\ProductDetail\index.jsx">
-        <metrics statements="29" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="4"/>
+        <metrics statements="30" coveredstatements="21" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="4"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
@@ -379,34 +417,85 @@
         <line num="71" count="2" type="stmt"/>
         <line num="108" count="1" type="stmt"/>
         <line num="113" count="1" type="stmt"/>
+        <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+    </package>
+    <package name="src.pages.Profile">
+      <metrics statements="44" coveredstatements="23" conditionals="20" coveredconditionals="10" methods="15" coveredmethods="4"/>
+      <file name="index.jsx" path="D:\Projects\orders-management\client\src\pages\Profile\index.jsx">
+        <metrics statements="44" coveredstatements="23" conditionals="20" coveredconditionals="10" methods="15" coveredmethods="4"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="89" count="4" type="stmt"/>
+        <line num="90" count="2" type="stmt"/>
+        <line num="92" count="4" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="96" count="4" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="209" count="1" type="stmt"/>
+        <line num="214" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">
       <metrics statements="19" coveredstatements="12" conditionals="6" coveredconditionals="3" methods="8" coveredmethods="4"/>
       <file name="allUtils.js" path="D:\Projects\orders-management\client\src\utils\allUtils.js">
         <metrics statements="9" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="2"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="6" count="12" type="stmt"/>
-        <line num="7" count="12" type="cond" truecount="1" falsecount="1"/>
-        <line num="8" count="12" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="7" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="15" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="16" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="17" type="cond" truecount="1" falsecount="1"/>
       </file>
       <file name="request.js" path="D:\Projects\orders-management\client\src\utils\request.js">
         <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="2"/>
-        <line num="5" count="12" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="cond" truecount="1" falsecount="1"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="14" count="12" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="14" count="15" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="19" count="12" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
       </file>
     </package>
   </project>

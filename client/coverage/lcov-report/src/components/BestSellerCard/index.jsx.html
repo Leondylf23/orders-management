@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/configureStore.js</title>
+    <title>Code coverage report for src/components/BestSellerCard/index.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> configureStore.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/BestSellerCard</a> index.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.11% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/17</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -96,13 +96,14 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,76 +111,57 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { numberWithPeriods } from '@utils/allUtils';
+import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import clasess from './style.module.scss';
 &nbsp;
-import createReducer from './reducers';
-import rootSaga from './rootSaga';
-import { peristConfig } from './persistence';
+const BestSellerCard = ({ data }) =&gt; (
+  &lt;Link data-testid="bestSellerCard-container" to={`/product/${data?.productId}`} className={clasess.container}&gt;
+    &lt;div className={clasess.image}&gt;
+      &lt;img src={data?.product?.imageUrl} alt="" /&gt;
+    &lt;/div&gt;
+    &lt;div className={clasess.desc}&gt;
+      &lt;h5&gt;{data?.product?.title}&lt;/h5&gt;
+      &lt;p className={clasess.price}&gt;Rp. {numberWithPeriods(data?.product?.price)}&lt;/p&gt;
+      &lt;p className={clasess.org}&gt;{data?.product?.user?.organization}&lt;/p&gt;
+      &lt;p className={clasess.sold}&gt;
+        &lt;span&gt;
+          &lt;FormattedMessage id="product_bought_by" /&gt;
+        &lt;/span&gt;{' '}
+        {data?.productCount}{' '}
+        &lt;span&gt;
+          &lt;FormattedMessage id="times" /&gt;
+        &lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/Link&gt;
+);
 &nbsp;
-const initState = {};
-&nbsp;
-// eslint-disable-next-line default-param-last
-const configureStore = (initialState = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; {
-  let composeEnhancers = compose;
-  const reduxSagaMonitorOptions = {
-    effectMiddlewares: [],
-  };
-&nbsp;
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (process.env.NODE_ENV !== 'production' &amp;&amp; typeof window === 'object') {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) <span class="cstat-no" title="statement not covered" >composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});</span>
-  }
-&nbsp;
-  const persistedReducer = persistReducer(peristConfig, createReducer());
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-  const middlewares = [sagaMiddleware];
-  const enhancers = [applyMiddleware(...middlewares)];
-&nbsp;
-  const store = createStore(persistedReducer, initialState, composeEnhancers(...enhancers));
-&nbsp;
-  store.runSaga = sagaMiddleware.run;
-&nbsp;
-  // run saga
-  store.runSaga(rootSaga);
-  return store;
+BestSellerCard.propTypes = {
+  data: PropTypes.object,
 };
 &nbsp;
-const store = configureStore(initState);
-&nbsp;
-export default store;
-export const persistor = persistStore(store);
+export default BestSellerCard;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -189,14 +171,14 @@ export const persistor = persistStore(store);
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2024-02-16T06:07:47.573Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
