@@ -75,7 +75,7 @@ const ProductDetail = ({ productDetail, userData }) => {
           <img className={classes.image} src={detailData?.imageUrl} alt="Img failed!" />
           <div className={classes.contentDetails}>
             <div className={classes.detailIconContainer}>
-              <FmdGoodIcon className={classes.icon} />
+              {/* <FmdGoodIcon className={classes.icon} /> */}
               <p className={classes.text}>{detailData?.location}</p>
             </div>
             <div className={classes.detailIconContainer}>

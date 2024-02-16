@@ -37,6 +37,7 @@ const registerFormValidation = (data) => {
       .valid("customer", "business")
       .required()
       .description("Role must be filled"),
+    location: Joi.string().required().description("Location must be filled"),
   });
 
   if (schema.validate(data).error) {

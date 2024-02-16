@@ -315,6 +315,7 @@ const editProductData = async (dataObject, userId) => {
       updatedData: remapData,
     });
   } catch (err) {
+    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };

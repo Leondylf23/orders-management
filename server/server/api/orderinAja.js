@@ -255,7 +255,6 @@ const editProduct = async (request, reply) => {
       { ...formData, imageData: imageFile ? imageFile[0] : null },
       userData?.userId
     );
-
     return reply.send({
       message: "success",
       data: response,

@@ -41,11 +41,11 @@ const ProductCreation = ({ productDetail }) => {
       );
       return;
     }
-    if (!(formData?.location?.length > 2 && formData?.location?.length <= 255)) {
+    if (!(formData?.price?.length > 2 && formData?.price?.length <= 255)) {
       dispatch(
         showPopup(
           intl.formatMessage({ id: 'product_creation_title' }),
-          intl.formatMessage({ id: 'product_creation_location_validation' })
+          intl.formatMessage({ id: 'product_creation_price_validation' })
         )
       );
       return;
@@ -73,7 +73,7 @@ const ProductCreation = ({ productDetail }) => {
     const form = new FormData();
     if (id) form.append('id', id);
     form.append('title', formData?.title);
-    form.append('location', formData?.location);
+    form.append('price', formData?.price);
     form.append('description', formData?.description);
 
     if (imageData) form.append('imageData', imageData);
@@ -132,7 +132,7 @@ const ProductCreation = ({ productDetail }) => {
   }, [productDetail]);
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={classes.mainContainer} data-testid="productCreation-page">
       <div className={classes.topContentContainer}>
         <div className={classes.leftContent}>
           <img
@@ -143,12 +143,19 @@ const ProductCreation = ({ productDetail }) => {
           <div className={classes.contentDetails}>
             {imageData ? (
               <button type="button" className={classes.deleteBtn} data-type="red" onClick={() => removeImage()}>
-                <FormattedMessage id="product_creation_rmv_img_btn" />
+                <FormattedMessage id="product_creation_rmv_img_btn" data-testid="image-button" />
               </button>
-            ) : (
+            ) : id ? (
               <>
                 <label htmlFor="imageInput" className={classes.fileInput}>
                   <FormattedMessage id="product_creation_chg_img_btn" />
+                </label>
+                <input hidden id="imageInput" type="file" accept="image/*" onChange={setNewImage} />
+              </>
+            ) : (
+              <>
+                <label htmlFor="imageInput" className={classes.fileInput}>
+                  <FormattedMessage id="product_creation_add_img_btn" />
                 </label>
                 <input hidden id="imageInput" type="file" accept="image/*" onChange={setNewImage} />
               </>
@@ -167,15 +174,15 @@ const ProductCreation = ({ productDetail }) => {
             onChange={(e) => setFormData((prevVal) => ({ ...prevVal, title: e.target.value }))}
           />
 
-          <label className={classes.label} htmlFor="location">
-            <FormattedMessage id="product_creation_location_label" />
+          <label className={classes.label} htmlFor="price">
+            <FormattedMessage id="product_creation_price_label" />
           </label>
           <input
             className={classes.input}
-            id="location"
+            id="price"
             type="text"
-            value={formData?.location}
-            onChange={(e) => setFormData((prevVal) => ({ ...prevVal, location: e.target.value }))}
+            value={formData?.price}
+            onChange={(e) => setFormData((prevVal) => ({ ...prevVal, price: e.target.value }))}
           />
           <label className={classes.label} htmlFor="desc">
             <FormattedMessage id="product_creation_desc_label" />
@@ -190,11 +197,11 @@ const ProductCreation = ({ productDetail }) => {
           />
           <div className={classes.footerButtons}>
             <button type="button" className={classes.button} onClick={saveBtn}>
-              <FormattedMessage id="product_creation_save_btn" />
+              <FormattedMessage id="product_creation_save_btn" data-testid="save-button" />
             </button>
             {id && (
               <button type="button" className={classes.button} data-type="red" onClick={deleteBtn}>
-                <FormattedMessage id="product_creation_delete_btn" />
+                <FormattedMessage id="product_creation_delete_btn" data-testid="delete-button" />
               </button>
             )}
           </div>

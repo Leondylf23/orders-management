@@ -61,7 +61,7 @@ const loginAuthentication = async (dataObject) => {
 };
 
 const registerUser = async (dataObject) => {
-  const { fullname, dob, email, password, role } = dataObject;
+  const { fullname, dob, email, password, role, location } = dataObject;
 
   try {
     const checkData = await db.user.findOne({
@@ -78,6 +78,7 @@ const registerUser = async (dataObject) => {
       email,
       password: hashedPassword,
       role,
+      location,
     });
     if (_.isEmpty(createdUser)) throw Boom.internal("User not created!");
 
