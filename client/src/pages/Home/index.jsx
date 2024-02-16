@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchIcon from '@mui/icons-material/Search';
-import YoutubeSearchedForIcon from '@mui/icons-material/YoutubeSearchedFor';
+import ClearIcon from '@mui/icons-material/Clear';
 import { Button } from '@mui/material';
 import BestSellerCard from '@components/BestSellerCard';
 
@@ -21,12 +21,17 @@ const Home = ({ products, userData, best }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const navigate = useNavigate();
+  const [page, setPage] = useState(0);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search');
 
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState('');
   const [isBusiness, setIsBusiness] = useState(false);
+  const [search, setSearch] = useState('');
 
   const getProductFromApi = () => {
+    setSearchParams({});
     const user = getUserDataDecrypt(userData);
     if (user && user?.role === 'business') {
       setIsBusiness(true);
@@ -37,28 +42,44 @@ const Home = ({ products, userData, best }) => {
     }
   };
 
-  const getProductSearch = () => {
+  const getProductSearch = (query) => {
+    if (query) {
+      setSearchParams({ search: query });
+    } else {
+      setSearchParams({});
+    }
     const user = getUserDataDecrypt(userData);
     if (user && user?.role === 'business') {
       setIsBusiness(true);
-      dispatch(getMyProductsData({ ...(search !== '' && { productName: search }) }));
+      dispatch(getMyProductsData({ ...(query !== '' && { productName: query, page }) }));
     } else {
       setIsBusiness(false);
-      dispatch(getProductsData({ ...(search !== '' && { productName: search }) }));
+      dispatch(getProductsData({ ...(query !== '' && { productName: query, page }) }));
     }
-    setSearch('');
+  };
+
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 6);
+    getProductSearch();
   };
 
   useEffect(() => {
     if (products) {
-      setData(products);
+      setData((prev) => [...prev, ...products]);
     }
   }, [products]);
 
   useEffect(() => {
     dispatch(getBestSeller());
-    getProductFromApi();
-  }, [userData]);
+    getProductSearch();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      setSearch(searchQuery);
+      getProductSearch(searchQuery);
+    }
+  }, []);
 
   return (
     <div className={clasess.mainContainer}>
@@ -79,15 +100,26 @@ const Home = ({ products, userData, best }) => {
           <FormattedMessage id="home_title" />
         </h4>
         <div className={clasess.debounce}>
-          <input
-            type="text"
-            className={clasess.input}
-            value={search}
-            placeholder={intl.formatMessage({ id: 'home_search_placeholder' })}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <Button onClick={data.length ? getProductSearch : getProductFromApi} variant="contained">
-            {data.length !== 0 ? <SearchIcon /> : <YoutubeSearchedForIcon />}
+          <div className={clasess.resetInput}>
+            <input
+              type="text"
+              className={clasess.input}
+              value={search}
+              placeholder={intl.formatMessage({ id: 'home_search_placeholder' })}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {search && (
+              <ClearIcon
+                onClick={() => {
+                  getProductFromApi();
+                  setSearch('');
+                }}
+                className={clasess.reset}
+              />
+            )}
+          </div>
+          <Button variant="contained">
+            <SearchIcon onClick={() => getProductSearch(search)} />
           </Button>
         </div>
       </div>
@@ -105,13 +137,20 @@ const Home = ({ products, userData, best }) => {
       )}
       <div className={clasess.dataContainer}>
         {data.length > 0 ? (
-          <div className={clasess.dataGrid}>
-            <div className={clasess.innerDataGrid}>
-              {data.map((product) => (
-                <ProductCard data={product} isBusiness={isBusiness} key={product?.id} />
-              ))}
+          <>
+            <div className={clasess.dataGrid}>
+              <div className={clasess.innerDataGrid}>
+                {data.map((product, idx) => (
+                  <ProductCard data={product} isBusiness={isBusiness} key={idx} />
+                ))}
+              </div>
             </div>
-          </div>
+            <div className={clasess.loadMore}>
+              <Button variant="contained" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            </div>
+          </>
         ) : (
           <div className={clasess.empty}>
             <h3>
