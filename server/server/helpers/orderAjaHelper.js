@@ -92,7 +92,11 @@ const getOrderDetailWithId = async (dataObject) => {
 };
 
 const getAllProducts = async (dataObject, userId) => {
-  const { productName } = dataObject;
+  const { productName, page } = dataObject;
+
+  console.log(page, "<<<<<");
+
+  const currentPage = Number(page) || 0;
 
   try {
     const data = await db.product.findAll({
@@ -110,6 +114,8 @@ const getAllProducts = async (dataObject, userId) => {
         ...(productName && { title: { [like]: `%${productName}%` } }),
       },
       attributes: ["id", "imageUrl", "title", "price"],
+      limit: 6,
+      offset: currentPage,
     });
 
     const remapData = data?.map((product) => {
