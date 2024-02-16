@@ -16,14 +16,26 @@ const { generateRandomString } = require("./utilsHelper");
 const getAllOrder = async (userId, isBusiness) => {
   try {
     const data = await db.order.findAll({
-      include: [
+      include: (isBusiness ? [
         {
           association: "product",
           required: true,
           attributes: ["title", "imageUrl"],
           where: { ...(isBusiness && { isActive: true }) },
         },
-      ],
+        {
+          association: "user",
+          required: true,
+          attributes: ["fullname"],
+        }
+      ] : [
+        {
+          association: "product",
+          required: true,
+          attributes: ["title", "imageUrl"],
+          where: { ...(isBusiness && { isActive: true }) },
+        },
+      ]),
       where: {
         isActive: true,
         ...(isBusiness ? { businessUserId: userId } : { createdBy: userId }),
@@ -35,7 +47,8 @@ const getAllOrder = async (userId, isBusiness) => {
     const remapData = data?.map((order) => ({
       ...order?.dataValues,
       ...order?.product?.dataValues,
-      location: data?.product?.user?.dataValues?.location,
+      customer: order?.user?.dataValues?.fullname,
+      user: undefined,
       product: undefined,
     }));
 
@@ -45,11 +58,11 @@ const getAllOrder = async (userId, isBusiness) => {
   }
 };
 
-const getOrderDetailWithId = async (dataObject) => {
+const getOrderDetailWithId = async (dataObject, isBusiness) => {
   try {
     const { id } = dataObject;
     const data = await db.order.findOne({
-      include: [
+      include: (isBusiness ? [
         {
           association: "product",
           required: true,
@@ -62,15 +75,26 @@ const getOrderDetailWithId = async (dataObject) => {
             },
           ],
         },
-      ],
-      attributes: [
-        "transactionCode",
-        "status",
-        "paymentMethod",
-        "address",
-        "phone",
-        "totalPayment",
-      ],
+        {
+          association: "user",
+          required: true,
+          attributes: ["fullname"],
+        },
+      ] : [
+        {
+          association: "product",
+          required: true,
+          attributes: ["title", "imageUrl", "description"],
+          include: [
+            {
+              association: "user",
+              required: true,
+              attributes: ["fullname", "location"],
+            },
+          ],
+        },
+      ]),
+      attributes: ["transactionCode", "status", "paymentMethod", "address", "phone", "totalPayment"],
       where: { id, isActive: true },
     });
 
@@ -78,9 +102,13 @@ const getOrderDetailWithId = async (dataObject) => {
 
     const remapData = {
       ...data?.dataValues,
-      ...data?.product?.dataValues,
-      organization: data?.product?.user?.dataValues?.fullname,
+      ...({
+        ...data?.product?.dataValues,
+        organization: data?.product?.user?.dataValues?.fullname,
+        user: undefined
+      }),
       location: data?.product?.user?.dataValues?.location,
+      customer: data?.user?.fullname,
       product: undefined,
       user: undefined,
     };
@@ -92,7 +120,11 @@ const getOrderDetailWithId = async (dataObject) => {
 };
 
 const getAllProducts = async (dataObject, userId) => {
-  const { productName } = dataObject;
+  const { productName, page } = dataObject;
+
+  console.log(page, "<<<<<");
+
+  const currentPage = Number(page) || 0;
 
   try {
     const data = await db.product.findAll({
@@ -110,6 +142,8 @@ const getAllProducts = async (dataObject, userId) => {
         ...(productName && { title: { [like]: `%${productName}%` } }),
       },
       attributes: ["id", "imageUrl", "title", "price"],
+      limit: 6,
+      offset: currentPage,
     });
 
     const remapData = data?.map((product) => {
@@ -125,7 +159,6 @@ const getAllProducts = async (dataObject, userId) => {
 
     return Promise.resolve(remapData);
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };
@@ -220,29 +253,22 @@ const addOrder = async (dataObject, userId) => {
     const dateNow = new Date().toISOString().slice(0, 10);
     const transactionId = `TRX/${dateNow}/${generateRandomString(5)}`;
 
-    const result = await db.sequelize.transaction(async () => {
-      const createdOrder = await db.order.create({
-        productId,
-        paymentMethod,
-        totalPayment,
-        createdBy: userId,
-        phone: orderForm?.phone,
-        address: orderForm?.address,
-        businessUserId: checkProductId?.dataValues?.createdBy,
-        transactionCode: transactionId,
-      });
-      if (!createdOrder?.id) throw new Error("Order not created!");
-
-      const orderId = createdOrder?.id;
-
-      return orderId;
+    const createdOrder = await db.order.create({
+      productId,
+      paymentMethod,
+      totalPayment,
+      createdBy: userId,
+      phone: orderForm?.phone,
+      address: orderForm?.address,
+      businessUserId: checkProductId?.dataValues?.createdBy,
+      transactionCode: transactionId,
     });
+    if (!createdOrder) throw new Error("Order not created!");
 
     return Promise.resolve({
-      createdId: result,
+      createdId: createdOrder?.id,
     });
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };
@@ -309,7 +335,7 @@ const updateStatusOrder = async (dataObject, userId) => {
         "Your user account does not allowed to modify other user data!"
       );
 
-    await data.update({ status: isSuccess ? "BOOKED" : "FAILED" });
+    await data.update({ status: isSuccess ? "SUCCESS" : "FAILED" });
 
     return Promise.resolve({
       updatedId: data?.id,
@@ -346,7 +372,6 @@ const deleteProduct = async (dataObject, userId) => {
 
 const getBestSeller = async () => {
   try {
-    console.log("test");
     const bestSellers = await db.order.findAll({
       where: {
         isActive: true,
@@ -381,7 +406,6 @@ const getBestSeller = async () => {
 
     return Promise.resolve(bestSellers);
   } catch (err) {
-    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };

@@ -14,7 +14,7 @@ const ParentComponent = (children) => (
   </Provider>
 );
 
-describe('Best Seller Card', () => {
+describe('Profile Page', () => {
   beforeEach(() => {});
 
   test('Correct Render', () => {
@@ -26,8 +26,8 @@ describe('Best Seller Card', () => {
   });
 
   test('Button Clicked', () => {
-    const { getByTestId } = render(ParentComponent(<Profile />));
-    const buttonSubmit = getByTestId('profile-button-submit');
+    const { queryByTestId } = render(ParentComponent(<Profile />));
+    const buttonSubmit = queryByTestId('profile-button-submit');
     expect(buttonSubmit).toBeInTheDocument();
     fireEvent.click(buttonSubmit);
   });

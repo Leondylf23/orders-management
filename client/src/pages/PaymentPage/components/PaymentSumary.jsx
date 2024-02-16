@@ -14,7 +14,7 @@ import classes from '../style.module.scss';
 const PaymentSumaryComponent = ({ productData, inputtedData }) => {
   useEffect(() => {}, []);
   return (
-    <div className={classes.componentContainer}>
+    <div className={classes.componentContainer} data-testid="payment-page-payment-summary">
       <h2 className={classes.title}>
         <FormattedMessage id="payment_step_4_name" />
       </h2>
@@ -37,7 +37,9 @@ const PaymentSumaryComponent = ({ productData, inputtedData }) => {
             <FormattedMessage id="payment_summary_payment_method" />
           </p>
           <p className={classes.value}>
-            <FormattedMessage id={inputtedData?.paymentMethod?.nameIntlId} />
+            {inputtedData?.paymentMethod?.nameIntlId && (
+              <FormattedMessage id={inputtedData?.paymentMethod?.nameIntlId} />
+            )}
           </p>
         </div>
       </div>

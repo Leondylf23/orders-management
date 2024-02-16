@@ -35,7 +35,7 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
           status: statusData,
         });
         break;
-      case 'ORDERED':
+      case 'SUCCESS':
         setStatus({
           text: <FormattedMessage id="status_success" />,
           color: 'green',
@@ -48,7 +48,7 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
   const updateStatusBtn = (isSuccess) => {
     dispatch(
       updateOrderingStatus({ id, isSuccess }, () => {
-        setStatusView(isSuccess ? 'ORDERED' : 'FAILED');
+        setStatusView(isSuccess ? 'SUCCESS' : 'FAILED');
         setIsRequireRefresh(true);
       })
     );
@@ -64,7 +64,7 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
   }, [dispatch, id, isBusiness]);
 
   return (
-    <div className={classes.detailContainer}>
+    <div className={classes.detailContainer} data-testid="ordering-detail-page">
       <div className={classes.buttonContainer}>
         <button type="button" className={classes.backBtn} onClick={() => back(isRequireRefresh)}>
           <FormattedMessage id="back" />
@@ -93,12 +93,9 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
           </div>
           <div className={classes.paymentMethodContainer}>
             {orderingData?.paymentMethod === 'TRANSFER' ? (
-              <>
-                {/* <img className={classes.image} src={orderingData?.transferImg ?? ""} alt="Failed to Load!" /> */}
-                <h4 className={classes.text}>
-                  <FormattedMessage id="payment_payment_transfer" />
-                </h4>
-              </>
+              <h4 className={classes.text}>
+                <FormattedMessage id="payment_payment_transfer" />
+              </h4>
             ) : (
               <h4 className={classes.text}>
                 <FormattedMessage id="payment_payment_onsitepay" />
@@ -122,17 +119,25 @@ const OrderingDetailComponent = ({ id, orderingData, back, isBusiness }) => {
             <h3 className={classes.titleData}>
               <FormattedMessage id="orderings_customer_info" />
             </h3>
+            {isBusiness && (
+              <div className={classes.infoDataContainer}>
+                <p className={classes.title}>
+                  <FormattedMessage id="orderings_customer_name" /> :
+                </p>
+                <p className={classes.data}>- {orderingData?.customer}</p>
+              </div>
+            )}
             <div className={classes.infoDataContainer}>
               <p className={classes.title}>
                 <FormattedMessage id="payment_phone" /> :
               </p>
-              <p className={classes.data}>{orderingData?.phone}</p>
+              <p className={classes.data}>- {orderingData?.phone}</p>
             </div>
             <div className={classes.infoDataContainer}>
               <p className={classes.title}>
                 <FormattedMessage id="payment_address" /> :
               </p>
-              <p className={classes.data}>{orderingData?.address}</p>
+              <p className={classes.data}>- {orderingData?.address}</p>
             </div>
           </div>
           <h3 className={classes.descriptionTitle}>

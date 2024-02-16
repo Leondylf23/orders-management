@@ -38,7 +38,7 @@ const PaymentSelectionComponent = ({ inputtedData }) => {
   }, [inputtedData]);
 
   return (
-    <div className={classes.componentContainer}>
+    <div className={classes.componentContainer} data-testid="payment-page-payment-selection">
       <h2 className={classes.title}>
         <FormattedMessage id="payment_step_3_name" />
       </h2>

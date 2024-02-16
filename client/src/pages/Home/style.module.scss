@@ -53,10 +53,32 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+
+      .resetInput {
+        width: 100%;
+        position: relative;
+
+        .input {
+          position: relative;
+        }
+
+        .reset {
+          right: 0;
+          margin: 10px;
+          font-size: 20px;
+          position: absolute;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(191, 191, 191);
+            border-radius: 100%;
+          }
+        }
+      }
     }
   }
   .dataContainer {
-    @include directionX;
+    @include directionY;
 
     flex-grow: 1;
 
@@ -75,6 +97,13 @@
         }
       }
     }
+
+    .loadMore {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     .empty {
       @include containerCenter;
       flex-direction: column;
