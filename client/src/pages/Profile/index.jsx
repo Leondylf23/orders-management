@@ -18,7 +18,6 @@ import { getProfileData, saveProfileData } from './actions';
 import classes from './style.module.scss';
 
 const ProfilePage = ({ profileData, userDataSelect }) => {
-  console.log(profileData);
   const dispatch = useDispatch();
 
   const intl = useIntl();
@@ -58,7 +57,6 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
     }
 
     const form = new FormData();
-    console.log(userData);
 
     form.append('fullname', userData?.fullname);
     form.append('dob', userData?.dob);
@@ -96,7 +94,7 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
   }, [profileData]);
 
   return (
-    <div className={classes.mainContainer}>
+    <div data-testid="profile-container" className={classes.mainContainer}>
       <h1 className={classes.title}>
         <FormattedMessage id="profile_title" />
       </h1>
@@ -108,7 +106,13 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             alt="Load image failed!"
           />
           {profileImg ? (
-            <button type="button" className={classes.button} data-type="red" onClick={() => setProfileImg(null)}>
+            <button
+              data-testid="profile-button-image"
+              type="button"
+              className={classes.button}
+              data-type="red"
+              onClick={() => setProfileImg(null)}
+            >
               <FormattedMessage id="profile_delete_img" />
             </button>
           ) : (
@@ -156,16 +160,20 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             value={userData?.dob}
             onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, dob: e.target.value }))}
           />
-          <label htmlFor="dob" className={classes.label}>
-            <FormattedMessage id="profile_location" />
-          </label>
-          <input
-            type="text"
-            id="location"
-            className={classes.input}
-            value={userData?.location}
-            onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, location: e.target.value }))}
-          />
+          {userData?.role === 'business' && (
+            <>
+              <label htmlFor="dob" className={classes.label}>
+                <FormattedMessage id="profile_location" />
+              </label>
+              <input
+                type="text"
+                id="location"
+                className={classes.input}
+                value={userData?.location}
+                onChange={(e) => setUserDataInternal((prevVal) => ({ ...prevVal, location: e.target.value }))}
+              />
+            </>
+          )}
           <label htmlFor="dob" className={classes.label}>
             <FormattedMessage id="profile_passwords" />
           </label>
@@ -183,7 +191,12 @@ const ProfilePage = ({ profileData, userDataSelect }) => {
             </Link>
           </div>
           <div className={classes.buttonConatainer}>
-            <button type="button" className={classes.button} onClick={saveGeneralData}>
+            <button
+              data-testid="profile-button-submit"
+              type="button"
+              className={classes.button}
+              onClick={saveGeneralData}
+            >
               <FormattedMessage id="profile_save" />
             </button>
           </div>

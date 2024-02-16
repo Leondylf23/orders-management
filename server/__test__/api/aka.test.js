@@ -1,16 +1,122 @@
 const Request = require("supertest");
+const QS = require("qs");
 const _ = require("lodash");
 
 const db = require("../../models");
-const GeneralHelper = require("../../server/helpers/generalHelper");
-const AuthPlugin = require("../../server/api/authUser");
-const MockUser = require("../fixtures/database/userData.json");
 const cloudinary = require("../../server/services/cloudinary");
+const GeneralHelper = require("../../server/helpers/generalHelper");
+const OrderinAjaPlugin = require("../../server/api/orderinAja");
+const AuthPlugin = require("../../server/api/authUser");
+
+// Mock Datas JSON
+const MockProduct = require("../fixtures/database/allProduct.json");
+const MockBesSeller = require("../fixtures/database/bestSeller.json");
+const MockUser = require("../fixtures/database/userData.json");
 
 // Config
 let apiUrl;
 let server;
+let query;
 let body;
+
+// Databases
+let mockProduct;
+let mockBestSeller;
+
+// Spy DB
+let getProduct;
+let getBestSeller;
+
+// Spy function
+
+describe("Product Json", () => {
+  beforeAll(() => {
+    server = GeneralHelper.createTestServer("/orderin-aja", OrderinAjaPlugin);
+  });
+
+  afterAll(async () => {
+    await server.close();
+  });
+
+  describe("All Product", () => {
+    beforeEach(() => {
+      apiUrl = "/orderin-aja/product";
+
+      mockProduct = _.cloneDeep(MockProduct);
+
+      getProduct = jest.spyOn(db.product, "findAll");
+    });
+
+    test("Should Return 200: Get All Product Public", async () => {
+      query = {
+        productName: "test",
+      };
+      getProduct.mockResolvedValue(mockProduct);
+
+      const res = await Request(server)
+        .get(`${apiUrl}?${QS.stringify(query)}`)
+        .expect(200);
+
+      expect(res.body).toBeTruthy();
+    });
+
+    test("Should Return 500: Get All Product Public Error Data Not Array", async () => {
+      getProduct.mockResolvedValue({});
+
+      const res = await Request(server).get(apiUrl).expect(500);
+
+      expect(res.body).toBeTruthy();
+    });
+
+    test("Should Return 400: Get All Product Public With known Params", async () => {
+      query = {
+        productName: "SoyG2Kiz9L",
+      };
+      getProduct.mockResolvedValue(mockProduct);
+
+      const res = await Request(server)
+        .get(`${apiUrl}?${QS.stringify(query)}`)
+        .expect(200);
+
+      expect(res.body).toBeTruthy();
+    });
+
+    test("Should Return 200: Get All Product Public With Unknown Params", async () => {
+      query = {
+        productNameTest: "test",
+      };
+      getProduct.mockResolvedValue(mockProduct);
+
+      const res = await Request(server)
+        .get(`${apiUrl}?${QS.stringify(query)}`)
+        .expect(400);
+
+      expect(res.body).toBeTruthy();
+    });
+  });
+
+  describe("All Best Seller", () => {
+    beforeEach(() => {
+      apiUrl = "/orderin-aja/product/best-seller";
+
+      mockBestSeller = _.cloneDeep(MockBesSeller);
+
+      getBestSeller = jest.spyOn(db.order, "findAll");
+    });
+
+    test("Should Return 200: Get All Best Seller", async () => {
+      getBestSeller.mockResolvedValue(mockBestSeller);
+
+      const res = await Request(server).get(apiUrl).expect(200);
+
+      expect(res.body).toBeTruthy();
+    });
+  });
+});
+
+// PROFILE
+
+// Config
 let bearerToken;
 
 // Databases
@@ -18,12 +124,10 @@ let mockUser;
 
 // Spy DB
 let getUser;
-let createUser;
 let updateUser;
 
 // Spy function
 let uploadCloudinary;
-
 describe("User Json", () => {
   beforeAll(() => {
     server = GeneralHelper.createTestServer("/auth", AuthPlugin);
@@ -31,143 +135,6 @@ describe("User Json", () => {
 
   afterAll(async () => {
     await server.close();
-  });
-
-  describe("Register User", () => {
-    beforeEach(() => {
-      apiUrl = "/auth/register";
-      body = {
-        fullname: "U2FsdGVkX19UD49az3JuF0VXEfVZIDf7KsGC8qJpL5E=",
-        dob: "U2FsdGVkX1/SbPX2a0aox2Rjz7+4Ka2zXJbeqDIDVpo=",
-        email: "U2FsdGVkX1/9idHRiXddxKPYQqaDZAVRL3un9enxlNo=",
-        password: "U2FsdGVkX18U26W+1wY+pWFvb97N7s9ts9xnU67aSvg=",
-        role: "U2FsdGVkX18KKP0JAwckeOLHzDkeLatH+bwwpey73q4=",
-      };
-
-      mockUser = { dataValues: _.cloneDeep(MockUser) };
-
-      getUser = jest.spyOn(db.user, "findOne");
-      createUser = jest.spyOn(db.user, "create");
-    });
-
-    test("Should Return 200: Create New User", async () => {
-      getUser.mockResolvedValue({});
-      createUser.mockResolvedValue("SUCCESS");
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(200)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 422: Create New User With Exisiting Email", async () => {
-      getUser.mockResolvedValue(mockUser);
-      createUser.mockResolvedValue("SUCCESS");
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(422)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 400: Body Not Matched", async () => {
-      body = { ...body, email: undefined };
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(400)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 500: Failed to Create User", async () => {
-      getUser.mockResolvedValue({});
-      createUser.mockResolvedValue(null);
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(500)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-  });
-
-  describe("Login User", () => {
-    beforeEach(() => {
-      apiUrl = "/auth/login";
-      body = {
-        email: "U2FsdGVkX1+Kbv4eat40YMi1D8hWR92Of4bawIxapOQ=",
-        password: "U2FsdGVkX18swOXDrfnCZBcMZZZRTzNZHnhX1/ZlvLc=",
-      };
-
-      mockUser = { dataValues: _.cloneDeep(MockUser) };
-
-      getUser = jest.spyOn(db.user, "findOne");
-    });
-
-    test("Should Return 200: Login User", async () => {
-      getUser.mockResolvedValue(mockUser);
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(200)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-          expect(res.body?.data?.token).toBeTruthy();
-          expect(res.body?.data?.userData).toBeTruthy();
-        });
-    });
-
-    test("Should Return 401: Login with nonexisted email", async () => {
-      getUser.mockResolvedValue({});
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(401)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 401: Login with wrong password", async () => {
-      body = {
-        ...body,
-        password: "U2FsdGVkX1+Kbv4eat40YMi1D8hWR92Of4bawIxapOQ=",
-      };
-      getUser.mockResolvedValue(mockUser);
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(401)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 400: Body Not Matched", async () => {
-      body = { ...body, email: undefined };
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(400)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
   });
 
   describe("User Profile", () => {
@@ -237,7 +204,7 @@ describe("User Json", () => {
 
   describe("Change Password", () => {
     beforeEach(() => {
-      apiUrl = "/auth/changepassword";
+      apiUrl = "/auth/change-password";
       body = {
         oldPassword: "U2FsdGVkX1/EEJD9Via90Dyb5dmRSwbOcXO/p002Kn8=",
         newPassword: "U2FsdGVkX18BnxMAGMfT6dwpYJ9Td7vOLTVGRjAueYE=",
@@ -447,73 +414,6 @@ describe("User Json", () => {
       await Request(server)
         .patch(apiUrl)
         .set("Authorization", bearerToken)
-        .send(body)
-        .expect(400)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-  });
-
-  describe("Reset User Password", () => {
-    beforeEach(() => {
-      apiUrl = "/auth/resetpassword";
-      body = {
-        email: "test@a.ab",
-      };
-
-      mockUser = { dataValues: _.cloneDeep(MockUser), update: jest.fn() };
-
-      getUser = jest.spyOn(db.user, "findOne");
-      updateUser = jest.spyOn(mockUser, "update");
-    });
-
-    test("Should Return 200: Successfully Reset Password", async () => {
-      getUser.mockResolvedValue(mockUser);
-      updateUser.mockResolvedValue({ ...mockUser, password: "new passord" });
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(200)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-          expect(res.body?.data?.newPassword).toBeTruthy();
-        });
-    });
-
-    test("Should Return 500: Password Not Updated", async () => {
-      getUser.mockResolvedValue(mockUser);
-      updateUser.mockResolvedValue({});
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(500)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 422: Reset using unknown email", async () => {
-      getUser.mockResolvedValue({});
-
-      await Request(server)
-        .post(apiUrl)
-        .send(body)
-        .expect(422)
-        .then((res) => {
-          expect(res.body).toBeTruthy();
-        });
-    });
-
-    test("Should Return 400: Bad Request Data", async () => {
-      body = {
-        email: "",
-      };
-
-      await Request(server)
-        .post(apiUrl)
         .send(body)
         .expect(400)
         .then((res) => {

@@ -91,13 +91,18 @@ const Home = ({ products, userData, best }) => {
           </Button>
         </div>
       </div>
-      <h3 className={clasess.title}>
-        <FormattedMessage id="home_best" />
-      </h3>
-      <div className={clasess.bestSeller}>
-        {best.length !== 0 && best.map((item, idx) => <BestSellerCard key={idx} data={item} />)}
-      </div>
-
+      {best.length !== 0 && (
+        <>
+          <h3 className={clasess.title}>
+            <FormattedMessage id="home_best" />
+          </h3>
+          <div className={clasess.bestSeller}>
+            {best.map((item, idx) => (
+              <BestSellerCard key={idx} data={item} />
+            ))}
+          </div>
+        </>
+      )}
       <div className={clasess.dataContainer}>
         {data.length > 0 ? (
           <div className={clasess.dataGrid}>

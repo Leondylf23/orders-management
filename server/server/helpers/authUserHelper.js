@@ -180,6 +180,12 @@ const updateProfile = async (dataObject, imageFile, userId) => {
   try {
     const data = await db.user.findByPk(userId);
 
+    if (location && data.role !== "business") {
+      throw Boom.unauthorized(
+        "You are a customer. Cannot update store location"
+      );
+    }
+
     if (_.isEmpty(data))
       throw Boom.badData("Profile data not found, maybe bad session data!");
 
