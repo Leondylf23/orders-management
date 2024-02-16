@@ -33,7 +33,7 @@ export default {
   login_forgot_pass: 'Lupa Kata Sandi?',
   login_forgot_pass_back: 'Back to login',
   login_forgot_pass_email_not_found: 'Email tidak ditemukan!',
-  login_register_footer: 'Belum punya akun? Daftar di ',
+  login_register_footer: 'Belum punya akun? Daftar di sini',
   login_register_footer_link: 'sini',
   login_validation: 'Harus diisi semua!',
   login_wrong_credentials: 'Email atau kata sandi salah!',
@@ -52,7 +52,7 @@ export default {
   register_role_customer: 'Pelanggan',
   register_role_business: 'Bisnis',
   register_button: 'Daftar',
-  register_login_footer: 'Sudah punya akun? Masuk di ',
+  register_login_footer: 'Sudah punya akun? Masuk di sini ',
   register_login_footer_link: 'sini',
   register_fullname_validation:
     'Nama lengkap harus lebih sama dengan dari 3 karakter dan kurang sama dengan dari 255 karakter!',

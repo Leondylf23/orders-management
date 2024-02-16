@@ -63,7 +63,14 @@ const getOrderDetailWithId = async (dataObject) => {
           ],
         },
       ],
-      attributes: ["transactionCode", "status", "paymentMethod", "address", "phone", "totalPayment"],
+      attributes: [
+        "transactionCode",
+        "status",
+        "paymentMethod",
+        "address",
+        "phone",
+        "totalPayment",
+      ],
       where: { id, isActive: true },
     });
 
@@ -75,7 +82,7 @@ const getOrderDetailWithId = async (dataObject) => {
       organization: data?.product?.user?.dataValues?.fullname,
       location: data?.product?.user?.dataValues?.location,
       product: undefined,
-      user: undefined
+      user: undefined,
     };
 
     return Promise.resolve(remapData);
@@ -282,6 +289,7 @@ const editProductData = async (dataObject, userId) => {
       updatedData: remapData,
     });
   } catch (err) {
+    console.log(err);
     return Promise.reject(GeneralHelper.errorResponse(err));
   }
 };
